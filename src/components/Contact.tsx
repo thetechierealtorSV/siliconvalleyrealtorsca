@@ -1,21 +1,25 @@
-'use client'
-
-import { useEffect } from 'react'
+import { useState } from 'react'
+import { useToast } from '@/hooks/use-toast'
 
 export function Contact() {
+  const { toast } = useToast()
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://assets.calendly.com/assets/external/widget.js'
-    script.async = true
-    document.body.appendChild(script)
-
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({ title: 'Please fill in all fields', variant: 'destructive' })
+      return
     }
-  }, [])
+    setIsSubmitting(true)
+    // Simulate submission — connect to a backend to actually send
+    setTimeout(() => {
+      toast({ title: 'Message sent!', description: "We'll get back to you soon." })
+      setFormData({ name: '', email: '', message: '' })
+      setIsSubmitting(false)
+    }, 1000)
+  }
 
   return (
     <section id="contact" className="relative py-32 bg-card/30">
@@ -32,26 +36,24 @@ export function Contact() {
           
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-8">
             <span className="block mb-2">Ready to Light Up the Screen?</span>
-            
           </h2>
           
           <p className="text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Book a discovery call to discuss your project and see how we can bring your vision to cinematic reality
+            Tell us about your project and we'll get back to you with a plan to bring your vision to cinematic reality
           </p>
         </div>
 
-        {/* Cal.com Booking Widget */}
-        <div className="max-w-5xl mx-auto">
+        {/* Contact Form */}
+        <div className="max-w-3xl mx-auto">
           <div className="bg-background clean-border rounded-3xl overflow-hidden elevated-shadow">
-            {/* Widget Header */}
             <div className="bg-card/50 px-8 py-6 border-b border-border">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-black text-foreground mb-1">
-                    MOJJU Discovery Call
+                    Get In Touch
                   </h3>
                   <p className="text-muted-foreground">
-                    30 minutes • Video call • Free consultation
+                    Fill out the form and we'll respond within 24 hours
                   </p>
                 </div>
                 <div className="hidden sm:flex items-center space-x-2">
@@ -61,18 +63,53 @@ export function Contact() {
               </div>
             </div>
             
-            {/* Calendly Embed Container */}
-            <div className="p-0 bg-white">
-              <div 
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/d/cvb4-btv-mxp/introduction-with-zeroqode"
-                style={{
-                  width: '100%',
-                  height: '660px',
-                  overflow: 'hidden'
-                }} 
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="p-8 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    maxLength={100}
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    maxLength={255}
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">Message</label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  maxLength={1000}
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all resize-none"
+                  placeholder="Tell us about your project..."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl bg-foreground text-background font-black text-lg hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
           </div>
         </div>
 
