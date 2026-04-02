@@ -6,23 +6,23 @@ export function Services() {
   const services = [
     {
       icon: Brain,
-      title: 'Neuroscience-Driven Sales',
+      title: 'Consultative Approach',
       description: 'Decision science and behavioral insights applied to every stage of your home search — helping you buy with clarity and confidence.',
     },
     {
       icon: Cpu,
-      title: 'AI Property Matching',
-      description: 'Our intelligent platform learns your preferences and surfaces properties that align with your lifestyle, not just your checklist.',
+      title: 'Intelligent Property Matching',
+      description: 'Our platform learns your preferences and surfaces properties that align with your lifestyle, not just your checklist.',
     },
     {
       icon: Video,
-      title: 'Cinematic AI Tours',
-      description: 'AI-produced video walkthroughs that capture the light, flow, and soul of each property — experience homes remotely in stunning detail.',
+      title: 'Cinematic Tours',
+      description: 'Professionally produced video walkthroughs that capture the light, flow, and soul of each property — experience homes remotely in stunning detail.',
     },
     {
       icon: Search,
       title: 'Off-Market Access',
-      description: 'Deep Silicon Valley network spanning Palo Alto, Atherton, Los Altos Hills, and beyond — unlocking properties before they hit the market.',
+      description: 'Deep Silicon Valley network unlocking properties before they hit the market — pocket listings, pre-market deals, and exclusive opportunities.',
     },
     {
       icon: Globe,
@@ -47,7 +47,7 @@ export function Services() {
             The Modern Advantage
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Where cutting-edge technology meets deep local expertise — a new standard for luxury real estate in Silicon Valley.
+            Where cutting-edge tools meet deep local expertise — a new standard for luxury real estate in Silicon Valley.
           </p>
         </div>
 

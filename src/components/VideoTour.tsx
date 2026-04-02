@@ -11,10 +11,10 @@ export function VideoTour() {
             Cinematic Experience
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground">
-            AI Video Walkthroughs
+            Video Walkthroughs
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Experience properties through cinematic AI-produced video tours — immersive walkthroughs that capture light, space, and atmosphere before you ever step foot inside.
+            Experience properties through cinematic video tours — immersive walkthroughs that capture light, space, and atmosphere before you ever step foot inside.
           </p>
         </div>
 
@@ -36,11 +36,11 @@ export function VideoTour() {
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div>
               <div className="font-display text-2xl font-bold text-foreground mb-1">4K Quality</div>
-              <p className="text-muted-foreground text-sm">Ultra-high definition cinematic renders</p>
+              <p className="text-muted-foreground text-sm">Ultra-high definition cinematic production</p>
             </div>
             <div>
-              <div className="font-display text-2xl font-bold text-foreground mb-1">AI-Generated</div>
-              <p className="text-muted-foreground text-sm">Advanced architectural visualization</p>
+              <div className="font-display text-2xl font-bold text-foreground mb-1">Studio-Crafted</div>
+              <p className="text-muted-foreground text-sm">Professional architectural visualization</p>
             </div>
             <div>
               <div className="font-display text-2xl font-bold text-foreground mb-1">360° Views</div>
