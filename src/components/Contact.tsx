@@ -26,8 +26,8 @@ export function Contact() {
   const contactMethods = [
     {
       icon: Phone,
-      label: 'AI Voicemail',
-      value: 'Call anytime — our AI agent takes your details 24/7',
+      label: 'Call Us',
+      value: 'Speak directly with our team — we\'re here for you',
       color: '#6b7c5e',
       href: '#',
     },
@@ -36,21 +36,21 @@ export function Contact() {
       label: 'WhatsApp',
       value: 'Message us directly on WhatsApp',
       color: '#25D366',
-      href: '#', // placeholder
+      href: '#',
     },
     {
       icon: Instagram,
       label: 'Instagram',
       value: 'Follow us for listings & market insights',
       color: '#E1306C',
-      href: '#', // placeholder
+      href: '#',
     },
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@siliconvalleyluxe.com',
+      value: 'hello@siliconvalleyrealtors.com',
       color: '#b8860b',
-      href: 'mailto:hello@siliconvalleyluxe.com',
+      href: 'mailto:hello@siliconvalleyrealtors.com',
     },
   ]
 
@@ -58,7 +58,6 @@ export function Contact() {
     <section id="contact" className="relative py-28 bg-background">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-          {/* Left: Copy + Contact Methods */}
           <div>
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-medium">
               Get in Touch
@@ -67,8 +66,8 @@ export function Contact() {
               Let's Find Your <br />Next Home
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-              Whether you're exploring Palo Alto estates, Atherton compounds, or iconic Eichler homes — 
-              reach out through any channel and our AI-powered intake system will connect you with the right resources instantly.
+              Whether you're exploring luxury estates, mid-century gems, or modern masterpieces across Silicon Valley — 
+              reach out through any channel and our team will connect you with the right resources.
             </p>
 
             <div className="space-y-4">
@@ -95,7 +94,6 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right: Form */}
           <div>
             <div className="bg-card clean-border rounded-2xl overflow-hidden elevated-shadow">
               <form onSubmit={handleSubmit} className="p-8 space-y-6">

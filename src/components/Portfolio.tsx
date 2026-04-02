@@ -13,7 +13,7 @@ const properties = [
   {
     id: 1,
     title: 'Modern Hilltop Estate',
-    address: 'Palo Alto Hills, Palo Alto',
+    address: 'Palo Alto Hills',
     price: '$12,500,000',
     beds: 6,
     baths: 7,
@@ -24,7 +24,7 @@ const properties = [
   {
     id: 2,
     title: 'Mediterranean Grand Estate',
-    address: 'Lindenwood, Atherton',
+    address: 'Atherton',
     price: '$18,900,000',
     beds: 7,
     baths: 9,
@@ -35,7 +35,7 @@ const properties = [
   {
     id: 3,
     title: 'Eichler Atrium Classic',
-    address: 'Greenmeadow, Palo Alto',
+    address: 'Palo Alto',
     price: '$3,250,000',
     beds: 4,
     baths: 3,
@@ -57,7 +57,7 @@ const properties = [
   {
     id: 5,
     title: 'Cantilevered Infinity Home',
-    address: 'Palo Alto Hills, Palo Alto',
+    address: 'Saratoga',
     price: '$15,200,000',
     beds: 5,
     baths: 6,
@@ -68,7 +68,7 @@ const properties = [
   {
     id: 6,
     title: 'Resort-Style Retreat',
-    address: 'West Atherton',
+    address: 'Los Gatos',
     price: '$22,000,000',
     beds: 8,
     baths: 10,
@@ -92,7 +92,7 @@ export function Portfolio() {
             Featured Properties
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            From iconic Eichler homes to sprawling Atherton estates — handpicked luxury across Silicon Valley's most coveted neighborhoods.
+            From iconic mid-century homes to sprawling estates — handpicked luxury across Silicon Valley's most coveted neighborhoods.
           </p>
         </div>
 

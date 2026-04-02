@@ -40,7 +40,6 @@ export function Hero() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Hero Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -62,11 +61,14 @@ export function Hero() {
           <div className="flex items-center justify-between">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center cursor-pointer"
+              className="flex flex-col cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <span className={`font-display text-xl tracking-wider ${isScrolled ? 'text-foreground' : 'text-white'}`}>
-                SILICON VALLEY LUXE
+              <span className={`font-display text-xl tracking-wider leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
+                SILICON VALLEY REALTORS
+              </span>
+              <span className={`text-[10px] tracking-[0.2em] uppercase ${isScrolled ? 'text-muted-foreground' : 'text-white/60'}`}>
+                By The Nikolaenko Group
               </span>
             </motion.div>
 
@@ -172,14 +174,14 @@ export function Hero() {
       >
         <div className="max-w-3xl">
           <p className="text-white/70 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-            Palo Alto · Atherton · Silicon Valley
+            Serving Silicon Valley
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.05] text-white mb-6">
             <span className="block">Luxury Living,</span>
-            <span className="block text-white/80">Intelligently Curated</span>
+            <span className="block text-white/80">Expertly Curated</span>
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed mb-8">
-            AI-powered property search, cinematic video tours, and neuroscience-informed sales strategy — redefining how Silicon Valley's most discerning buyers find home.
+            Personalized property search, cinematic video tours, and a dedicated team that understands what home means to you — this is real estate, reimagined.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
