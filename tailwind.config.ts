@@ -48,6 +48,9 @@ export default {
           blue: "var(--accent-blue)",
           emerald: "var(--accent-emerald)",
           purple: "var(--accent-purple)",
+          gold: "var(--accent-gold)",
+          sage: "var(--accent-sage)",
+          terracotta: "var(--accent-terracotta)",
         },
         popover: {
           DEFAULT: "var(--popover)",
