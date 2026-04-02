@@ -7,11 +7,11 @@ export function Footer() {
         <div className="grid grid-cols-12 gap-12 mb-12">
           <div className="col-span-12 md:col-span-5">
             <div className="font-display text-2xl tracking-wider mb-4">
-              EICHLER ESTATES
+              SILICON VALLEY LUXE
             </div>
             <p className="text-primary-foreground/60 leading-relaxed mb-6 max-w-sm">
-              Silicon Valley's premier specialists in Eichler and mid-century modern homes. 
-              Connecting discerning buyers with architectural masterpieces since 2010.
+              AI-powered luxury real estate across Silicon Valley's most prestigious neighborhoods. 
+              From Eichler gems to Atherton estates — technology meets expertise.
             </p>
           </div>
 
@@ -19,9 +19,9 @@ export function Footer() {
             <h4 className="font-semibold text-sm tracking-wide uppercase mb-4">Navigate</h4>
             <div className="flex flex-col space-y-3">
               <a href="#properties" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Properties</a>
-              <a href="#process" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Process</a>
+              <a href="#video-tour" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Video Tours</a>
               <a href="#services" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Services</a>
-              <a href="#team" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Team</a>
+              <a href="#why-us" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Why Us</a>
               <a href="#contact" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Contact</a>
             </div>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
           <div className="col-span-6 md:col-span-4">
             <h4 className="font-semibold text-sm tracking-wide uppercase mb-4">Neighborhoods</h4>
             <div className="grid grid-cols-2 gap-3">
-              {['Palo Alto', 'Sunnyvale', 'Mountain View', 'San Jose', 'San Mateo', 'San Rafael'].map((n) => (
+              {['Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside', 'Hillsborough'].map((n) => (
                 <span key={n} className="text-primary-foreground/60 text-sm">{n}</span>
               ))}
             </div>
@@ -39,10 +39,10 @@ export function Footer() {
         <div className="border-t border-primary-foreground/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-primary-foreground/40 mb-4 md:mb-0">
-              © 2025 Eichler Estates. All rights reserved. DRE #01234567
+              © 2025 Silicon Valley Luxe. All rights reserved.
             </div>
             <div className="text-sm text-primary-foreground/40">
-              Silicon Valley, California
+              Palo Alto · Atherton · Silicon Valley
             </div>
           </div>
         </div>

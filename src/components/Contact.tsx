@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
+import { MessageCircle, Instagram, Phone, Mail } from 'lucide-react'
 
 export function Contact() {
   const { toast } = useToast()
@@ -16,57 +17,81 @@ export function Contact() {
     }
     setIsSubmitting(true)
     setTimeout(() => {
-      toast({ title: 'Inquiry received!', description: "We'll contact you within 24 hours to schedule your tour." })
+      toast({ title: 'Inquiry received!', description: "We'll contact you within 24 hours." })
       setFormData({ name: '', email: '', phone: '', message: '' })
       setIsSubmitting(false)
     }, 1000)
   }
 
+  const contactMethods = [
+    {
+      icon: Phone,
+      label: 'AI Voicemail',
+      value: 'Call anytime — our AI agent takes your details 24/7',
+      color: '#6b7c5e',
+      href: '#',
+    },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      value: 'Message us directly on WhatsApp',
+      color: '#25D366',
+      href: '#', // placeholder
+    },
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      value: 'Follow us for listings & market insights',
+      color: '#E1306C',
+      href: '#', // placeholder
+    },
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'hello@siliconvalleyluxe.com',
+      color: '#b8860b',
+      href: 'mailto:hello@siliconvalleyluxe.com',
+    },
+  ]
+
   return (
     <section id="contact" className="relative py-28 bg-background">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-          {/* Left: Copy */}
+          {/* Left: Copy + Contact Methods */}
           <div>
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-medium">
               Get in Touch
             </p>
             <h2 className="font-display text-4xl sm:text-5xl font-bold leading-tight mb-6 text-foreground">
-              Start Your Eichler Journey
+              Let's Find Your <br />Next Home
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-              Whether you're searching for your dream mid-century modern home or looking to sell, 
-              our specialists are ready to guide you every step of the way.
+              Whether you're exploring Palo Alto estates, Atherton compounds, or iconic Eichler homes — 
+              reach out through any channel and our AI-powered intake system will connect you with the right resources instantly.
             </p>
 
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#b8860b' }} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">Private Showings</h4>
-                  <p className="text-muted-foreground text-sm">Schedule exclusive tours of our latest listings</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#6b7c5e' }} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">Market Insights</h4>
-                  <p className="text-muted-foreground text-sm">Get a complimentary Eichler market analysis for your area</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4704b' }} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">Selling Your Eichler</h4>
-                  <p className="text-muted-foreground text-sm">Learn how our cinematic marketing maximizes your sale price</p>
-                </div>
-              </div>
+            <div className="space-y-4">
+              {contactMethods.map((method) => (
+                <a
+                  key={method.label}
+                  href={method.href}
+                  target={method.href.startsWith('http') ? '_blank' : undefined}
+                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-card clean-border gentle-animation hover:elevated-shadow hover:-translate-y-0.5 group"
+                >
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: method.color + '20' }}
+                  >
+                    <method.icon className="w-5 h-5" style={{ color: method.color }} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground text-sm">{method.label}</h4>
+                    <p className="text-muted-foreground text-sm">{method.value}</p>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -121,7 +146,7 @@ export function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                     className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all resize-none"
-                    placeholder="Tell us about your ideal Eichler home..."
+                    placeholder="Tell us about your ideal Silicon Valley home..."
                   />
                 </div>
                 <button

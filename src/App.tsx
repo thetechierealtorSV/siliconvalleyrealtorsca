@@ -1,9 +1,8 @@
 import { Hero } from './components/Hero'
 import { Portfolio } from './components/Portfolio'
-import { About } from './components/About'
+import { VideoTour } from './components/VideoTour'
 import { Awards } from './components/Awards'
 import { Services } from './components/Services'
-import { Team } from './components/Team'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 
@@ -17,17 +16,14 @@ export default function App() {
         <section id="properties-section" aria-label="Properties section">
           <Portfolio />
         </section>
-        <section id="process-section" aria-label="Process section">
-          <About />
-        </section>
-        <section id="awards-section" aria-label="Stats and testimonials">
-          <Awards />
+        <section id="video-tour-section" aria-label="Video tours section">
+          <VideoTour />
         </section>
         <section id="services-section" aria-label="Services section">
           <Services />
         </section>
-        <section id="team-section" aria-label="Team section">
-          <Team />
+        <section id="why-us-section" aria-label="Why choose us">
+          <Awards />
         </section>
         <section id="contact-section" aria-label="Contact section">
           <Contact />

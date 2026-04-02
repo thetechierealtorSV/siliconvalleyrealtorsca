@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import heroImage from '@/assets/hero-luxury.jpg'
 
 export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,9 +32,9 @@ export function Hero() {
 
   const navLinks = [
     { href: '#properties', label: 'Properties' },
-    { href: '#process', label: 'Process' },
+    { href: '#video-tour', label: 'Video Tours' },
     { href: '#services', label: 'Services' },
-    { href: '#team', label: 'Team' },
+    { href: '#why-us', label: 'Why Us' },
     { href: '#contact', label: 'Contact' },
   ]
 
@@ -42,9 +43,7 @@ export function Hero() {
       {/* Hero Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80&auto=format)',
-        }}
+        style={{ backgroundImage: `url(${heroImage})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
 
@@ -67,7 +66,7 @@ export function Hero() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <span className={`font-display text-xl tracking-wider ${isScrolled ? 'text-foreground' : 'text-white'}`}>
-                EICHLER ESTATES
+                SILICON VALLEY LUXE
               </span>
             </motion.div>
 
@@ -96,7 +95,7 @@ export function Hero() {
                     : 'bg-white text-black hover:bg-white/90'
                 }`}
               >
-                Schedule a Tour
+                Get Started
               </motion.button>
 
               <button
@@ -158,7 +157,7 @@ export function Hero() {
               }}
               className="bg-foreground text-primary-foreground font-medium px-6 py-3 rounded-lg hover:opacity-90 gentle-animation mt-8 cursor-pointer"
             >
-              Schedule a Tour
+              Get Started
             </motion.button>
           </div>
         </div>
@@ -173,14 +172,14 @@ export function Hero() {
       >
         <div className="max-w-3xl">
           <p className="text-white/70 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-            Silicon Valley's Finest Mid-Century Modern
+            Palo Alto · Atherton · Silicon Valley
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.05] text-white mb-6">
-            <span className="block">Eichler Architecture</span>
-            <span className="block text-white/80">Reimagined</span>
+            <span className="block">Luxury Living,</span>
+            <span className="block text-white/80">Intelligently Curated</span>
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed mb-8">
-            Discover iconic post-and-beam homes where indoor-outdoor living meets Silicon Valley's most desirable neighborhoods.
+            AI-powered property search, cinematic video tours, and neuroscience-informed sales strategy — redefining how Silicon Valley's most discerning buyers find home.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -188,7 +187,7 @@ export function Hero() {
             onClick={() => document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-white text-black font-medium px-8 py-4 rounded-md hover:bg-white/90 gentle-animation cursor-pointer text-sm tracking-wide uppercase"
           >
-            View Properties
+            Explore Properties
           </motion.button>
         </div>
       </motion.div>
