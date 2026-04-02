@@ -1,38 +1,38 @@
 'use client'
 
-import { Home, Video, Search, Camera, FileText, Shield } from 'lucide-react'
+import { Search, Video, Brain, Globe, Shield, Cpu } from 'lucide-react'
 
 export function Services() {
   const services = [
     {
-      icon: Search,
-      title: 'Property Search',
-      description: 'Access our curated database of on-market and exclusive off-market Eichler listings across Silicon Valley.',
+      icon: Brain,
+      title: 'Neuroscience-Driven Sales',
+      description: 'Decision science and behavioral insights applied to every stage of your home search — helping you buy with clarity and confidence.',
+    },
+    {
+      icon: Cpu,
+      title: 'AI Property Matching',
+      description: 'Our intelligent platform learns your preferences and surfaces properties that align with your lifestyle, not just your checklist.',
     },
     {
       icon: Video,
-      title: 'Cinematic Tours',
-      description: 'AI-produced video walkthroughs that capture the light, flow, and soul of each mid-century modern home.',
+      title: 'Cinematic AI Tours',
+      description: 'AI-produced video walkthroughs that capture the light, flow, and soul of each property — experience homes remotely in stunning detail.',
     },
     {
-      icon: Home,
-      title: 'Eichler Expertise',
-      description: 'Deep knowledge of post-and-beam construction, radiant flooring, and atrium designs unique to Eichler homes.',
+      icon: Search,
+      title: 'Off-Market Access',
+      description: 'Deep Silicon Valley network spanning Palo Alto, Atherton, Los Altos Hills, and beyond — unlocking properties before they hit the market.',
     },
     {
-      icon: Camera,
-      title: 'Architectural Photography',
-      description: 'Professional imagery that highlights the clean lines, glass walls, and indoor-outdoor living of each property.',
-    },
-    {
-      icon: FileText,
-      title: 'Market Analysis',
-      description: 'Comprehensive neighborhood reports with pricing trends, school ratings, and comparable sales data.',
+      icon: Globe,
+      title: 'Global Buyer Network',
+      description: 'Connected to international buyers and investors seeking Silicon Valley luxury — maximizing exposure for sellers and opportunity for buyers.',
     },
     {
       icon: Shield,
-      title: 'Transaction Management',
-      description: 'Full-service support from offer to close, including inspections, repairs, and escrow coordination.',
+      title: 'End-to-End Transaction',
+      description: 'Full-service support from discovery to close — inspections, negotiations, escrow coordination, and post-purchase concierge.',
     },
   ]
 
@@ -41,13 +41,13 @@ export function Services() {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-16">
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-medium">
-            What We Offer
+            Technology + Expertise
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground">
-            Full-Service Luxury
+            The Modern Advantage
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Every aspect of your Eichler home search, purchase, or sale — handled with precision and care.
+            Where cutting-edge technology meets deep local expertise — a new standard for luxury real estate in Silicon Valley.
           </p>
         </div>
 

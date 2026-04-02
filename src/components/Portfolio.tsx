@@ -2,72 +2,78 @@
 
 import { useState } from 'react'
 import { MapPin, Bed, Bath, Maximize } from 'lucide-react'
+import luxuryPaloAlto1 from '@/assets/luxury-paloalto-1.jpg'
+import luxuryAtherton1 from '@/assets/luxury-atherton-1.jpg'
+import luxuryEichler1 from '@/assets/luxury-eichler-1.jpg'
+import luxuryInterior1 from '@/assets/luxury-interior-1.jpg'
+import luxuryPaloAlto2 from '@/assets/luxury-paloalto-2.jpg'
+import luxuryAtherton2 from '@/assets/luxury-atherton-2.jpg'
 
 const properties = [
   {
     id: 1,
-    title: 'Sunlight Atrium Eichler',
+    title: 'Modern Hilltop Estate',
+    address: 'Palo Alto Hills, Palo Alto',
+    price: '$12,500,000',
+    beds: 6,
+    baths: 7,
+    sqft: '8,200',
+    image: luxuryPaloAlto1,
+    tag: 'New Listing',
+  },
+  {
+    id: 2,
+    title: 'Mediterranean Grand Estate',
+    address: 'Lindenwood, Atherton',
+    price: '$18,900,000',
+    beds: 7,
+    baths: 9,
+    sqft: '12,400',
+    image: luxuryAtherton1,
+    tag: 'Featured',
+  },
+  {
+    id: 3,
+    title: 'Eichler Atrium Classic',
     address: 'Greenmeadow, Palo Alto',
     price: '$3,250,000',
     beds: 4,
     baths: 3,
     sqft: '2,180',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format',
-    tag: 'New Listing',
-  },
-  {
-    id: 2,
-    title: 'Glass-Wall Ranch',
-    address: 'Fairmeadow, Sunnyvale',
-    price: '$2,895,000',
-    beds: 3,
-    baths: 2,
-    sqft: '1,940',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format',
-    tag: 'Featured',
-  },
-  {
-    id: 3,
-    title: 'Courtyard Modern',
-    address: 'Eichler Highlands, San Jose',
-    price: '$2,475,000',
-    beds: 4,
-    baths: 2,
-    sqft: '2,050',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format',
-    tag: 'Open House',
+    image: luxuryEichler1,
+    tag: 'Eichler',
   },
   {
     id: 4,
-    title: 'Post & Beam Classic',
-    address: 'Mackay Park, San Mateo',
-    price: '$3,100,000',
+    title: 'Contemporary Open-Plan',
+    address: 'Los Altos Hills',
+    price: '$9,750,000',
     beds: 5,
-    baths: 3,
-    sqft: '2,420',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80&auto=format',
-    tag: 'Reduced',
+    baths: 6,
+    sqft: '6,800',
+    image: luxuryInterior1,
+    tag: 'Price Reduced',
   },
   {
     id: 5,
-    title: 'Radiant-Floor Retreat',
-    address: 'Terra Linda, San Rafael',
-    price: '$1,985,000',
-    beds: 3,
-    baths: 2,
-    sqft: '1,780',
-    image: 'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80&auto=format',
+    title: 'Cantilevered Infinity Home',
+    address: 'Palo Alto Hills, Palo Alto',
+    price: '$15,200,000',
+    beds: 5,
+    baths: 6,
+    sqft: '7,500',
+    image: luxuryPaloAlto2,
     tag: 'Just Listed',
   },
   {
     id: 6,
-    title: 'Open-Plan Masterpiece',
-    address: 'Fairhills, Mountain View',
-    price: '$3,750,000',
-    beds: 4,
-    baths: 3,
-    sqft: '2,600',
-    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80&auto=format',
+    title: 'Resort-Style Retreat',
+    address: 'West Atherton',
+    price: '$22,000,000',
+    beds: 8,
+    baths: 10,
+    sqft: '14,200',
+    image: luxuryAtherton2,
     tag: 'Premium',
   },
 ]
@@ -78,7 +84,6 @@ export function Portfolio() {
   return (
     <section id="properties" className="relative py-28 bg-background">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-medium">
             Curated Collection
@@ -87,11 +92,10 @@ export function Portfolio() {
             Featured Properties
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Handpicked Eichler homes showcasing the best of mid-century modern architecture across Silicon Valley.
+            From iconic Eichler homes to sprawling Atherton estates — handpicked luxury across Silicon Valley's most coveted neighborhoods.
           </p>
         </div>
 
-        {/* Property Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
             <div
@@ -100,11 +104,13 @@ export function Portfolio() {
               onMouseEnter={() => setHoveredId(property.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Image */}
               <div className="relative overflow-hidden aspect-[4/3]">
                 <img
                   src={property.image}
                   alt={property.title}
+                  loading="lazy"
+                  width={1280}
+                  height={960}
                   className="w-full h-full object-cover gentle-animation group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4">
@@ -119,7 +125,6 @@ export function Portfolio() {
                 </div>
               </div>
 
-              {/* Details */}
               <div className="p-6">
                 <h3 className="font-display text-xl font-bold text-foreground mb-2">
                   {property.title}
