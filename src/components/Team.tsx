@@ -11,7 +11,7 @@ export function Team() {
     {
       name: 'Michael Torres',
       role: 'Senior Agent',
-      bio: 'Architectural historian turned realtor. Expert in Joseph Eichler's design legacy.',
+      bio: "Architectural historian turned realtor. Expert in Joseph Eichler's design legacy.",
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format',
     },
     {
