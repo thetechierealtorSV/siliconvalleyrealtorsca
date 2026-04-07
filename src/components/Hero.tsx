@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import heroImage from '@/assets/hero-luxury.jpg'
 
 export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -31,11 +33,12 @@ export function Hero() {
   }, [isMobileMenuOpen])
 
   const navLinks = [
-    { href: '#properties', label: 'Properties' },
-    { href: '#video-tour', label: 'Video Tours' },
-    { href: '#services', label: 'Services' },
-    { href: '#why-us', label: 'Why Us' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#properties', label: 'Properties', route: false },
+    { href: '#video-tour', label: 'Video Tours', route: false },
+    { href: '/buyers', label: 'Buyers', route: true },
+    { href: '/sellers', label: 'Sellers', route: true },
+    { href: '#services', label: 'Services', route: false },
+    { href: '#contact', label: 'Contact', route: false },
   ]
 
   return (
@@ -74,15 +77,27 @@ export function Hero() {
 
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map(link => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`font-medium gentle-animation hover:scale-105 text-sm tracking-wide uppercase ${
-                    isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
-                  }`}
-                >
-                  {link.label}
-                </a>
+                link.route ? (
+                  <button
+                    key={link.href}
+                    onClick={() => navigate(link.href)}
+                    className={`font-medium gentle-animation hover:scale-105 text-sm tracking-wide uppercase cursor-pointer ${
+                      isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`font-medium gentle-animation hover:scale-105 text-sm tracking-wide uppercase ${
+                      isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </div>
 
@@ -140,14 +155,24 @@ export function Hero() {
           <div className="flex flex-col px-6 pb-6 h-full">
             <div className="flex flex-col space-y-2 text-foreground">
               {navLinks.map(link => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
+                link.route ? (
+                  <button
+                    key={link.href}
+                    onClick={() => { navigate(link.href); setIsMobileMenuOpen(false) }}
+                    className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide text-left cursor-pointer"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </div>
             <motion.button
