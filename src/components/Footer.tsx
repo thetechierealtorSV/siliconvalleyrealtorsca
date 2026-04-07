@@ -1,6 +1,11 @@
 'use client'
 
+import { useNavigate, useLocation } from 'react-router-dom'
+
 export function Footer() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isHome = location.pathname === '/'
   return (
     <footer className="relative py-16 bg-foreground text-primary-foreground">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
@@ -21,11 +26,18 @@ export function Footer() {
           <div className="col-span-6 md:col-span-3">
             <h4 className="font-semibold text-sm tracking-wide uppercase mb-4">Navigate</h4>
             <div className="flex flex-col space-y-3">
-              <a href="#properties" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Properties</a>
-              <a href="#video-tour" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Video Tours</a>
-              <a href="#services" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Services</a>
-              <a href="#why-us" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Why Us</a>
-              <a href="#contact" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Contact</a>
+              {isHome ? (
+                <>
+                  <a href="#properties" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Properties</a>
+                  <a href="#video-tour" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Video Tours</a>
+                </>
+              ) : (
+                <button onClick={() => navigate('/')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left cursor-pointer">Home</button>
+              )}
+              <button onClick={() => navigate('/buyers')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left cursor-pointer">Buyers</button>
+              <button onClick={() => navigate('/sellers')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left cursor-pointer">Sellers</button>
+              {isHome && <a href="#services" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Services</a>}
+              {isHome && <a href="#contact" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Contact</a>}
             </div>
           </div>
 
