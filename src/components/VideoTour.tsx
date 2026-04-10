@@ -1,6 +1,7 @@
 'use client'
 
 import walkthroughVideo from '@/assets/luxury-walkthrough.mp4.asset.json'
+import interiorVideo from '@/assets/luxury-interior-walkthrough.mp4.asset.json'
 
 export function VideoTour() {
   return (
@@ -18,21 +19,47 @@ export function VideoTour() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-            <video
-              src={walkthroughVideo.url}
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full aspect-video object-cover"
-              poster=""
-            >
-              Your browser does not support the video tag.
-            </video>
+        <div className="max-w-5xl mx-auto space-y-16">
+          {/* Video 1 — Exterior / Aerial */}
+          <div>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video
+                src={walkthroughVideo.url}
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
+
+          {/* Video 2 — Interior & Drone */}
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Interior & Aerial Tour
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              Drone aerials descend into designer interiors — marble finishes, panoramic views, and open-concept living at its finest.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video
+                src={interiorVideo.url}
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div>
               <div className="font-display text-2xl font-bold text-foreground mb-1">4K Quality</div>
