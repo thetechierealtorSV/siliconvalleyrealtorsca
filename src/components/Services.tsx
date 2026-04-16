@@ -1,9 +1,10 @@
 'use client'
 
-import { Search, Video, Brain, Globe, Shield, Cpu } from 'lucide-react'
+import { Search, Video, Brain, Globe, Shield, Cpu, Heart, Scale, MapPin, Medal, FileCheck } from 'lucide-react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export function Services() {
-  const services = [
+  const coreServices = [
     {
       icon: Brain,
       title: 'Consultative Approach',
@@ -36,6 +37,48 @@ export function Services() {
     },
   ]
 
+  const specializedServices = [
+    {
+      icon: Heart,
+      title: 'Senior Assisted Living Concierge',
+      description: 'Compassionate, comprehensive guidance for families navigating senior transitions. We coordinate downsizing, home sales, and connect you with trusted assisted living communities — handling every detail with care and sensitivity.',
+    },
+    {
+      icon: Scale,
+      title: 'Probate, Foreclosure & Short Sale Specialist',
+      description: 'Expert navigation through complex distressed property transactions. Certified in probate sales, foreclosure proceedings, and short sale negotiations — protecting your interests during challenging circumstances.',
+    },
+    {
+      icon: MapPin,
+      title: 'Nationwide Relocation Services',
+      description: 'Seamless moves across state lines with our vetted network of relocation partners. From Silicon Valley to anywhere in the U.S. — we coordinate your departure or arrival with white-glove precision.',
+    },
+    {
+      icon: Medal,
+      title: 'Veteran Partner & VA Loan Expert',
+      description: 'Dedicated support for military families leveraging VA benefits. We understand the unique requirements of VA loans and are committed to serving those who served our country.',
+    },
+    {
+      icon: FileCheck,
+      title: 'Assumable Loan Agent',
+      description: 'Unlock rare financing opportunities by assuming existing low-rate mortgages. We identify assumable loan properties and guide you through the qualification process — potentially saving you thousands monthly.',
+    },
+  ]
+
+  const ServiceCard = ({ service }: { service: typeof coreServices[0] }) => (
+    <div className="group bg-card clean-border rounded-2xl p-8 gentle-animation hover:elevated-shadow hover:-translate-y-1 h-full">
+      <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:bg-foreground group-hover:text-primary-foreground gentle-animation">
+        <service.icon className="w-6 h-6" />
+      </div>
+      <h3 className="font-display text-xl font-bold text-foreground mb-3">
+        {service.title}
+      </h3>
+      <p className="text-muted-foreground leading-relaxed">
+        {service.description}
+      </p>
+    </div>
+  )
+
   return (
     <section id="services" className="relative py-28 bg-background">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
@@ -51,24 +94,32 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group bg-card clean-border rounded-2xl p-8 gentle-animation hover:elevated-shadow hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:bg-foreground group-hover:text-primary-foreground gentle-animation">
-                <service.icon className="w-6 h-6" />
-              </div>
-              <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+        <Tabs defaultValue="core" className="max-w-6xl mx-auto">
+          <TabsList className="grid w-full max-w-md mx-auto mb-12 bg-muted/50 p-1 rounded-xl">
+            <TabsTrigger value="core" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
+              Core Services
+            </TabsTrigger>
+            <TabsTrigger value="specialized" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
+              Specialized Services
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="core" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {coreServices.map((service) => (
+                <ServiceCard key={service.title} service={service} />
+              ))}
             </div>
-          ))}
-        </div>
+          </TabsContent>
+
+          <TabsContent value="specialized" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {specializedServices.map((service) => (
+                <ServiceCard key={service.title} service={service} />
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   )
