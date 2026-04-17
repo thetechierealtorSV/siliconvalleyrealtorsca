@@ -8,32 +8,50 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { ChatBot } from './components/ChatBot'
 import { BuyersSellersPreview } from './components/BuyersSellersPreview'
+import { SEO, ORG_JSON_LD } from './components/SEO'
+import { IDXSearch } from './components/IDXSearch'
 import BuyersPage from './pages/BuyersPage'
 import SellersPage from './pages/SellersPage'
+import PropertiesPage from './pages/PropertiesPage'
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Silicon Valley Realtors · Luxury Homes by The Nikolaenko Group"
+        description="Luxury real estate across Silicon Valley — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and beyond. Live MLS search, buyer representation, seller concierge."
+        jsonLd={ORG_JSON_LD}
+      />
       <main className="relative" role="main">
-        <section id="hero" aria-label="Hero section">
+        <section id="hero" aria-label="Hero">
           <Hero />
         </section>
-        <section id="properties-section" aria-label="Properties section">
+        <section id="mls-search" aria-label="MLS property search" className="bg-secondary/30 py-16">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="max-w-4xl mx-auto text-center mb-8">
+              <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-3">MLS Search</p>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3">Find your Silicon Valley home</h2>
+              <p className="text-muted-foreground">Live listings across every Silicon Valley city.</p>
+            </div>
+            <div className="max-w-4xl mx-auto"><IDXSearch /></div>
+          </div>
+        </section>
+        <section id="properties-section" aria-label="Featured properties">
           <Portfolio />
         </section>
-        <section id="video-tour-section" aria-label="Video tours section">
+        <section id="video-tour-section" aria-label="Video tours">
           <VideoTour />
         </section>
         <section id="buyers-sellers-preview" aria-label="Buyers and Sellers">
           <BuyersSellersPreview />
         </section>
-        <section id="services-section" aria-label="Services section">
+        <section id="services-section" aria-label="Services">
           <Services />
         </section>
         <section id="why-us-section" aria-label="Why choose us">
           <Awards />
         </section>
-        <section id="contact-section" aria-label="Contact section">
+        <section id="contact-section" aria-label="Contact">
           <Contact />
         </section>
       </main>
@@ -48,6 +66,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/properties" element={<PropertiesPage />} />
         <Route path="/buyers" element={<BuyersPage />} />
         <Route path="/sellers" element={<SellersPage />} />
       </Routes>
