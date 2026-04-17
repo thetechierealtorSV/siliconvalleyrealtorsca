@@ -90,6 +90,11 @@ export default function SellersPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Sell Your Home · Silicon Valley Realtors"
+        description="List your Silicon Valley home with concierge staging, repairs, photography, marketing, and a full home seller toolkit."
+        jsonLd={ORG_JSON_LD}
+      />
       <PageNavbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">
