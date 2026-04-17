@@ -14,16 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admins: {
+        Row: {
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          lead_type: Database["public"]["Enums"]["lead_type"]
+          name: string | null
+          payload: Json
+          phone: string | null
+          priority: Database["public"]["Enums"]["lead_priority"]
+          source_page: string | null
+          specialty: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          lead_type: Database["public"]["Enums"]["lead_type"]
+          name?: string | null
+          payload?: Json
+          phone?: string | null
+          priority?: Database["public"]["Enums"]["lead_priority"]
+          source_page?: string | null
+          specialty?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          lead_type?: Database["public"]["Enums"]["lead_type"]
+          name?: string | null
+          payload?: Json
+          phone?: string | null
+          priority?: Database["public"]["Enums"]["lead_priority"]
+          source_page?: string | null
+          specialty?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      lead_priority: "hot" | "warm" | "cold"
+      lead_status: "new" | "contacted" | "qualified" | "closed"
+      lead_type:
+        | "buyer_agreement"
+        | "pre_approval"
+        | "seller_listing"
+        | "valuation"
+        | "contact"
+        | "chatbot"
+        | "loan_referral"
+        | "concierge"
+        | "specialized_service"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +220,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      lead_priority: ["hot", "warm", "cold"],
+      lead_status: ["new", "contacted", "qualified", "closed"],
+      lead_type: [
+        "buyer_agreement",
+        "pre_approval",
+        "seller_listing",
+        "valuation",
+        "contact",
+        "chatbot",
+        "loan_referral",
+        "concierge",
+        "specialized_service",
+      ],
+    },
   },
 } as const
