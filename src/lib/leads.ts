@@ -21,7 +21,7 @@ export interface SubmitLeadInput {
 }
 
 /**
- * Segmented lead routing — every form submits here.
+ * Segmented lead routing — every form on the site funnels here.
  * The DB trigger auto-tags hot vs warm priority based on lead_type so
  * downstream automations (email, CRM, voicemail agent) can route correctly.
  */
@@ -29,15 +29,17 @@ export async function submitLead(input: SubmitLeadInput) {
   const source_page =
     typeof window !== 'undefined' ? window.location.pathname : null
 
-  const { error } = await supabase.from('leads').insert({
+  const row = {
     lead_type: input.lead_type,
     specialty: input.specialty ?? null,
     name: input.name ?? null,
     email: input.email ?? null,
     phone: input.phone ?? null,
     source_page,
-    payload: input.payload ?? {},
-  })
+    payload: (input.payload ?? {}) as never,
+  }
+
+  const { error } = await supabase.from('leads').insert([row])
 
   if (error) {
     console.error('Lead submission failed:', error)
