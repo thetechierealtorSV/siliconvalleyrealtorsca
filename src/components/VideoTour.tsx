@@ -2,6 +2,7 @@
 
 import walkthroughVideo from '@/assets/luxury-walkthrough.mp4.asset.json'
 import interiorVideo from '@/assets/luxury-interior-walkthrough.mp4.asset.json'
+import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
 
 export function VideoTour() {
   return (
@@ -54,6 +55,30 @@ export function VideoTour() {
                 loop
                 playsInline
                 className="w-full aspect-video object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          {/* Video 3 — Palo Alto Sped-Up Interior */}
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Palo Alto Estate · Sped-Up Interior
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              A hyperlapse glide through an ultra-luxury Palo Alto residence — chef's kitchen, primary suite, wine cellar, and designer finishes throughout.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video
+                src={paloAltoInterior.url}
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover"
+                aria-label="Sped-up interior walkthrough of a Palo Alto luxury home"
               >
                 Your browser does not support the video tag.
               </video>

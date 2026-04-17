@@ -3,24 +3,35 @@
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
 import { MessageCircle, Instagram, Phone, Mail } from 'lucide-react'
+import { submitLead } from '@/lib/leads'
 
 export function Contact() {
   const { toast } = useToast()
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({ title: 'Please fill in all required fields', variant: 'destructive' })
       return
     }
     setIsSubmitting(true)
-    setTimeout(() => {
+    try {
+      await submitLead({
+        lead_type: 'contact',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        payload: { message: formData.message },
+      })
       toast({ title: 'Inquiry received!', description: "We'll contact you within 24 hours." })
       setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch {
+      toast({ title: 'Could not send your inquiry. Please try again.', variant: 'destructive' })
+    } finally {
       setIsSubmitting(false)
-    }, 1000)
+    }
   }
 
   const contactMethods = [

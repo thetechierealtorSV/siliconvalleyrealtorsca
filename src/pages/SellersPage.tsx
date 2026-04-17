@@ -6,6 +6,8 @@ import { Building, Star, Wrench, Send, CheckCircle, Sparkles, ClipboardList, Pal
 import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
+import { SEO, ORG_JSON_LD } from '@/components/SEO'
+import { submitLead } from '@/lib/leads'
 import { toast } from 'sonner'
 
 const conciergeServices = [
@@ -44,16 +46,40 @@ export default function SellersPage() {
     }))
   }
 
-  const handleListingSubmit = (e: React.FormEvent) => {
+  const handleListingSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Listing information submitted! We\'ll contact you within 24 hours to schedule a home visit.')
-    setListingForm({ ownerName: '', email: '', phone: '', propertyAddress: '', propertyType: '', bedrooms: '', bathrooms: '', squareFeet: '', yearBuilt: '', lotSize: '', recentUpgrades: '', reasonForSelling: '', desiredTimeline: '', priceExpectation: '', currentMortgage: '', selectedServices: [] })
+    try {
+      const hasConcierge = listingForm.selectedServices.length > 0
+      await submitLead({
+        lead_type: 'seller_listing',
+        specialty: hasConcierge ? 'concierge' : undefined,
+        name: listingForm.ownerName,
+        email: listingForm.email,
+        phone: listingForm.phone,
+        payload: listingForm,
+      })
+      toast.success('Listing information submitted! We\'ll contact you within 24 hours to schedule a home visit.')
+      setListingForm({ ownerName: '', email: '', phone: '', propertyAddress: '', propertyType: '', bedrooms: '', bathrooms: '', squareFeet: '', yearBuilt: '', lotSize: '', recentUpgrades: '', reasonForSelling: '', desiredTimeline: '', priceExpectation: '', currentMortgage: '', selectedServices: [] })
+    } catch {
+      toast.error('Submission failed. Please try again.')
+    }
   }
 
-  const handleValuationSubmit = (e: React.FormEvent) => {
+  const handleValuationSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Valuation request submitted! We\'ll prepare a market analysis for your property.')
-    setValuationForm({ name: '', email: '', phone: '', address: '', notes: '' })
+    try {
+      await submitLead({
+        lead_type: 'valuation',
+        name: valuationForm.name,
+        email: valuationForm.email,
+        phone: valuationForm.phone,
+        payload: valuationForm,
+      })
+      toast.success('Valuation request submitted! We\'ll prepare a market analysis for your property.')
+      setValuationForm({ name: '', email: '', phone: '', address: '', notes: '' })
+    } catch {
+      toast.error('Submission failed. Please try again.')
+    }
   }
 
   const tabs = [
@@ -64,6 +90,11 @@ export default function SellersPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Sell Your Home · Silicon Valley Realtors"
+        description="List your Silicon Valley home with concierge staging, repairs, photography, marketing, and a full home seller toolkit."
+        jsonLd={ORG_JSON_LD}
+      />
       <PageNavbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">

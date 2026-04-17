@@ -6,6 +6,8 @@ import { FileText, Users, CheckCircle, DollarSign, Home, Send, Download, Phone }
 import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
+import { SEO, ORG_JSON_LD } from '@/components/SEO'
+import { submitLead } from '@/lib/leads'
 import { toast } from 'sonner'
 
 const loanOfficers = [
@@ -27,20 +29,42 @@ export default function BuyersPage() {
     propertyType: '', firstTimeBuyer: '',
   })
 
-  const handleAgreementSubmit = (e: React.FormEvent) => {
+  const handleAgreementSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!agreementForm.agreeToTerms) {
       toast.error('Please agree to the terms to proceed.')
       return
     }
-    toast.success('Buyer representation agreement submitted! We\'ll be in touch within 24 hours.')
-    setAgreementForm({ buyerName: '', buyerEmail: '', buyerPhone: '', propertyTypes: '', budgetRange: '', preferredAreas: '', timeframe: '', preApproved: '', additionalNotes: '', agreeToTerms: false })
+    try {
+      await submitLead({
+        lead_type: 'buyer_agreement',
+        name: agreementForm.buyerName,
+        email: agreementForm.buyerEmail,
+        phone: agreementForm.buyerPhone,
+        payload: agreementForm,
+      })
+      toast.success('Buyer representation agreement submitted! We\'ll be in touch within 24 hours.')
+      setAgreementForm({ buyerName: '', buyerEmail: '', buyerPhone: '', propertyTypes: '', budgetRange: '', preferredAreas: '', timeframe: '', preApproved: '', additionalNotes: '', agreeToTerms: false })
+    } catch {
+      toast.error('Submission failed. Please try again.')
+    }
   }
 
-  const handlePreapprovalSubmit = (e: React.FormEvent) => {
+  const handlePreapprovalSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Pre-approval inquiry submitted! A loan specialist will contact you shortly.')
-    setPreapprovalForm({ name: '', email: '', phone: '', annualIncome: '', employmentStatus: '', creditScoreRange: '', downPaymentAmount: '', desiredLoanAmount: '', propertyType: '', firstTimeBuyer: '' })
+    try {
+      await submitLead({
+        lead_type: 'pre_approval',
+        name: preapprovalForm.name,
+        email: preapprovalForm.email,
+        phone: preapprovalForm.phone,
+        payload: preapprovalForm,
+      })
+      toast.success('Pre-approval inquiry submitted! A loan specialist will contact you shortly.')
+      setPreapprovalForm({ name: '', email: '', phone: '', annualIncome: '', employmentStatus: '', creditScoreRange: '', downPaymentAmount: '', desiredLoanAmount: '', propertyType: '', firstTimeBuyer: '' })
+    } catch {
+      toast.error('Submission failed. Please try again.')
+    }
   }
 
   const tabs = [
@@ -51,6 +75,11 @@ export default function BuyersPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Buyer Representation · Silicon Valley Realtors"
+        description="Buyer representation agreement, lender pre-approval, and a vetted loan officer network for Silicon Valley homebuyers."
+        jsonLd={ORG_JSON_LD}
+      />
       <PageNavbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">
