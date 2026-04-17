@@ -1,0 +1,86 @@
+import { useEffect } from 'react'
+
+interface SEOProps {
+  title: string
+  description: string
+  canonical?: string
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
+  image?: string
+}
+
+function setMeta(attr: 'name' | 'property', key: string, value: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(attr, key)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', value)
+}
+
+function setLink(rel: string, href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', rel)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('href', href)
+}
+
+export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) {
+  useEffect(() => {
+    document.title = title
+    setMeta('name', 'description', description)
+    setMeta('property', 'og:title', title)
+    setMeta('property', 'og:description', description)
+    setMeta('property', 'og:type', 'website')
+    setMeta('name', 'twitter:title', title)
+    setMeta('name', 'twitter:description', description)
+    setMeta('name', 'twitter:card', 'summary_large_image')
+
+    const url = canonical ?? window.location.href
+    setMeta('property', 'og:url', url)
+    setLink('canonical', url)
+
+    if (image) {
+      setMeta('property', 'og:image', image)
+      setMeta('name', 'twitter:image', image)
+    }
+
+    let script = document.head.querySelector<HTMLScriptElement>('script[data-seo-jsonld="true"]')
+    if (jsonLd) {
+      if (!script) {
+        script = document.createElement('script')
+        script.type = 'application/ld+json'
+        script.setAttribute('data-seo-jsonld', 'true')
+        document.head.appendChild(script)
+      }
+      script.text = JSON.stringify(jsonLd)
+    } else if (script) {
+      script.remove()
+    }
+  }, [title, description, canonical, image, jsonLd])
+
+  return null
+}
+
+export const ORG_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateAgent',
+  name: 'Silicon Valley Realtors',
+  alternateName: 'The Nikolaenko Group',
+  description:
+    'Luxury real estate brokerage serving all of Silicon Valley — Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
+  areaServed: [
+    'Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside',
+    'Saratoga', 'Los Gatos', 'Cupertino', 'Mountain View', 'Sunnyvale',
+  ],
+  url: typeof window !== 'undefined' ? window.location.origin : '',
+  knowsAbout: [
+    'Luxury Real Estate', 'Eichler Homes', 'Mid-Century Modern',
+    'Probate Sales', 'Foreclosure', 'Short Sale', 'VA Loans',
+    'Assumable Loans', 'Senior Assisted Living Transitions',
+    'Nationwide Relocation', '1031 Exchange',
+  ],
+}
