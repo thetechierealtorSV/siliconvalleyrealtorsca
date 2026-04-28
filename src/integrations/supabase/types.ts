@@ -29,6 +29,77 @@ export type Database = {
         }
         Relationships: []
       }
+      agent_profiles: {
+        Row: {
+          bio: string | null
+          created_at: string
+          display_order: number
+          email: string | null
+          full_name: string
+          id: string
+          phone: string | null
+          photo_url: string | null
+          role: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          full_name: string
+          id?: string
+          phone?: string | null
+          photo_url?: string | null
+          role: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          full_name?: string
+          id?: string
+          phone?: string | null
+          photo_url?: string | null
+          role?: string
+        }
+        Relationships: []
+      }
+      lead_notifications: {
+        Row: {
+          channel: string
+          created_at: string
+          detail: string | null
+          id: string
+          lead_id: string | null
+          status: string
+        }
+        Insert: {
+          channel: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          lead_id?: string | null
+          status: string
+        }
+        Update: {
+          channel?: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          lead_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_notifications_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leads: {
         Row: {
           created_at: string
