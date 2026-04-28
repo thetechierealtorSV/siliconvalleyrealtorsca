@@ -3,6 +3,9 @@
 import walkthroughVideo from '@/assets/luxury-walkthrough.mp4.asset.json'
 import interiorVideo from '@/assets/luxury-interior-walkthrough.mp4.asset.json'
 import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
+import walkthroughOriginal from '@/assets/luxury-walkthrough-original.mp4.asset.json'
+import interiorOriginal from '@/assets/luxury-interior-walkthrough-original.mp4.asset.json'
+import paloAltoOriginal from '@/assets/palo-alto-luxury-interior-original.mp4.asset.json'
 
 export function VideoTour() {
   return (
@@ -82,6 +85,43 @@ export function VideoTour() {
               >
                 Your browser does not support the video tag.
               </video>
+            </div>
+          </div>
+
+          {/* Original AI-generated companion videos */}
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Estate Showcase · Original Cut
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              Our original cinematic exterior walkthrough — preserved for clients who loved the first edit.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video src={walkthroughOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Interior & Aerial · Original Cut
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              The original interior and drone aerial edit — kept alongside the refreshed version.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video src={interiorOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Palo Alto Estate · Original Cut
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              The original Palo Alto sped-up interior — preserved as a companion to the new edit.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video src={paloAltoOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
             </div>
           </div>
 
