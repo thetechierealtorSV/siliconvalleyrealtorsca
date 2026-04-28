@@ -57,7 +57,7 @@ export function Footer() {
               © 2025 Silicon Valley Realtors · The Nikolaenko Group. All rights reserved.
             </div>
             <div className="text-sm text-primary-foreground/40">
-              Serving Silicon Valley
+              Serving Silicon Valley · DRE# 02076232
             </div>
           </div>
         </div>
