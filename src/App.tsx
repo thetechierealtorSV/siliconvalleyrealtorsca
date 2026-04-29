@@ -9,6 +9,7 @@ import { Footer } from './components/Footer'
 import { ChatBot } from './components/ChatBot'
 import { BuyersSellersPreview } from './components/BuyersSellersPreview'
 import { Testimonials } from './components/Testimonials'
+import { Team } from './components/Team'
 import { SEO, ORG_JSON_LD } from './components/SEO'
 import { IDXSearch } from './components/IDXSearch'
 import BuyersPage from './pages/BuyersPage'
@@ -51,6 +52,9 @@ function HomePage() {
         </section>
         <section id="why-us-section" aria-label="Why choose us">
           <Awards />
+        </section>
+        <section id="team-section" aria-label="Our team">
+          <Team />
         </section>
         <section id="testimonials-section" aria-label="Client testimonials">
           <Testimonials />

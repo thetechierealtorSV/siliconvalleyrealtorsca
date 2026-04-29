@@ -44,7 +44,7 @@ export function Footer() {
           <div className="col-span-6 md:col-span-4">
             <h4 className="font-semibold text-sm tracking-wide uppercase mb-4">Areas We Serve</h4>
             <div className="grid grid-cols-2 gap-3">
-              {['Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside', 'Saratoga', 'Los Gatos', 'Cupertino'].map((n) => (
+              {['Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside', 'Portola Valley', 'Hillsborough', 'Burlingame', 'Mountain View', 'Los Altos', 'Saratoga', 'Los Gatos', 'Cupertino', 'Sunnyvale', 'Santa Clara', 'San Jose', 'Fremont', 'San Francisco', 'Tiburon', 'Mill Valley', 'Sausalito', 'Piedmont', 'Berkeley', 'Lafayette', 'Orinda', 'Walnut Creek', 'Danville', 'Pleasanton'].map((n) => (
                 <span key={n} className="text-primary-foreground/60 text-sm">{n}</span>
               ))}
             </div>

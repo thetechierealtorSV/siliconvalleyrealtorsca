@@ -5,8 +5,16 @@ import { Search, MapPin, Bed, DollarSign } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const cities = [
-  'Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside',
-  'Saratoga', 'Los Gatos', 'Cupertino', 'Mountain View', 'Sunnyvale',
+  'Palo Alto', 'Atherton', 'Los Altos Hills', 'Los Altos', 'Menlo Park', 'Woodside',
+  'Portola Valley', 'Hillsborough', 'Burlingame', 'San Carlos', 'Belmont', 'Redwood City',
+  'San Mateo', 'Foster City', 'Half Moon Bay',
+  'Mountain View', 'Sunnyvale', 'Cupertino', 'Saratoga', 'Los Gatos', 'Monte Sereno',
+  'Campbell', 'Santa Clara', 'San Jose', 'Willow Glen', 'Almaden Valley',
+  'Milpitas', 'Fremont', 'Newark', 'Union City',
+  'San Francisco', 'Pacifica', 'Daly City',
+  'Oakland', 'Piedmont', 'Berkeley', 'Alameda', 'Lafayette', 'Orinda', 'Moraga',
+  'Walnut Creek', 'Danville', 'Alamo', 'Blackhawk', 'Pleasanton', 'Livermore', 'Dublin',
+  'Tiburon', 'Belvedere', 'Sausalito', 'Mill Valley', 'Larkspur', 'Ross', 'Kentfield',
 ]
 
 /**
