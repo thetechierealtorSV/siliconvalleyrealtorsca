@@ -1,11 +1,8 @@
 'use client'
 
-import walkthroughVideo from '@/assets/luxury-walkthrough.mp4.asset.json'
-import interiorVideo from '@/assets/luxury-interior-walkthrough.mp4.asset.json'
 import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
 import walkthroughOriginal from '@/assets/luxury-walkthrough-original.mp4.asset.json'
 import interiorOriginal from '@/assets/luxury-interior-walkthrough-original.mp4.asset.json'
-import paloAltoOriginal from '@/assets/palo-alto-luxury-interior-original.mp4.asset.json'
 
 export function VideoTour() {
   return (
@@ -24,47 +21,7 @@ export function VideoTour() {
         </div>
 
         <div className="max-w-5xl mx-auto space-y-16">
-          {/* Video 1 — Exterior / Aerial */}
-          <div>
-            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video
-                src={walkthroughVideo.url}
-                controls
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full aspect-video object-cover"
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-
-          {/* Video 2 — Interior & Drone */}
-          <div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
-              Interior & Aerial Tour
-            </h3>
-            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              Drone aerials descend into designer interiors — marble finishes, panoramic views, and open-concept living at its finest.
-            </p>
-            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video
-                src={interiorVideo.url}
-                controls
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full aspect-video object-cover"
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-
-          {/* Video 3 — Palo Alto Sped-Up Interior */}
+          {/* Palo Alto Sped-Up Interior */}
           <div>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
               Palo Alto Estate · Sped-Up Interior
@@ -88,7 +45,7 @@ export function VideoTour() {
             </div>
           </div>
 
-          {/* Original AI-generated companion videos */}
+          {/* Estate Showcase · Original Cut */}
           <div>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
               Estate Showcase · Original Cut
@@ -101,6 +58,7 @@ export function VideoTour() {
             </div>
           </div>
 
+          {/* Interior & Aerial · Original Cut */}
           <div>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
               Interior & Aerial · Original Cut
@@ -110,18 +68,6 @@ export function VideoTour() {
             </p>
             <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
               <video src={interiorOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
-              Palo Alto Estate · Original Cut
-            </h3>
-            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              The original Palo Alto sped-up interior — preserved as a companion to the new edit.
-            </p>
-            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video src={paloAltoOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
             </div>
           </div>
 

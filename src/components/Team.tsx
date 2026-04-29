@@ -1,30 +1,35 @@
 'use client'
 
+import realtor1 from '@/assets/realtor-cn-1.jpg'
+import realtor2 from '@/assets/realtor-cn-2.jpg'
+import realtor3 from '@/assets/realtor-cn-3.jpg'
+import realtor4 from '@/assets/realtor-cn-4.jpg'
+
 export function Team() {
   const team = [
     {
-      name: 'Catherine Wells',
-      role: 'Founding Broker',
-      bio: '20+ years specializing in Eichler and mid-century modern homes across the Peninsula.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&auto=format',
+      name: 'Lillian Chen',
+      role: 'Senior Listing Agent',
+      bio: 'Bilingual Mandarin & English specialist guiding Peninsula sellers through luxury listings.',
+      image: realtor1,
     },
     {
-      name: 'Michael Torres',
-      role: 'Senior Agent',
-      bio: "Architectural historian turned realtor. Expert in Joseph Eichler's design legacy.",
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format',
+      name: 'David Liu',
+      role: 'Managing Broker',
+      bio: 'Two decades brokering Silicon Valley estates with deep ties to the global Chinese community.',
+      image: realtor2,
     },
     {
-      name: 'Anna Park',
-      role: 'Client Experience',
-      bio: 'Ensures every client journey is seamless from first tour to closing celebration.',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format',
+      name: 'Vivian Wang',
+      role: 'Buyer Advisor',
+      bio: 'Concierge-level buyer representation across Palo Alto, Atherton, and Los Altos Hills.',
+      image: realtor3,
     },
     {
-      name: 'James Nakamura',
-      role: 'Creative Director',
-      bio: 'Produces cinematic property films that bring Eichler homes to life for remote buyers.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format',
+      name: 'Kevin Zhao',
+      role: 'Investment Specialist',
+      bio: 'Advises overseas investors on luxury acquisitions, 1031 exchanges, and portfolio strategy.',
+      image: realtor4,
     },
   ]
 
@@ -39,7 +44,7 @@ export function Team() {
             Meet the Team
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Passionate experts who live and breathe Eichler architecture.
+            Bilingual Silicon Valley experts serving local and international clients with discretion.
           </p>
         </div>
 
@@ -49,7 +54,10 @@ export function Team() {
               <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[3/4]">
                 <img
                   src={member.image}
-                  alt={member.name}
+                  alt={`${member.name}, ${member.role}`}
+                  width={768}
+                  height={1024}
+                  loading="lazy"
                   className="w-full h-full object-cover gentle-animation group-hover:scale-105"
                 />
               </div>
