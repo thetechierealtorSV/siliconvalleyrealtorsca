@@ -48,26 +48,26 @@ export function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
           {team.map((member) => (
             <div key={member.name} className="group text-center">
-              <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[3/4]">
+              <div className="relative overflow-hidden rounded-xl mb-3 aspect-[3/4] w-24 mx-auto">
                 <img
                   src={member.image}
                   alt={`${member.name}, ${member.role}`}
-                  width={768}
-                  height={1024}
+                  width={192}
+                  height={256}
                   loading="lazy"
                   className="w-full h-full object-cover gentle-animation group-hover:scale-105"
                 />
               </div>
-              <h3 className="font-display text-xl font-bold text-foreground mb-1">
+              <h3 className="font-display text-sm font-bold text-foreground mb-1">
                 {member.name}
               </h3>
-              <p className="text-sm font-medium tracking-wide uppercase mb-3" style={{ color: '#b8860b' }}>
+              <p className="text-[10px] font-medium tracking-wide uppercase mb-2" style={{ color: '#b8860b' }}>
                 {member.role}
               </p>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs leading-relaxed">
                 {member.bio}
               </p>
             </div>
