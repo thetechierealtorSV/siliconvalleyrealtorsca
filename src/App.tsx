@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Toaster } from 'sonner'
 import { Hero } from './components/Hero'
 import { Portfolio } from './components/Portfolio'
 import { VideoTour } from './components/VideoTour'
