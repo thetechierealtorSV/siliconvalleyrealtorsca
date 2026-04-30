@@ -8,7 +8,7 @@ const testimonials = [
   },
   {
     quote:
-      "This was the biggest investment of my life. And Chris brought one-of-a-kind transparency and honesty. He guided me with clear consult.",
+      "This was the biggest investment of my life, and Chris brought one-of-a-kind transparency and honesty. He guided me with clear, patient counsel from offer through close.",
     author: 'Cleo V.',
   },
   {
