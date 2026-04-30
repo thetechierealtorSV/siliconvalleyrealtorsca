@@ -73,6 +73,7 @@ function HomePage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<PropertiesPage />} />
