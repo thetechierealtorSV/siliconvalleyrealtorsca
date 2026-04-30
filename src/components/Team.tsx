@@ -3,19 +3,19 @@
 import realtor1 from '@/assets/realtor-cn-1.jpg'
 import realtor2 from '@/assets/realtor-cn-2.jpg'
 import realtor3 from '@/assets/realtor-cn-3.jpg'
-import realtor4 from '@/assets/realtor-cn-4.jpg'
+import realtor4 from '@/assets/realtor-priya.jpg'
 
 export function Team() {
   const team = [
     {
       name: 'Lillian Chen',
-      role: 'Senior Listing Agent',
+      role: 'Listing Advisor',
       bio: 'Bilingual Mandarin & English specialist guiding Peninsula sellers through luxury listings.',
       image: realtor1,
     },
     {
       name: 'David Liu',
-      role: 'Managing Broker',
+      role: 'Listing Advisor',
       bio: 'Two decades brokering Silicon Valley estates with deep ties to the global Chinese community.',
       image: realtor2,
     },
@@ -26,9 +26,9 @@ export function Team() {
       image: realtor3,
     },
     {
-      name: 'Kevin Zhao',
-      role: 'Investment Specialist',
-      bio: 'Advises overseas investors on luxury acquisitions, 1031 exchanges, and portfolio strategy.',
+      name: 'Priya Patel',
+      role: 'Buyer Advisor',
+      bio: 'Guides Bay Area buyers to luxury homes with a sharp eye for value and long-term fit.',
       image: realtor4,
     },
   ]
