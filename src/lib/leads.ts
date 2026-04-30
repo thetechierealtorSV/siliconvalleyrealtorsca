@@ -10,6 +10,7 @@ export type LeadType =
   | 'loan_referral'
   | 'concierge'
   | 'specialized_service'
+  | 'agent_recruit'
 
 export interface SubmitLeadInput {
   lead_type: LeadType
