@@ -29,6 +29,9 @@ function HomePage() {
         <section id="hero" aria-label="Hero">
           <Hero />
         </section>
+        <section id="buyers-sellers-preview" aria-label="Buyers and Sellers">
+          <BuyersSellersPreview />
+        </section>
         <section id="mls-search" aria-label="MLS property search" className="bg-secondary/30 py-16">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto text-center mb-8">
@@ -39,14 +42,11 @@ function HomePage() {
             <div className="max-w-4xl mx-auto"><IDXSearch /></div>
           </div>
         </section>
-        <section id="properties-section" aria-label="Featured properties">
-          <Portfolio />
-        </section>
         <section id="video-tour-section" aria-label="Video tours">
           <VideoTour />
         </section>
-        <section id="buyers-sellers-preview" aria-label="Buyers and Sellers">
-          <BuyersSellersPreview />
+        <section id="properties-section" aria-label="Featured properties">
+          <Portfolio />
         </section>
         <section id="services-section" aria-label="Services">
           <Services />
