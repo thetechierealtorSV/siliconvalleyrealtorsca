@@ -69,7 +69,6 @@ export const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
   name: 'Silicon Valley Realtors',
-  alternateName: 'The Nikolaenko Group',
   description:
     'Luxury real estate brokerage serving all of Silicon Valley — Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
   areaServed: [

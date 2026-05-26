@@ -204,7 +204,7 @@ export default function BuyersPage() {
                     <input type="checkbox" checked={agreementForm.agreeToTerms} onChange={e => setAgreementForm(p => ({...p, agreeToTerms: e.target.checked}))}
                       className="mt-1 w-4 h-4 rounded border-border" />
                     <span className="text-sm text-muted-foreground">
-                      I agree to enter into a buyer representation agreement with Silicon Valley Realtors by The Nikolaenko Group. 
+                      I agree to enter into a buyer representation agreement with Silicon Valley Realtors. 
                       I understand this establishes an exclusive working relationship for my property search.
                     </span>
                   </label>
