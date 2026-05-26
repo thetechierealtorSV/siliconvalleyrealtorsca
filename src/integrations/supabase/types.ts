@@ -147,7 +147,36 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      agent_profiles_public: {
+        Row: {
+          bio: string | null
+          created_at: string | null
+          display_order: number | null
+          full_name: string | null
+          id: string | null
+          photo_url: string | null
+          role: string | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          full_name?: string | null
+          id?: string | null
+          photo_url?: string | null
+          role?: string | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          full_name?: string | null
+          id?: string | null
+          photo_url?: string | null
+          role?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       is_admin: { Args: { _user_id: string }; Returns: boolean }
