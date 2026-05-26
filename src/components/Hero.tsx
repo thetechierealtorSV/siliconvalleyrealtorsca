@@ -70,9 +70,6 @@ export function Hero() {
               <span className={`font-display text-xl tracking-wider leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
                 SILICON VALLEY REALTORS
               </span>
-              <span className={`text-[10px] tracking-[0.2em] uppercase ${isScrolled ? 'text-muted-foreground' : 'text-white/60'}`}>
-                By The Nikolaenko Group
-              </span>
             </motion.div>
 
             <div className="hidden md:flex items-center space-x-8">

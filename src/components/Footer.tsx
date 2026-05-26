@@ -11,11 +11,8 @@ export function Footer() {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-12 mb-12">
           <div className="col-span-12 md:col-span-5">
-            <div className="font-display text-2xl tracking-wider mb-1">
+            <div className="font-display text-2xl tracking-wider mb-4">
               SILICON VALLEY REALTORS
-            </div>
-            <div className="text-primary-foreground/40 text-xs tracking-[0.15em] uppercase mb-4">
-              By The Nikolaenko Group
             </div>
             <p className="text-primary-foreground/60 leading-relaxed mb-6 max-w-sm">
               Luxury real estate across Silicon Valley's most prestigious neighborhoods. 
@@ -54,10 +51,10 @@ export function Footer() {
         <div className="border-t border-primary-foreground/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-primary-foreground/40 mb-4 md:mb-0">
-              © 2025 Silicon Valley Realtors · The Nikolaenko Group. All rights reserved.
+              © 2025 Silicon Valley Realtors. All rights reserved.
             </div>
             <div className="text-sm text-primary-foreground/40">
-              Serving Silicon Valley · DRE# 02076232
+              Serving Silicon Valley
             </div>
           </div>
         </div>

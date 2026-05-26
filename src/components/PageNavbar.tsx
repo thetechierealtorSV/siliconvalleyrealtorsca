@@ -32,9 +32,6 @@ export function PageNavbar() {
             <span className="font-display text-xl tracking-wider leading-tight text-foreground">
               SILICON VALLEY REALTORS
             </span>
-            <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-              By The Nikolaenko Group
-            </span>
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">

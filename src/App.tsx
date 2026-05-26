@@ -16,12 +16,13 @@ import { IDXSearch } from './components/IDXSearch'
 import BuyersPage from './pages/BuyersPage'
 import SellersPage from './pages/SellersPage'
 import PropertiesPage from './pages/PropertiesPage'
+import ScrollToTop from './components/ScrollToTop'
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Silicon Valley Realtors · Luxury Homes by The Nikolaenko Group"
+        title="Silicon Valley Realtors · Luxury Homes"
         description="Luxury real estate across Silicon Valley — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and beyond. Live MLS search, buyer representation, seller concierge."
         jsonLd={ORG_JSON_LD}
       />
@@ -73,6 +74,7 @@ function HomePage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
