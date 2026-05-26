@@ -21,6 +21,32 @@ export function VideoTour() {
         </div>
 
         <div className="max-w-5xl mx-auto space-y-16">
+          {/* Interior & Aerial · Original Cut */}
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Interior & Aerial · Original Cut
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              The original interior and drone aerial edit — kept alongside the refreshed version.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video src={interiorOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+            </div>
+          </div>
+
+          {/* Estate Showcase · Original Cut */}
+          <div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
+              Estate Showcase · Original Cut
+            </h3>
+            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
+              Our original cinematic exterior walkthrough — preserved for clients who loved the first edit.
+            </p>
+            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+              <video src={walkthroughOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+            </div>
+          </div>
+
           {/* Palo Alto Sped-Up Interior */}
           <div>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
@@ -42,32 +68,6 @@ export function VideoTour() {
               >
                 Your browser does not support the video tag.
               </video>
-            </div>
-          </div>
-
-          {/* Estate Showcase · Original Cut */}
-          <div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
-              Estate Showcase · Original Cut
-            </h3>
-            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              Our original cinematic exterior walkthrough — preserved for clients who loved the first edit.
-            </p>
-            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video src={walkthroughOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
-            </div>
-          </div>
-
-          {/* Interior & Aerial · Original Cut */}
-          <div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
-              Interior & Aerial · Original Cut
-            </h3>
-            <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              The original interior and drone aerial edit — kept alongside the refreshed version.
-            </p>
-            <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video src={interiorOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
             </div>
           </div>
 

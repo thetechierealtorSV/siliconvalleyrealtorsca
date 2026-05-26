@@ -17,6 +17,7 @@ import BuyersPage from './pages/BuyersPage'
 import SellersPage from './pages/SellersPage'
 import PropertiesPage from './pages/PropertiesPage'
 import ScrollToTop from './components/ScrollToTop'
+import { ThemeToggle } from './components/ThemeToggle'
 
 function HomePage() {
   return (
@@ -75,6 +76,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <ThemeToggle />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
