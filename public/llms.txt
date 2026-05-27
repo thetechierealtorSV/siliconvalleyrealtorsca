@@ -1,0 +1,20 @@
+# Silicon Valley Realtors
+
+> Luxury real estate brokerage serving Silicon Valley and the broader Bay Area — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale, San Francisco, Marin, and the East Bay.
+
+## Pages
+
+- [Home](/): Overview of services, video walkthroughs, MLS search, featured properties, team.
+- [Properties](/properties): Live MLS search across all Silicon Valley cities with city, price, and bedroom filters.
+- [Buyers](/buyers): Buyer representation, search consultation, and offer strategy.
+- [Sellers](/sellers): Seller concierge — staging, marketing, cinematic video, pricing strategy.
+
+## Specialties
+
+- Luxury and ultra-luxury residential
+- Eichler and mid-century modern homes
+- Probate, foreclosure, and short sales
+- VA and assumable loans
+- 1031 exchanges
+- Senior assisted-living transitions
+- Nationwide relocation
