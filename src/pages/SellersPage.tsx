@@ -6,7 +6,7 @@ import { Building, Star, Wrench, Send, CheckCircle, Sparkles, ClipboardList, Pal
 import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
-import { SEO, ORG_JSON_LD } from '@/components/SEO'
+import { SEO, ORG_JSON_LD, breadcrumbJsonLd } from '@/components/SEO'
 import { submitLead } from '@/lib/leads'
 import { toast } from 'sonner'
 
@@ -93,7 +93,10 @@ export default function SellersPage() {
       <SEO
         title="Sell Your Home · Silicon Valley Realtors"
         description="List your Silicon Valley home with concierge staging, repairs, photography, marketing, and a full home seller toolkit."
-        jsonLd={ORG_JSON_LD}
+        jsonLd={[ORG_JSON_LD, breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Sellers', path: '/sellers' },
+        ])]}
       />
       <PageNavbar />
       <div className="pt-24 pb-16">

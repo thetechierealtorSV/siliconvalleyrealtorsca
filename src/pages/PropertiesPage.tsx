@@ -6,7 +6,7 @@ import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
 import { IDXSearch } from '@/components/IDXSearch'
-import { SEO, ORG_JSON_LD } from '@/components/SEO'
+import { SEO, ORG_JSON_LD, breadcrumbJsonLd } from '@/components/SEO'
 import { submitLead } from '@/lib/leads'
 import { toast } from 'sonner'
 
@@ -76,7 +76,10 @@ export default function PropertiesPage() {
           '@type': 'SearchResultsPage',
           name: title,
           about: city || 'Silicon Valley',
-        }]}
+        }, breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Properties', path: '/properties' },
+        ])]}
       />
       <PageNavbar />
       <main className="pt-24 pb-20" role="main">

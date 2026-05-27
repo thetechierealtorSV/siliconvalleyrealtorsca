@@ -6,7 +6,7 @@ import { FileText, Users, CheckCircle, DollarSign, Home, Send, Download, Phone }
 import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
-import { SEO, ORG_JSON_LD } from '@/components/SEO'
+import { SEO, ORG_JSON_LD, breadcrumbJsonLd } from '@/components/SEO'
 import { submitLead } from '@/lib/leads'
 import { toast } from 'sonner'
 
@@ -78,7 +78,10 @@ export default function BuyersPage() {
       <SEO
         title="Buyer Representation · Silicon Valley Realtors"
         description="Buyer representation agreement, lender pre-approval, and a vetted loan officer network for Silicon Valley homebuyers."
-        jsonLd={ORG_JSON_LD}
+        jsonLd={[ORG_JSON_LD, breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Buyers', path: '/buyers' },
+        ])]}
       />
       <PageNavbar />
       <div className="pt-24 pb-16">
