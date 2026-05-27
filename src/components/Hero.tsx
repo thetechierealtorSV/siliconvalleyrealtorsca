@@ -58,7 +58,7 @@ export function Hero() {
       >
         <div className={`w-full px-6 sm:px-8 lg:px-12 py-4 transition-all duration-300 ease-out ${
           isScrolled 
-            ? 'bg-[#faf8f5]/90 backdrop-blur-xl border-b border-[#e0d9cf]' 
+            ? 'bg-background/90 backdrop-blur-xl border-b border-border' 
             : 'bg-transparent'
         }`}>
           <div className="flex items-center justify-between">
