@@ -255,6 +255,8 @@ export function ChatBot() {
               <input
                 ref={inputRef}
                 type="text"
+                id="chatbot-message-input"
+                aria-label="Chat message"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendText(input)}

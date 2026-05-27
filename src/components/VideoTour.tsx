@@ -30,7 +30,7 @@ export function VideoTour() {
               The original interior and drone aerial edit — kept alongside the refreshed version.
             </p>
             <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video src={interiorOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+              <video src={interiorOriginal.url} controls muted loop playsInline preload="metadata" className="w-full aspect-video object-cover" aria-label="Interior and aerial cinematic walkthrough" />
             </div>
           </div>
 
@@ -43,7 +43,7 @@ export function VideoTour() {
               Our original cinematic exterior walkthrough — preserved for clients who loved the first edit.
             </p>
             <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
-              <video src={walkthroughOriginal.url} controls muted loop playsInline className="w-full aspect-video object-cover" />
+              <video src={walkthroughOriginal.url} controls muted loop playsInline preload="metadata" className="w-full aspect-video object-cover" aria-label="Estate exterior cinematic walkthrough" />
             </div>
           </div>
 
@@ -59,10 +59,10 @@ export function VideoTour() {
               <video
                 src={paloAltoInterior.url}
                 controls
-                autoPlay
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full aspect-video object-cover"
                 aria-label="Sped-up interior walkthrough of a Palo Alto luxury home"
               >

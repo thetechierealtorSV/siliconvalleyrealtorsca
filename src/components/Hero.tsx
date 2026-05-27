@@ -58,7 +58,7 @@ export function Hero() {
       >
         <div className={`w-full px-6 sm:px-8 lg:px-12 py-4 transition-all duration-300 ease-out ${
           isScrolled 
-            ? 'bg-[#faf8f5]/90 backdrop-blur-xl border-b border-[#e0d9cf]' 
+            ? 'bg-background/90 backdrop-blur-xl border-b border-border' 
             : 'bg-transparent'
         }`}>
           <div className="flex items-center justify-between">
@@ -114,6 +114,8 @@ export function Hero() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
                 className={`md:hidden p-3 rounded-full gentle-animation cursor-pointer z-[120] relative ${
                   isScrolled ? 'hover:bg-muted text-foreground' : 'glass-effect text-white hover:bg-white/20'
                 }`}
@@ -145,7 +147,7 @@ export function Hero() {
       >
         <div className="flex flex-col h-full">
           <div className="flex justify-end p-4">
-            <button onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full hover:bg-muted text-foreground gentle-animation cursor-pointer">
+            <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close navigation menu" className="p-3 rounded-full hover:bg-muted text-foreground gentle-animation cursor-pointer">
               <X className="w-5 h-5" />
             </button>
           </div>
