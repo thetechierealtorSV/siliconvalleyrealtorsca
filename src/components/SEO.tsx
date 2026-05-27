@@ -65,6 +65,8 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
   return null
 }
 
+const SITE_URL = 'https://siliconvalleyrealtorsca.lovable.app'
+
 export const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
@@ -75,11 +77,24 @@ export const ORG_JSON_LD = {
     'Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside',
     'Saratoga', 'Los Gatos', 'Cupertino', 'Mountain View', 'Sunnyvale',
   ],
-  url: typeof window !== 'undefined' ? window.location.origin : '',
+  url: SITE_URL,
   knowsAbout: [
     'Luxury Real Estate', 'Eichler Homes', 'Mid-Century Modern',
     'Probate Sales', 'Foreclosure', 'Short Sale', 'VA Loans',
     'Assumable Loans', 'Senior Assisted Living Transitions',
     'Nationwide Relocation', '1031 Exchange',
   ],
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`,
+    })),
+  }
 }
