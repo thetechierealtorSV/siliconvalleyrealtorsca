@@ -114,6 +114,8 @@ export function Hero() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
                 className={`md:hidden p-3 rounded-full gentle-animation cursor-pointer z-[120] relative ${
                   isScrolled ? 'hover:bg-muted text-foreground' : 'glass-effect text-white hover:bg-white/20'
                 }`}
