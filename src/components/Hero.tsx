@@ -147,7 +147,7 @@ export function Hero() {
       >
         <div className="flex flex-col h-full">
           <div className="flex justify-end p-4">
-            <button onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full hover:bg-muted text-foreground gentle-animation cursor-pointer">
+            <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close navigation menu" className="p-3 rounded-full hover:bg-muted text-foreground gentle-animation cursor-pointer">
               <X className="w-5 h-5" />
             </button>
           </div>
