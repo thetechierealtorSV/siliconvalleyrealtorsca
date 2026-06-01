@@ -110,6 +110,23 @@ export function ChatBot() {
     if (isOpen && inputRef.current) inputRef.current.focus()
   }, [isOpen])
 
+  // Proactive opener: nudge after 20s if user has scrolled and hasn't engaged
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (sessionStorage.getItem('svl_chat_nudged') === '1') return
+    if (messages.length > 0) return
+    let scrolled = false
+    const onScroll = () => { if (window.scrollY > 400) scrolled = true }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    const timer = setTimeout(() => {
+      if (scrolled && !isOpen && messages.length === 0) {
+        setIsOpen(true)
+        try { sessionStorage.setItem('svl_chat_nudged', '1') } catch { /* ignore */ }
+      }
+    }, 20000)
+    return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll) }
+  }, [isOpen, messages.length])
+
   const sendText = useCallback(async (text: string) => {
     if (!text.trim() || isLoading) return
     const userMsg: Msg = { role: 'user', content: text.trim() }
