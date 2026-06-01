@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import heroImage from '@/assets/hero-luxury.jpg'
+import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
 
 export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -42,12 +43,22 @@ export function Hero() {
   ]
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+    <div className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Cinematic video background with image fallback */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster={heroImage}
+        preload="metadata"
+        className="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+      >
+        <source src={paloAltoInterior.url} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
 
       {/* Navbar */}
       <motion.nav
@@ -67,7 +78,7 @@ export function Hero() {
               className="flex flex-col cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <span className={`font-display text-xl tracking-wider leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
+              <span className={`font-display text-xl tracking-[0.2em] leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
                 SILICON VALLEY REALTORS
               </span>
             </motion.div>
@@ -78,7 +89,7 @@ export function Hero() {
                   <button
                     key={link.href}
                     onClick={() => navigate(link.href)}
-                    className={`font-medium gentle-animation hover:scale-105 text-sm tracking-wide uppercase cursor-pointer ${
+                    className={`font-medium gentle-animation hover:scale-105 text-[11px] tracking-[0.25em] uppercase cursor-pointer ${
                       isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
                     }`}
                   >
@@ -88,7 +99,7 @@ export function Hero() {
                   <a
                     key={link.href}
                     href={link.href}
-                    className={`font-medium gentle-animation hover:scale-105 text-sm tracking-wide uppercase ${
+                    className={`font-medium gentle-animation hover:scale-105 text-[11px] tracking-[0.25em] uppercase ${
                       isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
                     }`}
                   >

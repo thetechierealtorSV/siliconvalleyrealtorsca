@@ -18,6 +18,8 @@ import SellersPage from './pages/SellersPage'
 import PropertiesPage from './pages/PropertiesPage'
 import ScrollToTop from './components/ScrollToTop'
 import { ThemeToggle } from './components/ThemeToggle'
+import { SocialRail } from './components/SocialRail'
+import { CoverageMap } from './components/CoverageMap'
 
 function HomePage() {
   return (
@@ -56,6 +58,9 @@ function HomePage() {
         <section id="why-us-section" aria-label="Why choose us">
           <Awards />
         </section>
+        <section id="coverage-section" aria-label="Coverage area">
+          <CoverageMap />
+        </section>
         <section id="team-section" aria-label="Our team">
           <Team />
         </section>
@@ -77,6 +82,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <ThemeToggle />
+      <SocialRail />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
