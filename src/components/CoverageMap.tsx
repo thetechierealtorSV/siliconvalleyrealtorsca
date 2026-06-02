@@ -2,23 +2,23 @@
 
 import { motion } from 'framer-motion'
 
-// Approximate Bay Area pins on an 800x600 canvas (visual only)
+// Approximate Bay Area pins on a 600x600 SVG canvas (stylized — not geographically exact)
 const cities = [
-  { name: 'San Francisco', x: 140, y: 160 },
-  { name: 'Marin', x: 110, y: 95 },
-  { name: 'Berkeley', x: 250, y: 175 },
-  { name: 'Oakland', x: 245, y: 215 },
+  { name: 'San Francisco', x: 150, y: 170 },
+  { name: 'Marin', x: 120, y: 100 },
+  { name: 'Berkeley', x: 255, y: 180 },
+  { name: 'Oakland', x: 250, y: 220 },
   { name: 'Palo Alto', x: 305, y: 320 },
-  { name: 'Atherton', x: 290, y: 345 },
-  { name: 'Menlo Park', x: 295, y: 335 },
-  { name: 'Woodside', x: 260, y: 355 },
-  { name: 'Los Altos Hills', x: 335, y: 360 },
-  { name: 'Mountain View', x: 350, y: 380 },
-  { name: 'Sunnyvale', x: 380, y: 405 },
-  { name: 'Cupertino', x: 365, y: 430 },
-  { name: 'Saratoga', x: 380, y: 460 },
-  { name: 'Los Gatos', x: 410, y: 475 },
-  { name: 'San Jose', x: 440, y: 445 },
+  { name: 'Atherton', x: 285, y: 345 },
+  { name: 'Menlo Park', x: 300, y: 335 },
+  { name: 'Woodside', x: 255, y: 358 },
+  { name: 'Los Altos Hills', x: 340, y: 360 },
+  { name: 'Mountain View', x: 355, y: 385 },
+  { name: 'Sunnyvale', x: 385, y: 410 },
+  { name: 'Cupertino', x: 365, y: 435 },
+  { name: 'Saratoga', x: 380, y: 465 },
+  { name: 'Los Gatos', x: 415, y: 480 },
+  { name: 'San Jose', x: 445, y: 450 },
 ]
 
 export function CoverageMap() {
@@ -38,30 +38,51 @@ export function CoverageMap() {
         </div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden clean-border bg-secondary/40 aspect-[4/3]">
-            <svg viewBox="0 0 600 600" className="w-full h-full">
-              {/* Bay outline */}
+          <div className="relative rounded-2xl overflow-hidden border border-border bg-card aspect-[1/1] elevated-shadow">
+            <svg viewBox="0 0 600 600" className="w-full h-full" role="img" aria-label="Stylized Bay Area coverage map">
               <defs>
                 <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="hsl(var(--accent-gold, 36 89% 36%))" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="hsl(var(--accent-gold, 36 89% 36%))" stopOpacity="0" />
+                  <stop offset="0%" stopColor="hsl(var(--accent-gold))" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="hsl(var(--accent-gold))" stopOpacity="0" />
                 </radialGradient>
+                <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--muted))" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity="0.7" />
+                </linearGradient>
+                <linearGradient id="bayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--accent-blue))" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="hsl(var(--accent-blue))" stopOpacity="0.15" />
+                </linearGradient>
               </defs>
-              {/* Stylized bay shape */}
+
+              {/* Subtle background */}
+              <rect width="600" height="600" fill="hsl(var(--background))" />
+
+              {/* Land mass (stylized peninsula + east bay) */}
               <path
-                d="M180 60 C 150 120, 170 200, 220 240 C 240 270, 230 320, 260 340 C 290 360, 300 420, 340 460 C 380 500, 440 520, 470 510 L 510 540 L 540 580 L 200 580 L 100 400 L 80 200 Z"
-                fill="hsl(var(--muted))"
+                d="M80 80 L 200 60 L 240 140 L 230 220 L 280 280 L 320 360 L 380 440 L 480 470 L 540 540 L 540 580 L 60 580 L 60 200 Z"
+                fill="url(#landGrad)"
                 stroke="hsl(var(--border))"
-                strokeWidth="1"
-                opacity="0.6"
+                strokeWidth="1.5"
               />
+
+              {/* Bay (water) */}
               <path
-                d="M230 180 C 270 220, 280 280, 310 320 C 340 360, 360 400, 400 430"
-                fill="none"
+                d="M240 140 L 280 200 L 270 280 L 320 360 L 380 440 L 480 470 L 500 460 L 460 400 L 360 320 L 320 240 L 290 160 Z"
+                fill="url(#bayGrad)"
                 stroke="hsl(var(--accent-blue))"
-                strokeWidth="2"
-                strokeDasharray="4 6"
-                opacity="0.5"
+                strokeWidth="1"
+                opacity="0.9"
+              />
+
+              {/* Dashed corridor (101 / 280 idea) */}
+              <path
+                d="M150 200 C 220 260, 280 320, 340 380 S 430 460, 470 480"
+                fill="none"
+                stroke="hsl(var(--accent-gold))"
+                strokeWidth="1.5"
+                strokeDasharray="5 7"
+                opacity="0.7"
               />
 
               {cities.map((c, i) => (
@@ -79,20 +100,21 @@ export function CoverageMap() {
                   <motion.circle
                     cx={c.x}
                     cy={c.y}
-                    r={4}
-                    fill="hsl(var(--foreground))"
+                    r={5}
+                    fill="hsl(var(--accent-gold))"
+                    stroke="hsl(var(--background))"
+                    strokeWidth="1.5"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05, type: 'spring', stiffness: 220 }}
                   />
                   <text
-                    x={c.x + 10}
+                    x={c.x + 11}
                     y={c.y + 4}
                     fontSize="11"
                     fill="hsl(var(--foreground))"
-                    className="font-medium"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
                   >
                     {c.name}
                   </text>
