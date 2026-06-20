@@ -16,6 +16,8 @@ import { IDXSearch } from './components/IDXSearch'
 import BuyersPage from './pages/BuyersPage'
 import SellersPage from './pages/SellersPage'
 import PropertiesPage from './pages/PropertiesPage'
+import OffMarketPage from './pages/OffMarketPage'
+import SavedSearchesPage from './pages/SavedSearchesPage'
 import ScrollToTop from './components/ScrollToTop'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SocialRail } from './components/SocialRail'
@@ -87,6 +89,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<PropertiesPage />} />
+        <Route path="/off-market" element={<OffMarketPage />} />
+        <Route path="/saved-searches" element={<SavedSearchesPage />} />
         <Route path="/buyers" element={<BuyersPage />} />
         <Route path="/sellers" element={<SellersPage />} />
       </Routes>
