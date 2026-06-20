@@ -76,7 +76,7 @@ async function saveLead(args: any, sourcePage: string | null) {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
   const priority = args.priority_hint === "hot" ? "hot" : "warm";
-  const { error } = await supabase.from("leads").insert({
+  const { data: inserted, error } = await supabase.from("leads").insert({
     lead_type: args.lead_type ?? "chatbot",
     name: args.name ?? null,
     email: args.email ?? null,
@@ -85,9 +85,30 @@ async function saveLead(args: any, sourcePage: string | null) {
     status: "new",
     source_page: sourcePage ?? "/chatbot",
     payload: { notes: args.notes ?? null, captured_by: "chatbot" },
-  });
-  if (error) console.error("save_lead error:", error);
-  return { ok: !error };
+  }).select("id").single();
+  if (error) {
+    console.error("save_lead error:", error);
+    return { ok: false };
+  }
+
+  // Fire-and-forget welcome SMS if a phone was captured
+  if (args.phone) {
+    try {
+      const url = `${Deno.env.get("SUPABASE_URL")}/functions/v1/send-welcome-sms`;
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+        },
+        body: JSON.stringify({ lead_id: inserted?.id, phone: args.phone, name: args.name }),
+      }).catch((e) => console.error("welcome sms invoke failed:", e));
+    } catch (e) {
+      console.error("welcome sms dispatch error:", e);
+    }
+  }
+
+  return { ok: true };
 }
 
 serve(async (req) => {
