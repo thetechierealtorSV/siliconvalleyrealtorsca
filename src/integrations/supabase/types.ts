@@ -145,6 +145,134 @@ export type Database = {
         }
         Relationships: []
       }
+      offmarket_listings: {
+        Row: {
+          baths: number | null
+          beds: number | null
+          created_at: string
+          display_order: number
+          hero_image_url: string | null
+          hidden_details: string | null
+          id: string
+          neighborhood: string
+          price_band: string
+          sqft: number | null
+          status: string
+          teaser_summary: string
+          updated_at: string
+        }
+        Insert: {
+          baths?: number | null
+          beds?: number | null
+          created_at?: string
+          display_order?: number
+          hero_image_url?: string | null
+          hidden_details?: string | null
+          id?: string
+          neighborhood: string
+          price_band: string
+          sqft?: number | null
+          status?: string
+          teaser_summary: string
+          updated_at?: string
+        }
+        Update: {
+          baths?: number | null
+          beds?: number | null
+          created_at?: string
+          display_order?: number
+          hero_image_url?: string | null
+          hidden_details?: string | null
+          id?: string
+          neighborhood?: string
+          price_band?: string
+          sqft?: number | null
+          status?: string
+          teaser_summary?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      offmarket_unlocks: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          listing_id: string | null
+          name: string | null
+          phone: string | null
+          source_page: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          listing_id?: string | null
+          name?: string | null
+          phone?: string | null
+          source_page?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          listing_id?: string | null
+          name?: string | null
+          phone?: string | null
+          source_page?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "offmarket_unlocks_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "offmarket_listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      saved_searches: {
+        Row: {
+          alert_on_price_drop: boolean
+          created_at: string
+          email: string
+          filters: Json
+          frequency: string
+          id: string
+          label: string | null
+          name: string | null
+          phone: string | null
+          unsubscribed_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          alert_on_price_drop?: boolean
+          created_at?: string
+          email: string
+          filters?: Json
+          frequency?: string
+          id?: string
+          label?: string | null
+          name?: string | null
+          phone?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          alert_on_price_drop?: boolean
+          created_at?: string
+          email?: string
+          filters?: Json
+          frequency?: string
+          id?: string
+          label?: string | null
+          name?: string | null
+          phone?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       agent_profiles_public: {

@@ -16,6 +16,8 @@ export function PageNavbar() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
+    { href: '/off-market', label: 'Off-Market' },
+    { href: '/saved-searches', label: 'Alerts' },
     { href: '/buyers', label: 'Buyers' },
     { href: '/sellers', label: 'Sellers' },
   ]
