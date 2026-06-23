@@ -16,8 +16,14 @@ type Listing = {
   beds: number | null
   baths: number | null
   sqft: number | null
+type Listing = {
+  id: string
+  neighborhood: string
+  price_band: string
+  beds: number | null
+  baths: number | null
+  sqft: number | null
   teaser_summary: string
-  hidden_details: string | null
   hero_image_url: string | null
 }
 
