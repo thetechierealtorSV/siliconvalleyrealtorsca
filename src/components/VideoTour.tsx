@@ -3,35 +3,49 @@
 import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
 import walkthroughOriginal from '@/assets/luxury-walkthrough-original.mp4.asset.json'
 import interiorOriginal from '@/assets/luxury-interior-walkthrough-original.mp4.asset.json'
-import craftsman from '@/assets/palo-alto-craftsman-walkthrough.mp4.asset.json'
-import eichler from '@/assets/palo-alto-eichler-walkthrough.mp4.asset.json'
-import primarySuite from '@/assets/palo-alto-primary-suite-walkthrough.mp4.asset.json'
-import colonial from '@/assets/palo-alto-colonial-walkthrough.mp4.asset.json'
+import livingroomPanin from '@/assets/pa-livingroom-panin.mp4.asset.json'
+import kitchenPanin from '@/assets/pa-kitchen-panin.mp4.asset.json'
+import livingToBackyard from '@/assets/pa-livingroom-to-backyard.mp4.asset.json'
+import backyardPan from '@/assets/pa-backyard-pan.mp4.asset.json'
+import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset.json'
+import concreteModernHome from '@/assets/pa-concrete-modern-home.mp4.asset.json'
 
 const extraTours = [
   {
-    src: craftsman.url,
-    title: 'Palo Alto Craftsman · Main Level',
-    blurb: 'Entry foyer through the living room and into a bright shaker-style kitchen — a realistic Palo Alto main-floor flow.',
-    aria: 'Walkthrough of a Palo Alto craftsman home main level',
+    src: livingroomPanin.url,
+    title: 'Living Room · Slow Pan-In',
+    blurb: 'A cinematic glide into a Palo Alto living room — light sectional, oak floors, garden views through the picture window.',
+    aria: 'Slow pan into a Palo Alto living room',
   },
   {
-    src: eichler.url,
-    title: 'Eichler Mid-Century · Open Plan',
-    blurb: 'Floor-to-ceiling glass, post-and-beam ceilings, and an open living-dining flow opening to the backyard.',
-    aria: 'Walkthrough of a Palo Alto Eichler-style mid-century modern home',
+    src: kitchenPanin.url,
+    title: 'Chef\u2019s Kitchen · Slow Pan-In',
+    blurb: 'Marble island, pendant lighting, and shaker cabinetry — a steady pan into the heart of the home.',
+    aria: 'Slow pan into a Palo Alto chef\u2019s kitchen',
   },
   {
-    src: primarySuite.url,
-    title: 'Primary Suite · Bedroom & Spa Bath',
-    blurb: 'A serene primary bedroom into a spa-style ensuite with double vanity and freestanding tub.',
-    aria: 'Walkthrough of a primary bedroom suite',
+    src: livingToBackyard.url,
+    title: 'Living Room to Backyard',
+    blurb: 'From the great room through open sliding doors out to the pool, patio, and mature oaks beyond.',
+    aria: 'Pan from living room through sliding doors into the backyard',
   },
   {
-    src: colonial.url,
-    title: 'Two-Story Colonial · Foyer to Kitchen',
-    blurb: 'Classic Palo Alto colonial — foyer staircase, formal living room, family room, and chef\u2019s kitchen with breakfast nook.',
-    aria: 'Walkthrough of a two-story Palo Alto colonial home',
+    src: backyardPan.url,
+    title: 'Backyard · Pool & Patio',
+    blurb: 'A slow sideways drift across the rear yard — rectangular pool, flagstone patio, and the home\u2019s glass-walled façade.',
+    aria: 'Slow pan across a Palo Alto luxury backyard',
+  },
+  {
+    src: shippingContainerHome.url,
+    title: 'Bonus · Shipping Container Home',
+    blurb: 'A modern Palo Alto residence built from stacked Corten steel containers — cantilevered upper level and floor-to-ceiling glass.',
+    aria: 'Exterior pan of a modern shipping container home',
+  },
+  {
+    src: concreteModernHome.url,
+    title: 'Bonus · Concrete Modern',
+    blurb: 'A long, low rectangular volume in board-formed concrete — glass walls, flat roof, and minimalist landscaping.',
+    aria: 'Exterior pan of a rectangular concrete modern home',
   },
 ]
 
