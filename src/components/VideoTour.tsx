@@ -3,6 +3,37 @@
 import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
 import walkthroughOriginal from '@/assets/luxury-walkthrough-original.mp4.asset.json'
 import interiorOriginal from '@/assets/luxury-interior-walkthrough-original.mp4.asset.json'
+import craftsman from '@/assets/palo-alto-craftsman-walkthrough.mp4.asset.json'
+import eichler from '@/assets/palo-alto-eichler-walkthrough.mp4.asset.json'
+import primarySuite from '@/assets/palo-alto-primary-suite-walkthrough.mp4.asset.json'
+import colonial from '@/assets/palo-alto-colonial-walkthrough.mp4.asset.json'
+
+const extraTours = [
+  {
+    src: craftsman.url,
+    title: 'Palo Alto Craftsman · Main Level',
+    blurb: 'Entry foyer through the living room and into a bright shaker-style kitchen — a realistic Palo Alto main-floor flow.',
+    aria: 'Walkthrough of a Palo Alto craftsman home main level',
+  },
+  {
+    src: eichler.url,
+    title: 'Eichler Mid-Century · Open Plan',
+    blurb: 'Floor-to-ceiling glass, post-and-beam ceilings, and an open living-dining flow opening to the backyard.',
+    aria: 'Walkthrough of a Palo Alto Eichler-style mid-century modern home',
+  },
+  {
+    src: primarySuite.url,
+    title: 'Primary Suite · Bedroom & Spa Bath',
+    blurb: 'A serene primary bedroom into a spa-style ensuite with double vanity and freestanding tub.',
+    aria: 'Walkthrough of a primary bedroom suite',
+  },
+  {
+    src: colonial.url,
+    title: 'Two-Story Colonial · Foyer to Kitchen',
+    blurb: 'Classic Palo Alto colonial — foyer staircase, formal living room, family room, and chef\u2019s kitchen with breakfast nook.',
+    aria: 'Walkthrough of a two-story Palo Alto colonial home',
+  },
+]
 
 export function VideoTour() {
   return (
@@ -70,6 +101,16 @@ export function VideoTour() {
               </video>
             </div>
           </div>
+
+          {extraTours.map((t) => (
+            <div key={t.title}>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">{t.title}</h3>
+              <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">{t.blurb}</p>
+              <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
+                <video src={t.src} controls muted loop playsInline preload="metadata" className="w-full aspect-video object-cover" aria-label={t.aria} />
+              </div>
+            </div>
+          ))}
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div>
