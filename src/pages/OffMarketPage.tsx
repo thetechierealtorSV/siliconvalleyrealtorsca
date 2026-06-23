@@ -99,6 +99,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
   const [showForm, setShowForm] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [details, setDetails] = useState<string | null>(null)
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -117,6 +118,14 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
         source_page: '/off-market',
       })
       if (unlockErr) throw unlockErr
+
+      // Server-side gated retrieval of hidden details (verifies unlock row by email)
+      const { data: hiddenData, error: rpcErr } = await supabase.rpc('get_offmarket_details', {
+        p_listing_id: listing.id,
+        p_email: parsed.data.email,
+      })
+      if (rpcErr) throw rpcErr
+      setDetails((hiddenData as string | null) ?? 'Details will be emailed to you shortly.')
 
       // Also drop a lead so it flows through normal lead routing + SMS welcome
       await supabase.from('leads').insert({
