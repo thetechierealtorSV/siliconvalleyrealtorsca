@@ -185,7 +185,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
             <div className="flex items-center gap-2 text-sm font-medium mb-2 text-foreground">
               <Check className="w-4 h-4" /> Unlocked
             </div>
-            <p className="text-sm text-foreground/80 leading-relaxed">{listing.hidden_details}</p>
+            <p className="text-sm text-foreground/80 leading-relaxed">{details ?? 'An agent will follow up shortly with full address, showing access, and seller notes.'}</p>
           </div>
         ) : showForm ? (
           <form onSubmit={submit} className="space-y-2">
