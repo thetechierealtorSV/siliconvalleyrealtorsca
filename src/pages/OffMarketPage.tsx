@@ -17,7 +17,6 @@ type Listing = {
   baths: number | null
   sqft: number | null
   teaser_summary: string
-  hidden_details: string | null
   hero_image_url: string | null
 }
 
@@ -38,7 +37,7 @@ export default function OffMarketPage() {
     ;(async () => {
       const { data, error } = await supabase
         .from('offmarket_listings')
-        .select('id, neighborhood, price_band, beds, baths, sqft, teaser_summary, hidden_details, hero_image_url')
+        .select('id, neighborhood, price_band, beds, baths, sqft, teaser_summary, hero_image_url')
         .eq('status', 'active')
         .order('display_order', { ascending: true })
       if (error) console.error(error)
@@ -100,6 +99,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
   const [showForm, setShowForm] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [details, setDetails] = useState<string | null>(null)
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -118,6 +118,14 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
         source_page: '/off-market',
       })
       if (unlockErr) throw unlockErr
+
+      // Server-side gated retrieval of hidden details (verifies unlock row by email)
+      const { data: hiddenData, error: rpcErr } = await supabase.rpc('get_offmarket_details', {
+        p_listing_id: listing.id,
+        p_email: parsed.data.email,
+      })
+      if (rpcErr) throw rpcErr
+      setDetails((hiddenData as string | null) ?? 'Details will be emailed to you shortly.')
 
       // Also drop a lead so it flows through normal lead routing + SMS welcome
       await supabase.from('leads').insert({
@@ -177,7 +185,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
             <div className="flex items-center gap-2 text-sm font-medium mb-2 text-foreground">
               <Check className="w-4 h-4" /> Unlocked
             </div>
-            <p className="text-sm text-foreground/80 leading-relaxed">{listing.hidden_details}</p>
+            <p className="text-sm text-foreground/80 leading-relaxed">{details ?? 'An agent will follow up shortly with full address, showing access, and seller notes.'}</p>
           </div>
         ) : showForm ? (
           <form onSubmit={submit} className="space-y-2">

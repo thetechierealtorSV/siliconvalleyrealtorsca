@@ -307,6 +307,10 @@ export type Database = {
       }
     }
     Functions: {
+      get_offmarket_details: {
+        Args: { p_email: string; p_listing_id: string }
+        Returns: string
+      }
       is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
