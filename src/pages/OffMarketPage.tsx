@@ -37,7 +37,7 @@ export default function OffMarketPage() {
     ;(async () => {
       const { data, error } = await supabase
         .from('offmarket_listings')
-        .select('id, neighborhood, price_band, beds, baths, sqft, teaser_summary, hidden_details, hero_image_url')
+        .select('id, neighborhood, price_band, beds, baths, sqft, teaser_summary, hero_image_url')
         .eq('status', 'active')
         .order('display_order', { ascending: true })
       if (error) console.error(error)
