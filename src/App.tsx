@@ -22,6 +22,7 @@ import ScrollToTop from './components/ScrollToTop'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SocialRail } from './components/SocialRail'
 import { CoverageMap } from './components/CoverageMap'
+import { AccessibilityMenu } from './components/AccessibilityMenu'
 
 function HomePage() {
   return (
@@ -31,7 +32,7 @@ function HomePage() {
         description="Luxury real estate across Silicon Valley — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and beyond. Live MLS search, buyer representation, seller concierge."
         jsonLd={ORG_JSON_LD}
       />
-      <main className="relative" role="main">
+      <main id="main-content" className="relative" role="main" tabIndex={-1}>
         <section id="hero" aria-label="Hero">
           <Hero />
         </section>
@@ -85,6 +86,7 @@ export default function App() {
       <ScrollToTop />
       <ThemeToggle />
       <SocialRail />
+      <AccessibilityMenu />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
