@@ -21,19 +21,45 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    // Internal-only endpoint: require service-role JWT (the chat function passes it).
+    const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const auth = req.headers.get("Authorization") || "";
+    const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+    if (!SERVICE_ROLE || token !== SERVICE_ROLE) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { lead_id, phone, name } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     const TWILIO_API_KEY = Deno.env.get("TWILIO_API_KEY");
     const TWILIO_FROM_NUMBER = Deno.env.get("TWILIO_FROM_NUMBER");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY missing");
-    if (!TWILIO_API_KEY) throw new Error("TWILIO_API_KEY missing");
-    if (!TWILIO_FROM_NUMBER) throw new Error("TWILIO_FROM_NUMBER missing — set this secret to your Twilio phone number in E.164 format (e.g. +16505551234)");
+    if (!LOVABLE_API_KEY || !TWILIO_API_KEY || !TWILIO_FROM_NUMBER) {
+      console.error("send-welcome-sms misconfigured: missing required secret");
+      return new Response(JSON.stringify({ error: "Service temporarily unavailable" }), {
+        status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const to = toE164(String(phone || ""));
     if (!to) return new Response(JSON.stringify({ ok: false, error: "invalid phone" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
-    const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+    const supabase = createClient(Deno.env.get("SUPABASE_URL")!, SERVICE_ROLE);
+
+    // Validate lead_id references a real lead (prevents arbitrary number sends)
+    if (!lead_id) {
+      return new Response(JSON.stringify({ error: "lead_id required" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { data: leadRow } = await supabase.from("leads").select("id").eq("id", lead_id).maybeSingle();
+    if (!leadRow) {
+      return new Response(JSON.stringify({ error: "unknown lead" }), {
+        status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Avoid double-sending: check lead_notifications for prior welcome SMS
     if (lead_id) {
