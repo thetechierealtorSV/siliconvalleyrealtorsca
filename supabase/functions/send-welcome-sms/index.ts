@@ -103,13 +103,13 @@ Reply STOP to opt out, HELP for help. Msg & data rates may apply.`;
       detail: ok ? `sid:${data.sid ?? ""} to:${to}` : `error:${JSON.stringify(data).slice(0, 400)}`,
     });
 
-    return new Response(JSON.stringify({ ok, data }), {
+    return new Response(JSON.stringify({ ok }), {
       status: ok ? 200 : 502,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
     console.error("send-welcome-sms error:", e);
-    return new Response(JSON.stringify({ ok: false, error: e instanceof Error ? e.message : String(e) }), {
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
