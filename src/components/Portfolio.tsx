@@ -8,6 +8,7 @@ import luxuryEichler1 from '@/assets/luxury-eichler-1.jpg'
 import luxuryInterior1 from '@/assets/luxury-interior-1.jpg'
 import luxuryPaloAlto2 from '@/assets/luxury-paloalto-2.jpg'
 import luxuryAtherton2 from '@/assets/luxury-atherton-2.jpg'
+import heroLuxuryCityView from '@/assets/hero-luxury.jpg'
 
 const properties = [
   {
@@ -75,6 +76,17 @@ const properties = [
     sqft: '14,200',
     image: luxuryAtherton2,
     tag: 'Premium',
+  },
+  {
+    id: 7,
+    title: 'Skyline View Villa',
+    address: 'Palo Alto Hills',
+    price: '$16,800,000',
+    beds: 6,
+    baths: 7,
+    sqft: '9,100',
+    image: heroLuxuryCityView,
+    tag: 'Signature',
   },
 ]
 
