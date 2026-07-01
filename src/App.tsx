@@ -51,6 +51,9 @@ function HomePage() {
             <div className="max-w-4xl mx-auto"><IDXSearch /></div>
           </div>
         </section>
+        <section id="youtube-tours-section" aria-label="YouTube home tours">
+          <YouTubeTours />
+        </section>
         <section id="video-tour-section" aria-label="Video tours">
           <VideoTour />
         </section>
