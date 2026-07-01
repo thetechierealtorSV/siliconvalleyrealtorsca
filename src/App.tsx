@@ -23,6 +23,8 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { SocialRail } from './components/SocialRail'
 import { CoverageMap } from './components/CoverageMap'
 import { AccessibilityMenu } from './components/AccessibilityMenu'
+import { SiteGuide } from './components/SiteGuide'
+import { YouTubeTours } from './components/YouTubeTours'
 
 function HomePage() {
   return (
@@ -48,6 +50,9 @@ function HomePage() {
             </div>
             <div className="max-w-4xl mx-auto"><IDXSearch /></div>
           </div>
+        </section>
+        <section id="youtube-tours-section" aria-label="YouTube home tours">
+          <YouTubeTours />
         </section>
         <section id="video-tour-section" aria-label="Video tours">
           <VideoTour />
@@ -87,6 +92,7 @@ export default function App() {
       <ThemeToggle />
       <SocialRail />
       <AccessibilityMenu />
+      <SiteGuide />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />

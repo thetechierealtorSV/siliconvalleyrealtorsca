@@ -38,16 +38,16 @@ export function Contact() {
     {
       icon: Phone,
       label: 'Call Us',
-      value: 'Speak directly with our team — we\'re here for you',
+      value: '(650) 640-9777',
       color: '#6b7c5e',
-      href: '#',
+      href: 'tel:+16506409777',
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
-      value: 'Message us directly on WhatsApp',
+      value: 'Message (650) 640-9777 on WhatsApp',
       color: '#25D366',
-      href: '#',
+      href: 'https://wa.me/16506409777',
     },
     {
       icon: Instagram,
