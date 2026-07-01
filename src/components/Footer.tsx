@@ -1,7 +1,7 @@
 'use client'
 
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Instagram, Youtube, Linkedin, Mail, Phone, MapPin } from 'lucide-react'
+import { Instagram, Youtube, Linkedin, Mail, Phone, MapPin, MessageCircle } from 'lucide-react'
 
 export function Footer() {
   const navigate = useNavigate()
