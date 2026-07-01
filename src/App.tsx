@@ -92,6 +92,7 @@ export default function App() {
       <ThemeToggle />
       <SocialRail />
       <AccessibilityMenu />
+      <SiteGuide />
       <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
