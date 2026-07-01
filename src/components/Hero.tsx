@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import heroImage from '@/assets/hero-luxury.jpg'
-import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
+import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset.json'
 
 export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -55,7 +55,7 @@ export function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >
-        <source src={paloAltoInterior.url} type="video/mp4" />
+        <source src={shippingContainerHome.url} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
