@@ -23,6 +23,8 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { SocialRail } from './components/SocialRail'
 import { CoverageMap } from './components/CoverageMap'
 import { AccessibilityMenu } from './components/AccessibilityMenu'
+import { SiteGuide } from './components/SiteGuide'
+import { YouTubeTours } from './components/YouTubeTours'
 
 function HomePage() {
   return (
