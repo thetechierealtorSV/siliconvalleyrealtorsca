@@ -28,7 +28,7 @@ export function Footer() {
               <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Instagram className="w-5 h-5" /></a>
               <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Youtube className="w-5 h-5" /></a>
               <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Linkedin className="w-5 h-5" /></a>
-              <a href="mailto:hello@siliconvalleyrealtorsca.com" aria-label="Email" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Mail className="w-5 h-5" /></a>
+              <a href="mailto:hello@nikolaenkoestates.com" aria-label="Email" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Mail className="w-5 h-5" /></a>
             </div>
           </div>
 
@@ -81,7 +81,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:hello@siliconvalleyrealtorsca.com" className="hover:text-primary-foreground gentle-animation">hello@siliconvalleyrealtorsca.com</a>
+                <a href="mailto:hello@nikolaenkoestates.com" className="hover:text-primary-foreground gentle-animation">hello@nikolaenkoestates.com</a>
               </li>
             </ul>
           </div>
@@ -102,13 +102,13 @@ export function Footer() {
           <div className="grid md:grid-cols-[1fr_auto] gap-8 items-start">
             <div className="text-xs text-primary-foreground/50 leading-relaxed space-y-3 max-w-3xl">
               <p>
-                <span className="text-primary-foreground/70 font-medium">Equal Housing Opportunity.</span> Silicon Valley Realtors is committed to the letter and spirit of U.S. policy for the achievement of equal housing opportunity. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, source of income, or any other class protected by federal, state, or local law.
+                <span className="text-primary-foreground/70 font-medium">Equal Housing Opportunity.</span> Nikolaenko Estates is committed to the letter and spirit of U.S. policy for the achievement of equal housing opportunity. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, source of income, or any other class protected by federal, state, or local law.
               </p>
               <p>
-                Real estate services are provided by licensed agents of Silicon Valley Realtors. California DRE License #XXXXXXXX. Each office is independently owned and operated. Information deemed reliable but not guaranteed; buyers should independently verify all material facts. Property information, listings, and market data are obtained from sources believed reliable, including MLSListings Inc., and are subject to change without notice. Nothing herein constitutes legal, tax, or financial advice.
+                Real estate services are provided by licensed agents of Nikolaenko Estates. California DRE License #XXXXXXXX. Each office is independently owned and operated. Information deemed reliable but not guaranteed; buyers should independently verify all material facts. Property information, listings, and market data are obtained from sources believed reliable, including MLSListings Inc., and are subject to change without notice. Nothing herein constitutes legal, tax, or financial advice.
               </p>
               <p>
-                By submitting your phone number or contact information, you consent to receive calls, SMS messages, and emails from Silicon Valley Realtors regarding real estate services. Message and data rates may apply. Reply <span className="font-mono text-primary-foreground/70">STOP</span> to any SMS to unsubscribe or <span className="font-mono text-primary-foreground/70">HELP</span> for assistance. See our <button onClick={() => navigate('/privacy')} className="underline hover:text-primary-foreground">Privacy Policy</button> for details.
+                By submitting your phone number or contact information, you consent to receive calls, SMS messages, and emails from Nikolaenko Estates regarding real estate services. Message and data rates may apply. Reply <span className="font-mono text-primary-foreground/70">STOP</span> to any SMS to unsubscribe or <span className="font-mono text-primary-foreground/70">HELP</span> for assistance. See our <button onClick={() => navigate('/privacy')} className="underline hover:text-primary-foreground">Privacy Policy</button> for details.
               </p>
             </div>
 
@@ -132,7 +132,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-primary-foreground/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <div className="text-xs text-primary-foreground/40">
-            © {year} Silicon Valley Realtors. All rights reserved. CA DRE #XXXXXXXX.
+            © {year} Nikolaenko Estates. All rights reserved. CA DRE #XXXXXXXX.
           </div>
           <div className="text-xs text-primary-foreground/40 tracking-[0.2em] uppercase">
             Bay Area · Peninsula · South Bay · East Bay · SF · Marin

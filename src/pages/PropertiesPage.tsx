@@ -60,10 +60,10 @@ export default function PropertiesPage() {
   }
 
   const title = city
-    ? `${city} Homes for Sale · Silicon Valley Realtors`
+    ? `${city} Homes for Sale · Nikolaenko Estates`
     : 'Silicon Valley Homes for Sale · MLS Search'
   const description = city
-    ? `Browse luxury homes for sale in ${city}. Live MLS listings curated by Silicon Valley Realtors.`
+    ? `Browse luxury homes for sale in ${city}. Live MLS listings curated by Nikolaenko Estates.`
     : 'Search live MLS listings across Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and the rest of Silicon Valley.'
 
   return (

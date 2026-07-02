@@ -77,7 +77,7 @@ serve(async (req) => {
 
     const firstName = String(name || "").trim().split(/\s+/)[0] || "there";
     const body =
-`Hi ${firstName}, this is Silicon Valley Realtors. Thanks for reaching out — a senior agent will follow up shortly to help with your Bay Area search or valuation.
+`Hi ${firstName}, this is Nikolaenko Estates. Thanks for reaching out — a senior agent will follow up shortly to help with your Bay Area search or valuation.
 
 Questions in the meantime? Just reply to this text.
 

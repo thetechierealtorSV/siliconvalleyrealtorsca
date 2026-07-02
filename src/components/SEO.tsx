@@ -65,12 +65,12 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
   return null
 }
 
-const SITE_URL = 'https://siliconvalleyrealtorsca.lovable.app'
+const SITE_URL = 'https://nikolaenkoestates.com'
 
 export const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
-  name: 'Silicon Valley Realtors',
+  name: 'Nikolaenko Estates',
   description:
     'Luxury real estate brokerage serving all of Silicon Valley — Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
   areaServed: [

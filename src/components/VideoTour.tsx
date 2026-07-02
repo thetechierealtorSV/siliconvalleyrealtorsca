@@ -8,6 +8,8 @@ import kitchenPanin from '@/assets/pa-kitchen-panin.mp4.asset.json'
 import livingToBackyard from '@/assets/pa-livingroom-to-backyard.mp4.asset.json'
 import backyardPan from '@/assets/pa-backyard-pan.mp4.asset.json'
 import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset.json'
+import container360Front from '@/assets/container-360-front.mp4.asset.json'
+import container360Back from '@/assets/container-360-back.mp4.asset.json'
 import concreteModernHome from '@/assets/pa-concrete-modern-home.mp4.asset.json'
 
 const extraTours = [
@@ -40,6 +42,18 @@ const extraTours = [
     title: 'Bonus · Shipping Container Home',
     blurb: 'A modern Palo Alto residence built from stacked Corten steel containers — cantilevered upper level and floor-to-ceiling glass.',
     aria: 'Exterior pan of a modern shipping container home',
+  },
+  {
+    src: container360Front.url,
+    title: 'Container Home · 360° Drone (Front)',
+    blurb: 'Aerial 360° clockwise orbit around the front and street-facing façade of the container residence — cantilevered volume, glass walls, mature oaks.',
+    aria: '360-degree drone orbit of the front of the shipping container home',
+  },
+  {
+    src: container360Back.url,
+    title: 'Container Home · 360° Drone (Rear)',
+    blurb: 'Continuing the orbit around the rear of the same residence — pool, patio, and the glass back façade under bright Silicon Valley daylight.',
+    aria: '360-degree drone orbit of the rear of the shipping container home',
   },
   {
     src: concreteModernHome.url,

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://siliconvalleyrealtorsca.lovable.app/sitemap.xml
+Sitemap: https://nikolaenkoestates.com/sitemap.xml

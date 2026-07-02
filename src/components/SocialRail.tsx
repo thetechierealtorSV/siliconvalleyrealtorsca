@@ -7,7 +7,7 @@ const links = [
   { href: 'https://youtube.com', label: 'YouTube', Icon: Youtube },
   { href: 'https://tiktok.com', label: 'TikTok', Icon: TikTokIcon },
   { href: 'https://linkedin.com', label: 'LinkedIn', Icon: Linkedin },
-  { href: 'mailto:hello@siliconvalleyrealtors.com', label: 'Email', Icon: Mail },
+  { href: 'mailto:hello@nikolaenkoestates.com', label: 'Email', Icon: Mail },
 ]
 
 function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
