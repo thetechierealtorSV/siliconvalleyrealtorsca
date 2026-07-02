@@ -44,6 +44,18 @@ const extraTours = [
     aria: 'Exterior pan of a modern shipping container home',
   },
   {
+    src: container360Front.url,
+    title: 'Container Home · 360° Drone (Front)',
+    blurb: 'Aerial 360° clockwise orbit around the front and street-facing façade of the container residence — cantilevered volume, glass walls, mature oaks.',
+    aria: '360-degree drone orbit of the front of the shipping container home',
+  },
+  {
+    src: container360Back.url,
+    title: 'Container Home · 360° Drone (Rear)',
+    blurb: 'Continuing the orbit around the rear of the same residence — pool, patio, and the glass back façade under bright Silicon Valley daylight.',
+    aria: '360-degree drone orbit of the rear of the shipping container home',
+  },
+  {
     src: concreteModernHome.url,
     title: 'Bonus · Concrete Modern',
     blurb: 'A long, low rectangular volume in board-formed concrete — glass walls, flat roof, and minimalist landscaping.',
