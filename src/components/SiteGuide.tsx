@@ -25,7 +25,7 @@ type Step = {
 const STEPS: Step[] = [
   {
     target: '#hero',
-    title: 'Welcome to Silicon Valley Realtors',
+    title: 'Welcome to Nikolaenko Estates',
     body: 'Your concierge for luxury homes across the Peninsula, South Bay, and beyond. This quick tour shows you around — 30 seconds.',
   },
   {

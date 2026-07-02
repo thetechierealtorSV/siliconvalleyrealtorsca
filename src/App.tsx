@@ -30,7 +30,7 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Silicon Valley Realtors · Luxury Homes"
+        title="Nikolaenko Estates · Luxury Homes"
         description="Luxury real estate across Silicon Valley — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and beyond. Live MLS search, buyer representation, seller concierge."
         jsonLd={ORG_JSON_LD}
       />

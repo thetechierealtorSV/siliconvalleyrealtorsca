@@ -76,7 +76,7 @@ export default function BuyersPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Buyer Representation · Silicon Valley Realtors"
+        title="Buyer Representation · Nikolaenko Estates"
         description="Buyer representation agreement, lender pre-approval, and a vetted loan officer network for Silicon Valley homebuyers."
         jsonLd={[ORG_JSON_LD, breadcrumbJsonLd([
           { name: 'Home', path: '/' },
@@ -119,7 +119,7 @@ export default function BuyersPage() {
                   <h2 className="font-display text-2xl font-bold">Buyer Representation Agreement</h2>
                 </div>
                 <p className="text-muted-foreground mb-2">
-                  Complete this form to begin your formal buyer representation with Silicon Valley Realtors. 
+                  Complete this form to begin your formal buyer representation with Nikolaenko Estates. 
                   By submitting, you're taking the first step toward dedicated, exclusive representation.
                 </p>
                 <div className="flex gap-3 mb-8">
@@ -207,7 +207,7 @@ export default function BuyersPage() {
                     <input type="checkbox" checked={agreementForm.agreeToTerms} onChange={e => setAgreementForm(p => ({...p, agreeToTerms: e.target.checked}))}
                       className="mt-1 w-4 h-4 rounded border-border" />
                     <span className="text-sm text-muted-foreground">
-                      I agree to enter into a buyer representation agreement with Silicon Valley Realtors. 
+                      I agree to enter into a buyer representation agreement with Nikolaenko Estates. 
                       I understand this establishes an exclusive working relationship for my property search.
                     </span>
                   </label>

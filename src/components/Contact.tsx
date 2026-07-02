@@ -59,9 +59,9 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@siliconvalleyrealtors.com',
+      value: 'hello@nikolaenkoestates.com',
       color: '#b8860b',
-      href: 'mailto:hello@siliconvalleyrealtors.com',
+      href: 'mailto:hello@nikolaenkoestates.com',
     },
   ]
 
