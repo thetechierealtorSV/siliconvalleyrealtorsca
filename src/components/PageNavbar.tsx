@@ -32,7 +32,10 @@ export function PageNavbar() {
             onClick={() => navigate('/')}
           >
             <span className="font-display text-xl tracking-wider leading-tight text-foreground">
-              SILICON VALLEY REALTORS
+              NIKOLAENKO ESTATES
+            </span>
+            <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+              nikolaenkoestates.com
             </span>
           </motion.div>
 
