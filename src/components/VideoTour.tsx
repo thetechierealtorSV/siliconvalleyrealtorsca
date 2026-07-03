@@ -8,9 +8,9 @@ import kitchenPanin from '@/assets/pa-kitchen-panin.mp4.asset.json'
 import livingToBackyard from '@/assets/pa-livingroom-to-backyard.mp4.asset.json'
 import backyardPan from '@/assets/pa-backyard-pan.mp4.asset.json'
 import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset.json'
-import container360Front from '@/assets/container-360-front.mp4.asset.json'
-import container360Back from '@/assets/container-360-back.mp4.asset.json'
 import concreteModernHome from '@/assets/pa-concrete-modern-home.mp4.asset.json'
+import luxuryKitchenJapanese from '@/assets/luxury-kitchen-japanese-bamboo.mp4.asset.json'
+import luxuryKitchenSteampunk from '@/assets/luxury-kitchen-steampunk-industrial.mp4.asset.json'
 
 const extraTours = [
   {
