@@ -8,9 +8,9 @@ import kitchenPanin from '@/assets/pa-kitchen-panin.mp4.asset.json'
 import livingToBackyard from '@/assets/pa-livingroom-to-backyard.mp4.asset.json'
 import backyardPan from '@/assets/pa-backyard-pan.mp4.asset.json'
 import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset.json'
-import container360Front from '@/assets/container-360-front.mp4.asset.json'
-import container360Back from '@/assets/container-360-back.mp4.asset.json'
 import concreteModernHome from '@/assets/pa-concrete-modern-home.mp4.asset.json'
+import luxuryKitchenJapanese from '@/assets/luxury-kitchen-japanese-bamboo.mp4.asset.json'
+import luxuryKitchenSteampunk from '@/assets/luxury-kitchen-steampunk-industrial.mp4.asset.json'
 
 const extraTours = [
   {
@@ -44,16 +44,16 @@ const extraTours = [
     aria: 'Exterior pan of a modern shipping container home',
   },
   {
-    src: container360Front.url,
-    title: 'Container Home · 360° Drone (Front)',
-    blurb: 'Aerial 360° clockwise orbit around the front and street-facing façade of the container residence — cantilevered volume, glass walls, mature oaks.',
-    aria: '360-degree drone orbit of the front of the shipping container home',
+    src: luxuryKitchenJapanese.url,
+    title: 'Luxury Kitchen · Japanese Bamboo',
+    blurb: 'A slow pan across a serene modern kitchen — light Japanese bamboo cabinets, vibrant green backsplash, stainless steel appliances, and a white granite waterfall island bathed in natural light.',
+    aria: 'Slow pan across a luxury modern kitchen with Japanese bamboo cabinets and green backsplash',
   },
   {
-    src: container360Back.url,
-    title: 'Container Home · 360° Drone (Rear)',
-    blurb: 'Continuing the orbit around the rear of the same residence — pool, patio, and the glass back façade under bright Silicon Valley daylight.',
-    aria: '360-degree drone orbit of the rear of the shipping container home',
+    src: luxuryKitchenSteampunk.url,
+    title: 'Luxury Kitchen · Industrial Steampunk',
+    blurb: 'A slow pan across a bold industrial kitchen — polished concrete floors, matte black steel cabinetry, oil-rubbed bronze pendant lights, and raw exposed beams with high-end finishes.',
+    aria: 'Slow pan across a luxury industrial kitchen with concrete floors and bronze pendant lights',
   },
   {
     src: concreteModernHome.url,
