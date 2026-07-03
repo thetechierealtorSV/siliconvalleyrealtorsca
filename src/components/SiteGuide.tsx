@@ -126,7 +126,7 @@ export function SiteGuide() {
         aria-label="Open site guide and help"
         aria-expanded={helpOpen}
         aria-controls="site-guide-panel"
-        className="fixed left-4 bottom-20 z-[150] flex items-center justify-center w-12 h-12 rounded-full bg-background text-foreground border border-border shadow-lg hover:scale-105 transition-transform focus:outline-none focus:ring-4 focus:ring-ring"
+        className="fixed left-4 bottom-36 z-[150] flex items-center justify-center w-12 h-12 rounded-full bg-background text-foreground border border-border shadow-lg hover:scale-105 transition-transform focus:outline-none focus:ring-4 focus:ring-ring"
       >
         <HelpCircle className="w-6 h-6" aria-hidden="true" />
       </button>
@@ -137,7 +137,7 @@ export function SiteGuide() {
           id="site-guide-panel"
           role="dialog"
           aria-label="Site guide"
-          className="fixed left-4 bottom-36 z-[150] w-96 max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto bg-card text-card-foreground border border-border rounded-2xl shadow-2xl p-5"
+          className="fixed left-4 bottom-52 z-[150] w-96 max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto bg-card text-card-foreground border border-border rounded-2xl shadow-2xl p-5"
         >
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-display text-lg font-semibold flex items-center gap-2">

@@ -79,7 +79,7 @@ export function Hero() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <span className={`font-display text-xl tracking-[0.2em] leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
-                SILICON VALLEY REALTORS
+                NIKOLAENKO ESTATES
               </span>
             </motion.div>
 
@@ -209,7 +209,7 @@ export function Hero() {
       >
         <div className="max-w-3xl">
           <p className="text-white/70 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-            Serving Silicon Valley
+            Luxury Real Estate · Silicon Valley
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.05] text-white mb-6">
             <span className="block">Luxury Living,</span>
