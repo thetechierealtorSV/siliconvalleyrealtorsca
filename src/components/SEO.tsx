@@ -28,6 +28,8 @@ function setLink(rel: string, href: string) {
   el.setAttribute('href', href)
 }
 
+const DEFAULT_OG_IMAGE = 'https://nikolaenkoestates.com/og-image.jpg'
+
 export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) {
   useEffect(() => {
     document.title = title
@@ -35,6 +37,7 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:type', 'website')
+    setMeta('property', 'og:site_name', 'Nikolaenko Estates')
     setMeta('name', 'twitter:title', title)
     setMeta('name', 'twitter:description', description)
     setMeta('name', 'twitter:card', 'summary_large_image')
@@ -43,10 +46,9 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
     setMeta('property', 'og:url', url)
     setLink('canonical', url)
 
-    if (image) {
-      setMeta('property', 'og:image', image)
-      setMeta('name', 'twitter:image', image)
-    }
+    const ogImage = image ?? DEFAULT_OG_IMAGE
+    setMeta('property', 'og:image', ogImage)
+    setMeta('name', 'twitter:image', ogImage)
 
     let script = document.head.querySelector<HTMLScriptElement>('script[data-seo-jsonld="true"]')
     if (jsonLd) {
