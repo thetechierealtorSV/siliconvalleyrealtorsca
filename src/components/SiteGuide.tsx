@@ -127,6 +127,7 @@ export function SiteGuide() {
         aria-expanded={helpOpen}
         aria-controls="site-guide-panel"
         className="fixed left-4 bottom-36 z-[150] flex items-center justify-center w-12 h-12 rounded-full bg-background text-foreground border border-border shadow-lg hover:scale-105 transition-transform focus:outline-none focus:ring-4 focus:ring-ring"
+        style={{}}
       >
         <HelpCircle className="w-6 h-6" aria-hidden="true" />
       </button>
