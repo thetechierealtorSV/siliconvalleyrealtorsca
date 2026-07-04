@@ -120,12 +120,11 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
       if (unlockErr) throw unlockErr
 
       // Server-side gated retrieval of hidden details (verifies unlock row by email)
-      const { data: hiddenData, error: rpcErr } = await supabase.rpc('get_offmarket_details', {
-        p_listing_id: listing.id,
-        p_email: parsed.data.email,
+      const { data: hiddenData, error: rpcErr } = await supabase.functions.invoke('get-offmarket-details', {
+        body: { listing_id: listing.id, email: parsed.data.email },
       })
       if (rpcErr) throw rpcErr
-      setDetails((hiddenData as string | null) ?? 'Details will be emailed to you shortly.')
+      setDetails((hiddenData?.hidden_details as string | null) ?? 'Details will be emailed to you shortly.')
 
       // Also drop a lead so it flows through normal lead routing + SMS welcome
       await supabase.from('leads').insert({
