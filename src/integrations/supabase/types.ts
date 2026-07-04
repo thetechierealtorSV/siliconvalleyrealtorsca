@@ -229,13 +229,6 @@ export type Database = {
             referencedRelation: "offmarket_listings"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "offmarket_unlocks_listing_id_fkey"
-            columns: ["listing_id"]
-            isOneToOne: false
-            referencedRelation: "offmarket_listings_public"
-            referencedColumns: ["id"]
-          },
         ]
       }
       saved_searches: {
@@ -309,51 +302,6 @@ export type Database = {
           id?: string | null
           photo_url?: string | null
           role?: string | null
-        }
-        Relationships: []
-      }
-      offmarket_listings_public: {
-        Row: {
-          baths: number | null
-          beds: number | null
-          created_at: string | null
-          display_order: number | null
-          hero_image_url: string | null
-          id: string | null
-          neighborhood: string | null
-          price_band: string | null
-          sqft: number | null
-          status: string | null
-          teaser_summary: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          baths?: number | null
-          beds?: number | null
-          created_at?: string | null
-          display_order?: number | null
-          hero_image_url?: string | null
-          id?: string | null
-          neighborhood?: string | null
-          price_band?: string | null
-          sqft?: number | null
-          status?: string | null
-          teaser_summary?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          baths?: number | null
-          beds?: number | null
-          created_at?: string | null
-          display_order?: number | null
-          hero_image_url?: string | null
-          id?: string | null
-          neighborhood?: string | null
-          price_band?: string | null
-          sqft?: number | null
-          status?: string | null
-          teaser_summary?: string | null
-          updated_at?: string | null
         }
         Relationships: []
       }
