@@ -1,0 +1,2 @@
+REVOKE SELECT ON public.offmarket_listings FROM anon, authenticated;
+GRANT SELECT (id, neighborhood, price_band, beds, baths, sqft, teaser_summary, hero_image_url, status, display_order, created_at, updated_at) ON public.offmarket_listings TO anon, authenticated;
