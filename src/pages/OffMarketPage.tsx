@@ -52,10 +52,32 @@ export default function OffMarketPage() {
         title="Off-Market Listings · Nikolaenko Estates"
         description="Private, pre-MLS, and pocket listings across Palo Alto, Atherton, Menlo Park, Woodside, Los Altos Hills and the Bay Area. Unlock full details with a quick email."
         canonical="https://nikolaenkoestates.com/off-market"
-        jsonLd={breadcrumbJsonLd([
-          { name: 'Home', path: '/' },
-          { name: 'Off-Market', path: '/off-market' },
-        ])}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            breadcrumbJsonLd([
+              { name: 'Home', path: '/' },
+              { name: 'Off-Market', path: '/off-market' },
+            ]),
+            {
+              '@type': 'ItemList',
+              name: 'Off-Market & Pocket Listings',
+              numberOfItems: listings.length,
+              itemListElement: listings.map((l, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                item: {
+                  '@type': 'Residence',
+                  name: `Off-market residence in ${l.neighborhood}`,
+                  description: l.teaser_summary,
+                  address: { '@type': 'PostalAddress', addressLocality: l.neighborhood, addressRegion: 'CA' },
+                  numberOfRooms: l.beds ?? undefined,
+                  floorSize: l.sqft ? { '@type': 'QuantitativeValue', value: l.sqft, unitCode: 'FTK' } : undefined,
+                },
+              })),
+            },
+          ],
+        }}
       />
       <PageNavbar />
 
