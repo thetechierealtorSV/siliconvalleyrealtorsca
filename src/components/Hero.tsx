@@ -10,7 +10,16 @@ import shippingContainerHome from '@/assets/pa-shipping-container-home.mp4.asset
 export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = () => setReduceMotion(mq.matches)
+    apply()
+    mq.addEventListener?.('change', apply)
+    return () => mq.removeEventListener?.('change', apply)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -44,19 +53,29 @@ export function Hero() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Cinematic video background with image fallback */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={heroImage}
-        preload="metadata"
-        className="absolute inset-0 w-full h-full object-cover"
-        aria-hidden="true"
-      >
-        <source src={shippingContainerHome.url} type="video/mp4" />
-      </video>
+      {/* Cinematic video background with image fallback. Respects prefers-reduced-motion. */}
+      {reduceMotion ? (
+        <img
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroImage}
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source src={shippingContainerHome.url} type="video/mp4" />
+        </video>
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
 
