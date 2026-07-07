@@ -1,6 +1,6 @@
 'use client'
 
-import paloAltoInterior from '@/assets/palo-alto-luxury-interior.mp4.asset.json'
+
 import walkthroughOriginal from '@/assets/luxury-walkthrough-original.mp4.asset.json'
 import interiorOriginal from '@/assets/luxury-interior-walkthrough-original.mp4.asset.json'
 import livingroomPanin from '@/assets/pa-livingroom-panin.mp4.asset.json'
