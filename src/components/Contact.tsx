@@ -8,12 +8,17 @@ import { submitLead } from '@/lib/leads'
 export function Contact() {
   const { toast } = useToast()
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [tcpaConsent, setTcpaConsent] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({ title: 'Please fill in all required fields', variant: 'destructive' })
+      return
+    }
+    if (formData.phone && !tcpaConsent) {
+      toast({ title: 'Please consent to contact to submit a phone number.', variant: 'destructive' })
       return
     }
     setIsSubmitting(true)
@@ -23,10 +28,15 @@ export function Contact() {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        payload: { message: formData.message },
+        payload: {
+          message: formData.message,
+          tcpa_consent: tcpaConsent,
+          tcpa_consent_at: tcpaConsent ? new Date().toISOString() : null,
+        },
       })
       toast({ title: 'Inquiry received!', description: "We'll contact you within 24 hours." })
       setFormData({ name: '', email: '', phone: '', message: '' })
+      setTcpaConsent(false)
     } catch {
       toast({ title: 'Could not send your inquiry. Please try again.', variant: 'destructive' })
     } finally {
@@ -158,6 +168,20 @@ export function Contact() {
                     placeholder="Tell us about your ideal Silicon Valley home..."
                   />
                 </div>
+                <label className="flex items-start gap-3 text-xs text-muted-foreground leading-relaxed cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={tcpaConsent}
+                    onChange={(e) => setTcpaConsent(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-border accent-foreground flex-shrink-0"
+                  />
+                  <span>
+                    By checking this box, I consent to receive calls, SMS, and emails from Nikolaenko Estates about my inquiry.
+                    Message and data rates may apply. Message frequency varies. Reply <span className="font-mono">STOP</span> to
+                    unsubscribe or <span className="font-mono">HELP</span> for help. Consent is not a condition of purchase.
+                    See our <a href="/privacy" className="underline hover:text-foreground">Privacy Policy</a>.
+                  </span>
+                </label>
                 <button
                   type="submit"
                   disabled={isSubmitting}

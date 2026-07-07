@@ -28,6 +28,7 @@ export default function PropertiesPage() {
   ].filter(Boolean).join(' · ')
 
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [tcpaConsent, setTcpaConsent] = useState(false)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -40,6 +41,10 @@ export default function PropertiesPage() {
   const onAlertSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.email) { toast.error('Email required'); return }
+    if (form.phone && !tcpaConsent) {
+      toast.error('Please consent to contact to submit a phone number.')
+      return
+    }
     setLoading(true)
     try {
       await submitLead({
@@ -48,10 +53,15 @@ export default function PropertiesPage() {
         name: form.name,
         email: form.email,
         phone: form.phone,
-        payload: { city, min_price: min, max_price: max, beds, kind: 'mls_alert' },
+        payload: {
+          city, min_price: min, max_price: max, beds, kind: 'mls_alert',
+          tcpa_consent: tcpaConsent,
+          tcpa_consent_at: tcpaConsent ? new Date().toISOString() : null,
+        },
       })
       toast.success('Alert created — new matching listings will reach your inbox.')
       setForm({ name: '', email: '', phone: '' })
+      setTcpaConsent(false)
     } catch {
       toast.error('Could not save your alert. Please try again.')
     } finally {
@@ -133,6 +143,18 @@ export default function PropertiesPage() {
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="px-4 py-2.5 rounded-xl bg-background border border-border text-sm"
               />
+              <label className="sm:col-span-3 flex items-start gap-2 text-xs text-muted-foreground text-left leading-relaxed cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={tcpaConsent}
+                  onChange={(e) => setTcpaConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 rounded border-border accent-foreground flex-shrink-0"
+                />
+                <span>
+                  I agree to receive calls, SMS, and emails from Nikolaenko Estates about matching listings and my search.
+                  Msg & data rates may apply. Reply <span className="font-mono">STOP</span> to opt out. Consent is not required to browse listings.
+                </span>
+              </label>
               <button
                 disabled={loading}
                 className="sm:col-span-3 bg-foreground text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-medium hover:opacity-90 gentle-animation disabled:opacity-50"
@@ -141,6 +163,25 @@ export default function PropertiesPage() {
               </button>
             </form>
           </section>
+
+          <aside
+            className="max-w-4xl mx-auto mt-10 text-xs text-muted-foreground leading-relaxed space-y-2"
+            aria-label="MLS / IDX disclaimer"
+          >
+            <p>
+              <span className="font-medium text-foreground">MLS / IDX Disclaimer.</span> Listing information is provided
+              in part by the MLSListings Inc. Internet Data Exchange (IDX) program. All data is deemed reliable but is
+              not guaranteed accurate by the MLS or Nikolaenko Estates. Properties displayed may not be all of the
+              properties in the MLS database, and properties listed with brokerage firms other than Nikolaenko Estates
+              are marked with the Broker Reciprocity thumbnail logo, with detailed information including the listing
+              broker's firm name. Information last updated at time of access; buyers should independently verify all
+              material facts. © {new Date().getFullYear()} MLSListings Inc. All rights reserved.
+            </p>
+            <p>
+              Real estate services provided by Nikolaenko Estates, licensed under the California Department of Real
+              Estate (DRE #XXXXXXXX). Equal Housing Opportunity.
+            </p>
+          </aside>
         </div>
       </main>
       <Footer />

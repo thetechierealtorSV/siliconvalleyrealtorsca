@@ -18,6 +18,7 @@ import SellersPage from './pages/SellersPage'
 import PropertiesPage from './pages/PropertiesPage'
 import OffMarketPage from './pages/OffMarketPage'
 import SavedSearchesPage from './pages/SavedSearchesPage'
+import AboutPage from './pages/AboutPage'
 import ScrollToTop from './components/ScrollToTop'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SocialRail } from './components/SocialRail'
@@ -101,6 +102,8 @@ export default function App() {
         <Route path="/saved-searches" element={<SavedSearchesPage />} />
         <Route path="/buyers" element={<BuyersPage />} />
         <Route path="/sellers" element={<SellersPage />} />
+        <Route path="/about/chris" element={<AboutPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   )
