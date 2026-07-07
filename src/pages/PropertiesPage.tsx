@@ -28,6 +28,7 @@ export default function PropertiesPage() {
   ].filter(Boolean).join(' · ')
 
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [tcpaConsent, setTcpaConsent] = useState(false)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -40,6 +41,10 @@ export default function PropertiesPage() {
   const onAlertSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.email) { toast.error('Email required'); return }
+    if (form.phone && !tcpaConsent) {
+      toast.error('Please consent to contact to submit a phone number.')
+      return
+    }
     setLoading(true)
     try {
       await submitLead({
@@ -48,10 +53,15 @@ export default function PropertiesPage() {
         name: form.name,
         email: form.email,
         phone: form.phone,
-        payload: { city, min_price: min, max_price: max, beds, kind: 'mls_alert' },
+        payload: {
+          city, min_price: min, max_price: max, beds, kind: 'mls_alert',
+          tcpa_consent: tcpaConsent,
+          tcpa_consent_at: tcpaConsent ? new Date().toISOString() : null,
+        },
       })
       toast.success('Alert created — new matching listings will reach your inbox.')
       setForm({ name: '', email: '', phone: '' })
+      setTcpaConsent(false)
     } catch {
       toast.error('Could not save your alert. Please try again.')
     } finally {
