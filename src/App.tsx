@@ -102,6 +102,8 @@ export default function App() {
         <Route path="/saved-searches" element={<SavedSearchesPage />} />
         <Route path="/buyers" element={<BuyersPage />} />
         <Route path="/sellers" element={<SellersPage />} />
+        <Route path="/about/chris" element={<AboutPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   )
