@@ -1,5 +1,4 @@
-PASTE_TEST_123
-line2/*
+/*
   SunPath IQ - Solar Utilities & Daylight Score
   ------------------------------------------------
   Original, self-authored helper layer built on top of solar-engine.js
