@@ -69,9 +69,9 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@nikolaenkoestates.com',
+      value: 'info@nikolaenkopropertygroup.com',
       color: '#b8860b',
-      href: 'mailto:hello@nikolaenkoestates.com',
+      href: 'mailto:info@nikolaenkopropertygroup.com',
     },
   ]
 
