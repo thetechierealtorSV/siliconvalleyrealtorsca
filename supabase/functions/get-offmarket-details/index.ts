@@ -31,11 +31,12 @@ serve(async (req) => {
     );
 
     // Verify that an unlock row exists for this listing + email
+    const normalizedEmail = email.trim().toLowerCase();
     const { data: unlock, error: uErr } = await supabase
       .from("offmarket_unlocks")
       .select("id")
       .eq("listing_id", listing_id)
-      .ilike("email", email.trim())
+      .eq("email", normalizedEmail)
       .limit(1)
       .maybeSingle();
     if (uErr) throw uErr;
