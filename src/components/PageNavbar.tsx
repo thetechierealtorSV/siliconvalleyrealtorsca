@@ -20,6 +20,7 @@ export function PageNavbar() {
     { href: '/saved-searches', label: 'Alerts' },
     { href: '/buyers', label: 'Buyers' },
     { href: '/sellers', label: 'Sellers' },
+  { href: '/explorer', label: 'Sun Explorer' },
   ]
 
   return (
