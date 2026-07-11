@@ -70,11 +70,11 @@ export default function PropertiesPage() {
   }
 
   const title = city
-    ? `${city} Homes for Sale · Nikolaenko Estates`
+    ? `${city} Homes for Sale · Nikolaenko Property Group`
     : 'Silicon Valley Homes for Sale · MLS Search'
   const description = city
-    ? `Browse luxury homes for sale in ${city}. Live MLS listings curated by Nikolaenko Estates.`
-    : 'Search live MLS listings across Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and the rest of Silicon Valley.'
+    ? `Browse luxury homes for sale in ${city}. Silicon Valley listings, presented by Nikolaenko Property Group.`
+    : 'Explore homes for sale across Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and the rest of Silicon Valley.'
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -100,7 +100,7 @@ export default function PropertiesPage() {
               {city ? `Homes for Sale in ${city}` : 'Silicon Valley Homes for Sale'}
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Live MLS data for every Silicon Valley city — searchable by price, beds, neighborhood, and architecture.
+              Silicon Valley homes for every city — searchable by price, beds, neighborhood, and architecture.
             </p>
           </header>
 
@@ -117,7 +117,7 @@ export default function PropertiesPage() {
             className="max-w-4xl mx-auto bg-card clean-border rounded-2xl p-8 text-center"
             aria-label="MLS feed placeholder"
           >
-            <h2 className="font-display text-2xl font-bold mb-3">Live MLS feed connecting</h2>
+            <h2 className="font-display text-2xl font-bold mb-3">Connecting you to</h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               We're integrating with the MLSListings IDX feed. In the meantime, set a free saved-search alert and we'll
               email you matching properties the moment they hit the market.
@@ -151,7 +151,7 @@ export default function PropertiesPage() {
                   className="mt-0.5 h-4 w-4 rounded border-border accent-foreground flex-shrink-0"
                 />
                 <span>
-                  I agree to receive calls, SMS, and emails from Nikolaenko Estates about matching listings and my search.
+                  I agree to receive calls, SMS, and emails from Nikolaenko Property Group about matching listings and my search.
                   Msg & data rates may apply. Reply <span className="font-mono">STOP</span> to opt out. Consent is not required to browse listings.
                 </span>
               </label>
@@ -171,14 +171,14 @@ export default function PropertiesPage() {
             <p>
               <span className="font-medium text-foreground">MLS / IDX Disclaimer.</span> Listing information is provided
               in part by the MLSListings Inc. Internet Data Exchange (IDX) program. All data is deemed reliable but is
-              not guaranteed accurate by the MLS or Nikolaenko Estates. Properties displayed may not be all of the
-              properties in the MLS database, and properties listed with brokerage firms other than Nikolaenko Estates
+              not guaranteed accurate by the MLS or Nikolaenko Property Group. Properties displayed may not be all of the
+              properties in the MLS database, and properties listed with brokerage firms other than Nikolaenko Property Group
               are marked with the Broker Reciprocity thumbnail logo, with detailed information including the listing
               broker's firm name. Information last updated at time of access; buyers should independently verify all
               material facts. © {new Date().getFullYear()} MLSListings Inc. All rights reserved.
             </p>
             <p>
-              Real estate services provided by Nikolaenko Estates, licensed under the California Department of Real
+              Real estate services provided by Nikolaenko Property Group, licensed under the California Department of Real
               Estate (DRE #XXXXXXXX). Equal Housing Opportunity.
             </p>
           </aside>
