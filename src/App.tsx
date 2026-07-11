@@ -27,6 +27,9 @@ import { AccessibilityMenu } from './components/AccessibilityMenu'
 import { SiteGuide } from './components/SiteGuide'
 import { YouTubeTours } from './components/YouTubeTours'
 import SunExposurePage from './pages/SunExposurePage'
+import ExplorerPage from './pages/ExplorerPage'
+import LandingPage from './pages/LandingPage'
+import { landingPages } from './data/landingData'
 
 function HomePage() {
   return (
@@ -106,6 +109,10 @@ export default function App() {
         <Route path="/about/chris" element={<AboutPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/sun-exposure" element={<SunExposurePage />} />
+            <Route path="/explorer" element={<ExplorerPage />} />
+            {landingPages.map((p) => (
+              <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
+            ))}
       </Routes>
     </BrowserRouter>
   )
