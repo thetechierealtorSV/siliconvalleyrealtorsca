@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPath IQ - Daylight and Sun Path Analyzer</title>
+<title>SunPath IQ - 3D Sun & Shadow Simulator</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="spiq-app">
   <header class="spiq-header">
     <h1>SunPath IQ</h1>
-    <p class="spiq-tag">Daylight Score and sun path analysis for real estate listings</p>
+    <p class="spiq-tag">3D sun &amp; shadow simulator and Daylight Score for real estate</p>
   </header>
+
+  <div class="spiq-searchbar">
+    <input type="text" id="spiq-address" placeholder="Enter any property address (e.g. 693 S Arbutus Ave, Sunnyvale, CA)">
+    <button id="spiq-geocode-btn" type="button">Simulate</button>
+    <div class="spiq-viewtoggle">
+      <button type="button" id="spiq-mode-3d" class="spiq-active">3D Sun &amp; Shadows</button>
+      <button type="button" id="spiq-mode-2d">2D Sun Path</button>
+    </div>
+  </div>
+  <small class="spiq-hint spiq-searchhint">Geocoding by OpenStreetMap Nominatim. Building shapes from OpenStreetMap.</small>
 
   <div class="spiq-layout">
     <section class="spiq-panel spiq-controls">
-      <h2>Location and Date</h2>
-
-      <div class="spiq-field-group">
-        <label for="spiq-address">Property address (optional)</label>
-        <div class="spiq-inline">
-          <input type="text" id="spiq-address" placeholder="e.g. 123 Main St, Palo Alto, CA">
-          <button id="spiq-geocode-btn" type="button">Find</button>
-        </div>
-        <small class="spiq-hint">Geocoding by OpenStreetMap Nominatim</small>
-      </div>
-
+      <h2>Location &amp; Time</h2>
       <div class="spiq-field-row">
         <div class="spiq-field-group">
           <label for="spiq-lat">Latitude</label>
@@ -51,7 +51,13 @@
       </div>
 
       <div class="spiq-field-group">
-        <label for="spiq-orientation">Facade orientation</label>
+        <label for="spiq-time-slider">Time of day (solar time)</label>
+        <input type="range" id="spiq-time-slider" min="0" max="1440" value="720">
+        <div id="spiq-time-readout" class="spiq-hint"></div>
+      </div>
+
+      <div class="spiq-field-group">
+        <label for="spiq-orientation">Facade orientation (for Daylight Score)</label>
         <select id="spiq-orientation">
           <option value="0">North (0 deg)</option>
           <option value="45">Northeast (45 deg)</option>
@@ -64,21 +70,28 @@
         </select>
         <input type="range" id="spiq-orientation-slider" min="0" max="359" value="180">
       </div>
-
-      <div class="spiq-field-group">
-        <label for="spiq-time-slider">Explore time of day (solar time)</label>
-        <input type="range" id="spiq-time-slider" min="0" max="1440" value="720">
-        <div id="spiq-time-readout" class="spiq-hint"></div>
-      </div>
     </section>
 
-    <section class="spiq-panel spiq-visual">
-      <h2>Sun Path Diagram</h2>
-      <canvas id="spiq-canvas" width="440" height="440"></canvas>
-      <div class="spiq-legend">
-        <span><i class="spiq-dot spiq-dot-path"></i>Sun path</span>
-        <span><i class="spiq-dot spiq-dot-now"></i>Selected time</span>
-        <span><i class="spiq-dot spiq-dot-wall"></i>Facade orientation</span>
+    <section class="spiq-panel spiq-stage">
+      <div id="spiq-view-3d" class="spiq-view">
+        <h2>3D Sun &amp; Shadows</h2>
+        <div id="spiq-3d-container" class="spiq-3d-container"></div>
+        <div id="spiq-3d-status" class="spiq-hint spiq-3d-status">Initializing 3D scene...</div>
+        <div class="spiq-legend">
+          <span><i class="spiq-dot spiq-dot-now"></i>Subject property</span>
+          <span><i class="spiq-dot spiq-dot-wall"></i>Neighboring buildings</span>
+          <span>Drag to orbit, scroll to zoom</span>
+        </div>
+      </div>
+
+      <div id="spiq-view-2d" class="spiq-view" style="display:none;">
+        <h2>2D Sun Path Diagram</h2>
+        <canvas id="spiq-canvas" width="440" height="440"></canvas>
+        <div class="spiq-legend">
+          <span><i class="spiq-dot spiq-dot-path"></i>Sun path</span>
+          <span><i class="spiq-dot spiq-dot-now"></i>Selected time</span>
+          <span><i class="spiq-dot spiq-dot-wall"></i>Facade orientation</span>
+        </div>
       </div>
     </section>
 
@@ -103,11 +116,13 @@
     </section>
   </div>
 
-  <footer class="spiq-footer">SunPath IQ is an original tool built for Nikolaenko Property Group listings. Solar position engine is NOAA-based and self-authored.</footer>
+  <footer class="spiq-footer">SunPath IQ is an original tool built for Nikolaenko Property Group listings. Solar position engine is NOAA-based and self-authored. 3D buildings &amp; terrain from OpenStreetMap.</footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="solar-engine.js"></script>
 <script src="solar-utils.js"></script>
+<script src="sunpath-3d.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
