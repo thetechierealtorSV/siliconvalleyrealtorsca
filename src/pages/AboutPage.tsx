@@ -8,7 +8,7 @@ import chrisPhoto from '@/assets/chris-nikolaenko.jpg.asset.json'
 import { Phone, Mail, MessageCircle, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
-const SITE_URL = 'https://nikolaenkoestates.com'
+const SITE_URL = 'https://luxury.nikolaenkopropertygroup.com'
 
 const AGENT_JSON_LD = {
   '@context': 'https://schema.org',
@@ -22,7 +22,7 @@ const AGENT_JSON_LD = {
   email: 'info@nikolaenkopropertygroup.com',
   worksFor: {
     '@type': 'RealEstateAgent',
-    name: 'Nikolaenko Estates',
+    name: 'Nikolaenko Property Group',
     url: SITE_URL,
   },
   address: {
@@ -49,7 +49,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="About Chris Nikolaenko · Silicon Valley Luxury Agent"
-        description="Meet Chris Nikolaenko — senior listing agent and buyer's agent at Nikolaenko Estates, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
+        description="Meet Chris Nikolaenko — senior listing agent and buyer's agent at Nikolaenko Property Group, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
         canonical={`${SITE_URL}/about/chris`}
         image={chrisPhoto.url}
         jsonLd={[AGENT_JSON_LD, breadcrumbJsonLd([
@@ -65,7 +65,7 @@ export default function AboutPage() {
               <div className="aspect-[3/4] rounded-2xl overflow-hidden elevated-shadow">
                 <img
                   src={chrisPhoto.url}
-                  alt="Chris Nikolaenko, Senior Listing Agent at Nikolaenko Estates"
+                  alt="Chris Nikolaenko, Senior Listing Agent at Nikolaenko Property Group"
                   className="w-full h-full object-cover"
                   loading="eager"
                 />
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 Chris Nikolaenko
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Chris founded Nikolaenko Estates to bring a more thoughtful, cinematic, and
+                Chris founded Nikolaenko Property Group to bring a more thoughtful, cinematic, and
                 technology-driven approach to Silicon Valley luxury real estate. He personally
                 represents sellers and buyers across Palo Alto, Atherton, Menlo Park,
                 Los Altos Hills, Woodside, and the greater Bay Area.
