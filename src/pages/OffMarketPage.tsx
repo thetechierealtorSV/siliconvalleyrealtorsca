@@ -132,9 +132,10 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
     }
     setSubmitting(true)
     try {
+      const normalizedEmail = parsed.data.email.trim().toLowerCase()
       const { error: unlockErr } = await supabase.from('offmarket_unlocks').insert({
         listing_id: listing.id,
-        email: parsed.data.email,
+        email: normalizedEmail,
         name: parsed.data.name,
         phone: parsed.data.phone || null,
         source_page: '/off-market',
@@ -143,7 +144,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
 
       // Server-side gated retrieval of hidden details (verifies unlock row by email)
       const { data: hiddenData, error: rpcErr } = await supabase.functions.invoke('get-offmarket-details', {
-        body: { listing_id: listing.id, email: parsed.data.email },
+        body: { listing_id: listing.id, email: normalizedEmail },
       })
       if (rpcErr) throw rpcErr
       setDetails((hiddenData?.hidden_details as string | null) ?? 'Details will be emailed to you shortly.')
