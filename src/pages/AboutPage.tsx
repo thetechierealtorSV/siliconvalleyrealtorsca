@@ -4,7 +4,7 @@ import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
 import { SEO, breadcrumbJsonLd } from '@/components/SEO'
-import chrisPhoto from '@/assets/realtor-chris.jpg'
+import chrisPhoto from '@/assets/chris-nikolaenko.jpg.asset.json'
 import { Phone, Mail, MessageCircle, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
