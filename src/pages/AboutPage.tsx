@@ -16,7 +16,7 @@ const AGENT_JSON_LD = {
   '@id': `${SITE_URL}/about/chris#agent`,
   name: 'Chris Nikolaenko',
   jobTitle: 'Senior Listing Agent · Buyer\u2019s Agent',
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}${chrisPhoto.url}`,
   url: `${SITE_URL}/about/chris`,
   telephone: '+1-650-640-9777',
   email: 'hello@nikolaenkoestates.com',
