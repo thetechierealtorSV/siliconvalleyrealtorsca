@@ -28,7 +28,7 @@ export function Footer() {
               <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Instagram className="w-5 h-5" /></a>
               <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Youtube className="w-5 h-5" /></a>
               <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Linkedin className="w-5 h-5" /></a>
-              <a href="mailto:hello@nikolaenkoestates.com" aria-label="Email" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Mail className="w-5 h-5" /></a>
+              <a href="mailto:info@nikolaenkopropertygroup.com" aria-label="Email" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation"><Mail className="w-5 h-5" /></a>
             </div>
           </div>
 
@@ -81,7 +81,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:hello@nikolaenkoestates.com" className="hover:text-primary-foreground gentle-animation">hello@nikolaenkoestates.com</a>
+                <a href="mailto:info@nikolaenkopropertygroup.com" className="hover:text-primary-foreground gentle-animation">info@nikolaenkopropertygroup.com</a>
               </li>
             </ul>
           </div>
