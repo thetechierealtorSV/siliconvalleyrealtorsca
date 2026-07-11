@@ -176,7 +176,7 @@ export function Contact() {
                     className="mt-0.5 h-4 w-4 rounded border-border accent-foreground flex-shrink-0"
                   />
                   <span>
-                    By checking this box, I consent to receive calls, SMS, and emails from Nikolaenko Estates about my inquiry.
+                    By checking this box, I consent to receive calls, SMS, and emails from Nikolaenko Property Group about my inquiry.
                     Message and data rates may apply. Message frequency varies. Reply <span className="font-mono">STOP</span> to
                     unsubscribe or <span className="font-mono">HELP</span> for help. Consent is not a condition of purchase.
                     See our <a href="/privacy" className="underline hover:text-foreground">Privacy Policy</a>.
