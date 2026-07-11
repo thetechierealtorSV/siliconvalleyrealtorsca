@@ -19,7 +19,7 @@ const AGENT_JSON_LD = {
   image: `${SITE_URL}${chrisPhoto.url}`,
   url: `${SITE_URL}/about/chris`,
   telephone: '+1-650-640-9777',
-  email: 'hello@nikolaenkoestates.com',
+  email: 'info@nikolaenkopropertygroup.com',
   worksFor: {
     '@type': 'RealEstateAgent',
     name: 'Nikolaenko Estates',
@@ -77,8 +77,8 @@ export default function AboutPage() {
                 <a href="https://wa.me/16506409777" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-foreground hover:text-muted-foreground gentle-animation">
                   <MessageCircle className="w-4 h-4" /> WhatsApp
                 </a>
-                <a href="mailto:hello@nikolaenkoestates.com" className="flex items-center gap-3 text-foreground hover:text-muted-foreground gentle-animation">
-                  <Mail className="w-4 h-4" /> hello@nikolaenkoestates.com
+                <a href="mailto:info@nikolaenkopropertygroup.com" className="flex items-center gap-3 text-foreground hover:text-muted-foreground gentle-animation">
+                  <Mail className="w-4 h-4" /> info@nikolaenkopropertygroup.com
                 </a>
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <MapPin className="w-4 h-4" /> Palo Alto · Serving the Bay Area
