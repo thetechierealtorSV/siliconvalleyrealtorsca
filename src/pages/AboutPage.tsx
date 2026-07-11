@@ -51,7 +51,7 @@ export default function AboutPage() {
         title="About Chris Nikolaenko · Silicon Valley Luxury Agent"
         description="Meet Chris Nikolaenko — senior listing agent and buyer's agent at Nikolaenko Estates, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
         canonical={`${SITE_URL}/about/chris`}
-        image={chrisPhoto}
+        image={chrisPhoto.url}
         jsonLd={[AGENT_JSON_LD, breadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'About', path: '/about/chris' },
@@ -64,7 +64,7 @@ export default function AboutPage() {
             <div className="lg:sticky lg:top-28">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden elevated-shadow">
                 <img
-                  src={chrisPhoto}
+                  src={chrisPhoto.url}
                   alt="Chris Nikolaenko, Senior Listing Agent at Nikolaenko Estates"
                   className="w-full h-full object-cover"
                   loading="eager"
