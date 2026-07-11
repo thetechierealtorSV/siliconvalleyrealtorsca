@@ -190,7 +190,7 @@ export function ChatBot() {
           {/* Header */}
           <div className="px-5 py-4 border-b border-border bg-foreground text-primary-foreground rounded-t-2xl flex items-center justify-between">
             <div>
-              <div className="font-display text-lg font-bold leading-tight">Nikolaenko Estates</div>
+              <div className="font-display text-lg font-bold leading-tight">Nikolaenko Property Group</div>
               <p className="text-primary-foreground/60 text-xs">Your Bay Area property concierge</p>
             </div>
             {messages.length > 0 && (
