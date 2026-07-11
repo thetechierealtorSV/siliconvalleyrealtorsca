@@ -49,9 +49,9 @@ export default function OffMarketPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Off-Market Listings · Nikolaenko Estates"
+        title="Off-Market Listings · Nikolaenko Property Group"
         description="Private, pre-MLS, and pocket listings across Palo Alto, Atherton, Menlo Park, Woodside, Los Altos Hills and the Bay Area. Unlock full details with a quick email."
-        canonical="https://nikolaenkoestates.com/off-market"
+        canonical="https://luxury.nikolaenkopropertygroup.com/off-market"
         jsonLd={{
           '@context': 'https://schema.org',
           '@graph': [
