@@ -91,7 +91,7 @@ export default function SellersPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Sell Your Home · Nikolaenko Estates"
+        title="Sell Your Home · Nikolaenko Property Group"
         description="List your Silicon Valley home with concierge staging, repairs, photography, marketing, and a full home seller toolkit."
         jsonLd={[ORG_JSON_LD, breadcrumbJsonLd([
           { name: 'Home', path: '/' },
