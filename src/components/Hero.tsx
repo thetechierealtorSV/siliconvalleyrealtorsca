@@ -43,7 +43,12 @@ export function Hero() {
   }, [isMobileMenuOpen])
 
   const navLinks = [
-    { href: '#properties', label: 'Properties', route: false },
+    { href: '#properties', label: 'Properties', route: false, children: [
+      { href: '#properties', label: 'Featured Listings', route: false },
+      { href: '/off-market', label: 'Off-Market Listings', route: true },
+      { href: '/silicon-valley-investment-properties', label: 'Investment Properties', route: true },
+      { href: '/explorer', label: 'Sun Explorer (SunPath IQ)', route: true },
+    ] },
     { href: '#video-tour', label: 'Video Tours', route: false },
     { href: '/buyers', label: 'Buyers', route: true },
     { href: '/sellers', label: 'Sellers', route: true },
@@ -104,7 +109,30 @@ export function Hero() {
 
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map(link => (
-                link.route ? (
+                link.children ? (
+                  <div key={link.href} className="relative group">
+                    <a
+                      href={link.href}
+                      className={`flex items-center gap-1 font-medium gentle-animation hover:scale-105 text-[13px] tracking-[0.15em] uppercase cursor-pointer ${
+                        isScrolled ? 'text-foreground hover:text-muted-foreground' : 'text-white hover:text-white/80'
+                      }`}
+                    >
+                      {link.label}
+                      <span className="text-[10px]">▾</span>
+                    </a>
+                    <div className="absolute left-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                      <div className="bg-[#faf8f5] border border-[#e0d9cf] rounded-lg shadow-xl overflow-hidden">
+                        {link.children.map(child => (
+                          child.route ? (
+                            <button key={child.href} onClick={() => navigate(child.href)} className="block w-full text-left px-5 py-3 text-sm font-medium text-foreground hover:bg-muted gentle-animation cursor-pointer">{child.label}</button>
+                          ) : (
+                            <a key={child.href} href={child.href} className="block px-5 py-3 text-sm font-medium text-foreground hover:bg-muted gentle-animation cursor-pointer">{child.label}</a>
+                          )
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : link.route ? (
                   <button
                     key={link.href}
                     onClick={() => navigate(link.href)}
@@ -184,24 +212,37 @@ export function Hero() {
           <div className="flex flex-col px-6 pb-6 h-full">
             <div className="flex flex-col space-y-2 text-foreground">
               {navLinks.map(link => (
-                link.route ? (
-                  <button
-                    key={link.href}
-                    onClick={() => { navigate(link.href); setIsMobileMenuOpen(false) }}
-                    className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide text-left cursor-pointer"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                )
+                <div key={link.href} className="flex flex-col">
+                  {link.route ? (
+                    <button
+                      onClick={() => { navigate(link.href); setIsMobileMenuOpen(false) }}
+                      className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide text-left cursor-pointer"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="px-4 py-3 hover:bg-muted rounded-lg gentle-animation font-medium text-lg uppercase tracking-wide"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                  {link.children && (
+                    <div className="flex flex-col pl-4">
+                      {link.children.filter(c => c.route).map(child => (
+                        <button
+                          key={child.href}
+                          onClick={() => { navigate(child.href); setIsMobileMenuOpen(false) }}
+                          className="px-4 py-2 hover:bg-muted rounded-lg gentle-animation text-base tracking-wide text-left cursor-pointer text-muted-foreground"
+                        >
+                          {child.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
             <motion.button
