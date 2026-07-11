@@ -30,6 +30,7 @@ import SunExposurePage from './pages/SunExposurePage'
 import ExplorerPage from './pages/ExplorerPage'
 import LandingPage from './pages/LandingPage'
 import { landingPages } from './data/landingData'
+import { GoogleTranslate } from './components/GoogleTranslate'
 
 function HomePage() {
   return (
@@ -94,6 +95,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <GoogleTranslate />
       <ThemeToggle />
       <SocialRail />
       <AccessibilityMenu />
