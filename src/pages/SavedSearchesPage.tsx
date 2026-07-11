@@ -85,9 +85,9 @@ export default function SavedSearchesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Saved Searches & Price Alerts · Nikolaenko Estates"
+        title="Saved Searches & Price Alerts · Nikolaenko Property Group"
         description="Get matching Silicon Valley homes and price-drop alerts the moment they hit the market. Free, no login required."
-        canonical="https://nikolaenkoestates.com/saved-searches"
+        canonical="https://luxury.nikolaenkopropertygroup.com/saved-searches"
         jsonLd={breadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'Saved Searches', path: '/saved-searches' },
