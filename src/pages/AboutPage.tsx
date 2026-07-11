@@ -4,7 +4,7 @@ import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { ChatBot } from '@/components/ChatBot'
 import { SEO, breadcrumbJsonLd } from '@/components/SEO'
-import chrisPhoto from '@/assets/realtor-chris.jpg'
+import chrisPhoto from '@/assets/chris-nikolaenko.jpg.asset.json'
 import { Phone, Mail, MessageCircle, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ const AGENT_JSON_LD = {
   '@id': `${SITE_URL}/about/chris#agent`,
   name: 'Chris Nikolaenko',
   jobTitle: 'Senior Listing Agent · Buyer\u2019s Agent',
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}${chrisPhoto.url}`,
   url: `${SITE_URL}/about/chris`,
   telephone: '+1-650-640-9777',
   email: 'hello@nikolaenkoestates.com',
@@ -51,7 +51,7 @@ export default function AboutPage() {
         title="About Chris Nikolaenko · Silicon Valley Luxury Agent"
         description="Meet Chris Nikolaenko — senior listing agent and buyer's agent at Nikolaenko Estates, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
         canonical={`${SITE_URL}/about/chris`}
-        image={chrisPhoto}
+        image={chrisPhoto.url}
         jsonLd={[AGENT_JSON_LD, breadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'About', path: '/about/chris' },
@@ -64,7 +64,7 @@ export default function AboutPage() {
             <div className="lg:sticky lg:top-28">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden elevated-shadow">
                 <img
-                  src={chrisPhoto}
+                  src={chrisPhoto.url}
                   alt="Chris Nikolaenko, Senior Listing Agent at Nikolaenko Estates"
                   className="w-full h-full object-cover"
                   loading="eager"
