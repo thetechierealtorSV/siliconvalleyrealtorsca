@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPath IQ - Daylight and Sun Path Analyzer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="spiq-app">
+  <header class="spiq-header">
+    <h1>SunPath IQ</h1>
+    <p class="spiq-tag">Daylight Score and sun path analysis for real estate listings</p>
+  </header>
+
+  <div class="spiq-layout">
+    <section class="spiq-panel spiq-controls">
+      <h2>Location and Date</h2>
+
+      <div class="spiq-field-group">
+        <label for="spiq-address">Property address (optional)</label>
+        <div class="spiq-inline">
+          <input type="text" id="spiq-address" placeholder="e.g. 123 Main St, Palo Alto, CA">
+          <button id="spiq-geocode-btn" type="button">Find</button>
+        </div>
+        <small class="spiq-hint">Geocoding by OpenStreetMap Nominatim</small>
+      </div>
+
+      <div class="spiq-field-row">
+        <div class="spiq-field-group">
+          <label for="spiq-lat">Latitude</label>
+          <input type="number" id="spiq-lat" step="0.0001" value="37.4419">
+        </div>
+        <div class="spiq-field-group">
+          <label for="spiq-lon">Longitude</label>
+          <input type="number" id="spiq-lon" step="0.0001" value="-122.1430">
+        </div>
+      </div>
+
+      <div class="spiq-field-group">
+        <label for="spiq-date">Date</label>
+        <input type="date" id="spiq-date">
+      </div>
+
+      <div class="spiq-shortcuts">
+        <button type="button" data-shortcut="today">Today</button>
+        <button type="button" data-shortcut="spring">Spring Equinox</button>
+        <button type="button" data-shortcut="summer">Summer Solstice</button>
+        <button type="button" data-shortcut="fall">Fall Equinox</button>
+        <button type="button" data-shortcut="winter">Winter Solstice</button>
+      </div>
+
+      <div class="spiq-field-group">
+        <label for="spiq-orientation">Facade orientation</label>
+        <select id="spiq-orientation">
+          <option value="0">North (0 deg)</option>
+          <option value="45">Northeast (45 deg)</option>
+          <option value="90">East (90 deg)</option>
+          <option value="135">Southeast (135 deg)</option>
+          <option value="180" selected>South (180 deg)</option>
+          <option value="225">Southwest (225 deg)</option>
+          <option value="270">West (270 deg)</option>
+          <option value="315">Northwest (315 deg)</option>
+        </select>
+        <input type="range" id="spiq-orientation-slider" min="0" max="359" value="180">
+      </div>
+
+      <div class="spiq-field-group">
+        <label for="spiq-time-slider">Explore time of day (solar time)</label>
+        <input type="range" id="spiq-time-slider" min="0" max="1440" value="720">
+        <div id="spiq-time-readout" class="spiq-hint"></div>
+      </div>
+    </section>
+
+    <section class="spiq-panel spiq-visual">
+      <h2>Sun Path Diagram</h2>
+      <canvas id="spiq-canvas" width="440" height="440"></canvas>
+      <div class="spiq-legend">
+        <span><i class="spiq-dot spiq-dot-path"></i>Sun path</span>
+        <span><i class="spiq-dot spiq-dot-now"></i>Selected time</span>
+        <span><i class="spiq-dot spiq-dot-wall"></i>Facade orientation</span>
+      </div>
+    </section>
+
+    <section class="spiq-panel spiq-score">
+      <h2>Daylight Score</h2>
+      <div class="spiq-score-circle">
+        <div id="spiq-score-value">--</div>
+        <div class="spiq-score-label">out of 100</div>
+      </div>
+      <ul class="spiq-components">
+        <li><span>Day length</span><b id="spiq-comp-day">--</b><i>/ 40</i></li>
+        <li><span>Peak altitude</span><b id="spiq-comp-alt">--</b><i>/ 30</i></li>
+        <li><span>Orientation</span><b id="spiq-comp-orient">--</b><i>/ 30</i></li>
+      </ul>
+      <div class="spiq-times">
+        <div><span>Sunrise</span><b id="spiq-sunrise">--</b></div>
+        <div><span>Solar noon</span><b id="spiq-noon">--</b></div>
+        <div><span>Sunset</span><b id="spiq-sunset">--</b></div>
+        <div><span>Day length</span><b id="spiq-daylen">--</b></div>
+      </div>
+      <p class="spiq-note">All times shown are TRUE SOLAR TIME (based on the sun's position, not clock time or time zone). The Daylight Score is an original SunPath IQ heuristic combining day length, peak sun altitude, and facade orientation. It is not derived from or related to any third-party scoring system.</p>
+    </section>
+  </div>
+
+  <footer class="spiq-footer">SunPath IQ is an original tool built for Nikolaenko Property Group listings. Solar position engine is NOAA-based and self-authored.</footer>
+</div>
+
+<script src="solar-engine.js"></script>
+<script src="solar-utils.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
