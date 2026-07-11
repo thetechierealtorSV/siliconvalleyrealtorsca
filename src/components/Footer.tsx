@@ -17,7 +17,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-12 md:col-span-4">
             <div className="font-display text-2xl tracking-[0.15em] mb-4">
-              NIKOLAENKO ESTATES
+              NIKOLAENKO PROPERTY GROUP
             </div>
             <p className="text-primary-foreground/60 leading-relaxed mb-6 max-w-sm">
               Luxury real estate across Silicon Valley's most prestigious neighborhoods —
