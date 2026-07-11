@@ -98,7 +98,7 @@ export function Hero() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <span className={`font-display text-xl tracking-[0.2em] leading-tight ${isScrolled ? 'text-foreground' : 'text-white'}`}>
-                NIKOLAENKO ESTATES
+                NIKOLAENKO PROPERTY GROUP
               </span>
             </motion.div>
 
