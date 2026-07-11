@@ -230,3 +230,35 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+
+/* URL parameter bootstrap: allows external pages (e.g. Sun & Property Explorer, Moxi listings) to
+   pre-load a specific address or coordinates into SunPath IQ via ?address=... or ?lat=..&lon=..
+   Original code; runs after init() has wired the UI. */
+(function spiqUrlParamBootstrap(){
+  function applyParams(){
+    try {
+      var p = new URLSearchParams(window.location.search);
+      var lat = parseFloat(p.get('lat'));
+      var lon = parseFloat(p.get('lon'));
+      var address = p.get('address');
+      if (!isNaN(lat) && !isNaN(lon)) {
+        var latEl = qs('spiq-lat'); var lonEl = qs('spiq-lon');
+        if (latEl) latEl.value = lat.toFixed(6);
+        if (lonEl) lonEl.value = lon.toFixed(6);
+        if (address) { var a = qs('spiq-address'); if (a) a.value = address; }
+        if (typeof applyLocation === 'function') applyLocation(lat, lon, true);
+      } else if (address) {
+        var addrEl = qs('spiq-address');
+        var btn = qs('spiq-geocode-btn');
+        if (addrEl) addrEl.value = address;
+        if (btn) btn.click();
+      }
+    } catch (e) { /* non-fatal */ }
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(applyParams, 300);
+  } else {
+    window.addEventListener('DOMContentLoaded', function(){ setTimeout(applyParams, 300); });
+  }
+})();
