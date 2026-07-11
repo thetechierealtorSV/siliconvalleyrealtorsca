@@ -28,7 +28,7 @@ function setLink(rel: string, href: string) {
   el.setAttribute('href', href)
 }
 
-const DEFAULT_OG_IMAGE = 'https://nikolaenkoestates.com/og-image.jpg'
+const DEFAULT_OG_IMAGE = 'https://luxury.nikolaenkopropertygroup.com/og-image.jpg'
 
 export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) {
   useEffect(() => {
@@ -37,7 +37,7 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:type', 'website')
-    setMeta('property', 'og:site_name', 'Nikolaenko Estates')
+    setMeta('property', 'og:site_name', 'Nikolaenko Property Group')
     setMeta('name', 'twitter:title', title)
     setMeta('name', 'twitter:description', description)
     setMeta('name', 'twitter:card', 'summary_large_image')
@@ -67,12 +67,12 @@ export function SEO({ title, description, canonical, jsonLd, image }: SEOProps) 
   return null
 }
 
-const SITE_URL = 'https://nikolaenkoestates.com'
+const SITE_URL = 'https://luxury.nikolaenkopropertygroup.com'
 
 export const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
-  name: 'Nikolaenko Estates',
+  name: 'Nikolaenko Property Group',
   description:
     'Luxury real estate brokerage serving all of Silicon Valley — Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
   areaServed: [
