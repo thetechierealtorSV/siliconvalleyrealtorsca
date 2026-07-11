@@ -179,10 +179,10 @@ export function ChatBot() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-[100] w-14 h-14 rounded-full bg-foreground text-primary-foreground flex items-center justify-center shadow-lg hover:opacity-90 gentle-animation cursor-pointer"
+        className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-foreground text-primary-foreground flex items-center justify-center shadow-lg hover:opacity-90 hover:scale-110 transition-transform gentle-animation spiq-chat-launcher pulse-glow cursor-pointer"
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? <X className="w-7 h-7" /> : <MessageCircle className="w-7 h-7" />}
       </button>
 
       {isOpen && (
