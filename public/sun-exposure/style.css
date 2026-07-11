@@ -255,3 +255,76 @@ input[type="range"] {
   font-size: 0.76rem;
   margin-top: 34px;
 }
+
+/* Stage 2 additions: search bar, view toggle, 3D scene */
+
+.spiq-searchbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.spiq-searchbar input[type="text"] {
+  flex: 1 1 320px;
+  min-width: 220px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(8, 14, 30, 0.7);
+  color: #e6ebf5;
+  font-size: 0.95rem;
+}
+
+#spiq-geocode-btn {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  color: #1a1200;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+#spiq-geocode-btn:hover { filter: brightness(1.08); }
+#spiq-geocode-btn:disabled { opacity: 0.6; cursor: default; }
+
+.spiq-viewtoggle {
+  display: inline-flex;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.spiq-viewtoggle button {
+  background: transparent;
+  color: #b7c3dc;
+  border: none;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.spiq-viewtoggle button.spiq-active {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  color: #1a1200;
+}
+
+.spiq-searchhint { display: block; margin-bottom: 18px; }
+
+.spiq-stage { min-height: 520px; }
+
+.spiq-3d-container {
+  width: 100%;
+  height: 460px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b1730;
+}
+
+.spiq-3d-container canvas { display: block; width: 100%; height: 100%; }
+
+.spiq-3d-status { margin-top: 10px; min-height: 1.2em; }
