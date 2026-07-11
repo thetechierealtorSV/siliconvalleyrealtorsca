@@ -211,6 +211,16 @@
     animation: pulse-glow 3s ease-in-out infinite;
   }
   
+  @keyframes spiq-chat-bob {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.06); }
+  }
+  
+  .spiq-chat-launcher {
+    animation: spiq-chat-bob 2.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+  
   .animate-pulse {
     animation-duration: 4s !important;
   }
