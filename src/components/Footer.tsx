@@ -102,13 +102,13 @@ export function Footer() {
           <div className="grid md:grid-cols-[1fr_auto] gap-8 items-start">
             <div className="text-xs text-primary-foreground/50 leading-relaxed space-y-3 max-w-3xl">
               <p>
-                <span className="text-primary-foreground/70 font-medium">Equal Housing Opportunity.</span> Nikolaenko Estates is committed to the letter and spirit of U.S. policy for the achievement of equal housing opportunity. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, source of income, or any other class protected by federal, state, or local law.
+                <span className="text-primary-foreground/70 font-medium">Equal Housing Opportunity.</span> Nikolaenko Property Group is committed to the letter and spirit of U.S. policy for the achievement of equal housing opportunity. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, source of income, or any other class protected by federal, state, or local law.
               </p>
               <p>
-                Real estate services are provided by licensed agents of Nikolaenko Estates. California DRE License #XXXXXXXX. Each office is independently owned and operated. Information deemed reliable but not guaranteed; buyers should independently verify all material facts. Property information, listings, and market data are obtained from sources believed reliable, including MLSListings Inc., and are subject to change without notice. Nothing herein constitutes legal, tax, or financial advice.
+                Real estate services are provided by licensed agents of Nikolaenko Property Group. California DRE License #XXXXXXXX. Each office is independently owned and operated. Information deemed reliable but not guaranteed; buyers should independently verify all material facts. Property information, listings, and market data are obtained from sources believed reliable, including MLSListings Inc., and are subject to change without notice. Nothing herein constitutes legal, tax, or financial advice.
               </p>
               <p>
-                By submitting your phone number or contact information, you consent to receive calls, SMS messages, and emails from Nikolaenko Estates regarding real estate services. Message and data rates may apply. Reply <span className="font-mono text-primary-foreground/70">STOP</span> to any SMS to unsubscribe or <span className="font-mono text-primary-foreground/70">HELP</span> for assistance. See our <button onClick={() => navigate('/privacy')} className="underline hover:text-primary-foreground">Privacy Policy</button> for details.
+                By submitting your phone number or contact information, you consent to receive calls, SMS messages, and emails from Nikolaenko Property Group regarding real estate services. Message and data rates may apply. Reply <span className="font-mono text-primary-foreground/70">STOP</span> to any SMS to unsubscribe or <span className="font-mono text-primary-foreground/70">HELP</span> for assistance. See our <button onClick={() => navigate('/privacy')} className="underline hover:text-primary-foreground">Privacy Policy</button> for details.
               </p>
             </div>
 
@@ -132,7 +132,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-primary-foreground/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <div className="text-xs text-primary-foreground/40">
-            © {year} Nikolaenko Estates. All rights reserved. CA DRE #XXXXXXXX.
+            © {year} Nikolaenko Property Group. All rights reserved. CA DRE #XXXXXXXX.
           </div>
           <div className="text-xs text-primary-foreground/40 tracking-[0.2em] uppercase">
             Bay Area · Peninsula · South Bay · East Bay · SF · Marin
