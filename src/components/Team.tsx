@@ -38,7 +38,7 @@ export function Team() {
             <div className="relative overflow-hidden rounded-2xl aspect-[3/4] max-w-sm w-full mx-auto elevated-shadow">
               <img
                 src={chrisAsset.url}
-                alt="Chris Nikolaenko, Senior Listing Agent and Buyer's Agent at Nikolaenko Estates"
+                alt="Chris Nikolaenko, Senior Listing Agent and Buyer's Agent at Nikolaenko Property Group"
                 width={768}
                 height={1024}
                 loading="lazy"
@@ -53,7 +53,7 @@ export function Team() {
                 Senior Listing Agent · Buyer's Agent
               </p>
               <p className="text-foreground/85 leading-relaxed mb-4">
-                Chris leads Nikolaenko Estates, personally representing sellers and buyers across
+                Chris leads Nikolaenko Property Group, personally representing sellers and buyers across
                 Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside, and the greater Bay Area.
               </p>
               <p className="text-foreground/75 leading-relaxed">
