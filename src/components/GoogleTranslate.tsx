@@ -40,6 +40,8 @@ export function GoogleTranslate() {
       s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
       s.async = true
       document.body.appendChild(s)
+    } else if (window.google && window.google.translate) {
+      window.googleTranslateElementInit()
     }
   }, [])
 
@@ -53,11 +55,13 @@ export function GoogleTranslate() {
         <Globe className="w-4 h-4" />
         <span className="text-xs font-medium tracking-wide">Language / \u8bed\u8a00</span>
       </button>
+      {/* Container is always mounted so Google can render the selector; panel visibility toggled without display:none */}
       <div
         className={
-          'mt-2 rounded-lg bg-[#faf8f5] border border-[#e0d9cf] shadow-xl p-3 ' +
-          (open ? 'block' : 'hidden')
+          'mt-2 rounded-lg bg-[#faf8f5] border border-[#e0d9cf] shadow-xl p-3 transition-opacity duration-200 ' +
+          (open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none absolute -z-10')
         }
+        aria-hidden={!open}
       >
         <div id="google_translate_element" />
         <p className="mt-2 text-[10px] text-muted-foreground max-w-[220px] leading-snug">
