@@ -49,6 +49,7 @@ function HomePage() {
         <section id="buyers-sellers-preview" aria-label="Buyers and Sellers">
           <BuyersSellersPreview />
         </section>
+        <PreferencesWidget />
         <section id="mls-search" aria-label="MLS property search" className="bg-secondary/30 py-16">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto text-center mb-8">
