@@ -80,7 +80,12 @@
     return new Promise(function (resolve) {
       var w = window.__NKPG_SUPABASE__;
       if (w && w.url && w.key) return resolve(w);
-      // Fallback: try /shared/supabase-config.json (optional)
+      // Inside an iframe (e.g. /feng-shui, /sun-exposure), inherit from parent.
+      try {
+        var p = window.parent && window.parent.__NKPG_SUPABASE__;
+        if (p && p.url && p.key) return resolve(p);
+      } catch (e) { /* cross-origin — ignore */ }
+      // Final fallback: /shared/supabase-config.json (optional)
       fetch('/shared/supabase-config.json', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (j) { resolve(j && j.url && j.key ? j : null); })
