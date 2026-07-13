@@ -48,6 +48,7 @@ export function Hero() {
       { href: '/off-market', label: 'Off-Market Listings', route: true },
       { href: '/silicon-valley-investment-properties', label: 'Investment Properties', route: true },
       { href: '/explorer', label: 'Sun Explorer (SunPath IQ)', route: true },
+      { href: '/feng-shui', label: 'Feng Shui IQ', route: true },
     ] },
     { href: '#video-tour', label: 'Video Tours', route: false },
     { href: '/buyers', label: 'Buyers', route: true },
