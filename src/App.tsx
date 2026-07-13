@@ -27,6 +27,7 @@ import { AccessibilityMenu } from './components/AccessibilityMenu'
 import { SiteGuide } from './components/SiteGuide'
 import { YouTubeTours } from './components/YouTubeTours'
 import SunExposurePage from './pages/SunExposurePage'
+import FengShuiPage from './pages/FengShuiPage'
 import ExplorerPage from './pages/ExplorerPage'
 import LandingPage from './pages/LandingPage'
 import { landingPages } from './data/landingData'
@@ -111,6 +112,7 @@ export default function App() {
         <Route path="/about/chris" element={<AboutPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/sun-exposure" element={<SunExposurePage />} />
+            <Route path="/feng-shui" element={<FengShuiPage />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             {landingPages.map((p) => (
               <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
