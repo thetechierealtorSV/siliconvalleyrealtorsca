@@ -20,6 +20,7 @@ export function PageNavbar() {
     { href: '/saved-searches', label: 'Saved Searches & Alerts' },
     { href: '/silicon-valley-investment-properties', label: 'Investment Properties' },
     { href: '/explorer', label: 'Sun Explorer (SunPath IQ)' },
+    { href: '/feng-shui', label: 'Feng Shui IQ' },
   ]
 
   const navLinks = [
