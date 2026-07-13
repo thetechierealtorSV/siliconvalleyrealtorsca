@@ -32,6 +32,7 @@ import ExplorerPage from './pages/ExplorerPage'
 import LandingPage from './pages/LandingPage'
 import { landingPages } from './data/landingData'
 import { GoogleTranslate } from './components/GoogleTranslate'
+import { PreferencesWidget } from './components/PreferencesWidget'
 
 function HomePage() {
   return (
