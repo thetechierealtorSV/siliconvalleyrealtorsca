@@ -40,6 +40,8 @@
     <script>
       // Apply dark theme before paint to prevent FOUC
       (function(){try{var t=localStorage.getItem('theme');if(t!=='light'){document.documentElement.classList.add('dark');}}catch(e){document.documentElement.classList.add('dark');}})();
+      // Expose Supabase publishable config to static vanilla widgets under /shared and /public tools.
+      window.__NKPG_SUPABASE__ = { url: "%VITE_SUPABASE_URL%", key: "%VITE_SUPABASE_PUBLISHABLE_KEY%" };
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

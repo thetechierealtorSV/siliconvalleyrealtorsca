@@ -100,6 +100,36 @@ export type Database = {
           },
         ]
       }
+      lead_preferences: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          name: string | null
+          phone: string | null
+          preferences: string[]
+          source_page: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          phone?: string | null
+          preferences?: string[]
+          source_page?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          phone?: string | null
+          preferences?: string[]
+          source_page?: string | null
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string
