@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feng Shui IQ - Property Harmony Analyzer</title>
+<meta name="description" content="Analyze any property's facing direction using authentic Chinese Bagua/Compass-school Feng Shui and Indian Vastu Shastra traditions. Get a Harmony Score with plain-language guidance.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="fsiq-app">
+  <header class="fsiq-header">
+    <h1>Feng Shui IQ</h1>
+    <p class="fsiq-tag">Property Harmony Analyzer &mdash; Bagua Compass &amp; Vastu Shastra</p>
+  </header>
+
+  <div class="fsiq-searchbar">
+    <input type="text" id="fsiq-address" placeholder="Enter any property address (e.g. 19330 Stevens Creek Blvd, Cupertino, CA)">
+    <button id="fsiq-geocode-btn" type="button">Analyze</button>
+  </div>
+  <small class="fsiq-hint fsiq-searchhint">Geocoding by OpenStreetMap Nominatim. Address is used only to orient the analysis.</small>
+
+  <div class="fsiq-layout">
+    <section class="fsiq-panel fsiq-controls">
+      <h2>Property &amp; Facing</h2>
+
+      <div class="fsiq-field-row">
+        <div class="fsiq-field-group">
+          <label for="fsiq-lat">Latitude</label>
+          <input type="number" id="fsiq-lat" step="0.0001" value="37.4419">
+        </div>
+        <div class="fsiq-field-group">
+          <label for="fsiq-lon">Longitude</label>
+          <input type="number" id="fsiq-lon" step="0.0001" value="-122.1430">
+        </div>
+      </div>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-facing">Front door facing direction (0&deg; = North, clockwise)</label>
+        <select id="fsiq-facing">
+          <option value="0">North (0&deg;) &mdash; Kan</option>
+          <option value="45">Northeast (45&deg;) &mdash; Gen / Ishanya</option>
+          <option value="90">East (90&deg;) &mdash; Zhen / Purva</option>
+          <option value="135">Southeast (135&deg;) &mdash; Xun / Agneya</option>
+          <option value="180" selected>South (180&deg;) &mdash; Li</option>
+          <option value="225">Southwest (225&deg;) &mdash; Kun / Nairutya</option>
+          <option value="270">West (270&deg;) &mdash; Dui / Paschima</option>
+          <option value="315">Northwest (315&deg;) &mdash; Qian / Vayavya</option>
+        </select>
+        <input type="range" id="fsiq-facing-slider" min="0" max="359" value="180">
+      </div>
+
+      <h2 style="margin-top:20px;">Questionnaire</h2>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-stairs">Do the stairs face the front door directly?</label>
+        <select id="fsiq-stairs">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes (chi rushes out)</option>
+          <option value="none">No stairs / single story</option>
+        </select>
+      </div>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-tjunction">Is the home on a T-junction or road pointing at it? (Sha Chi / poison arrow)</label>
+        <select id="fsiq-tjunction">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-bedroom">Primary bedroom in command position?</label>
+        <select id="fsiq-bedroom">
+          <option value="yes" selected>Yes (sees door, not in line with it)</option>
+          <option value="partial">Partial (sees door but in line with it)</option>
+          <option value="no">No (back to door)</option>
+        </select>
+      </div>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-kitchen">Kitchen / stove orientation</label>
+        <select id="fsiq-kitchen">
+          <option value="good" selected>Cook faces into the room (command)</option>
+          <option value="neutral">Cook faces a wall</option>
+          <option value="bad">Stove directly opposite sink or fridge</option>
+        </select>
+      </div>
+
+      <div class="fsiq-field-group">
+        <label for="fsiq-center">Center of home (Brahmasthan) is:</label>
+        <select id="fsiq-center">
+          <option value="open" selected>Open / living area</option>
+          <option value="neutral">Hallway or stairs</option>
+          <option value="heavy">Kitchen, bathroom, or heavy structure</option>
+        </select>
+      </div>
+
+      <button type="button" id="fsiq-analyze-btn" class="fsiq-primary">Recalculate Harmony Score</button>
+    </section>
+
+    <section class="fsiq-panel fsiq-stage">
+      <h2>Direction Dial</h2>
+      <canvas id="fsiq-canvas" width="440" height="440"></canvas>
+      <div class="fsiq-legend">
+        <span><i class="fsiq-dot fsiq-dot-facing"></i>Facing direction</span>
+        <span><i class="fsiq-dot fsiq-dot-sitting"></i>Sitting direction</span>
+        <span>Inner ring: Bagua &nbsp;&middot;&nbsp; Outer ring: Vastu</span>
+      </div>
+
+      <div id="fsiq-bagua-detail" class="fsiq-explain"></div>
+      <div id="fsiq-vastu-detail" class="fsiq-explain"></div>
+    </section>
+
+    <section class="fsiq-panel fsiq-score">
+      <h2>Harmony Score</h2>
+      <div class="fsiq-score-circle">
+        <div id="fsiq-score-value">--</div>
+        <div class="fsiq-score-label">out of 100</div>
+      </div>
+      <ul class="fsiq-components">
+        <li><span>Bagua facing</span><b id="fsiq-comp-bagua">--</b><i>/ 30</i></li>
+        <li><span>Vastu entrance</span><b id="fsiq-comp-vastu">--</b><i>/ 30</i></li>
+        <li><span>Interior flow</span><b id="fsiq-comp-flow">--</b><i>/ 25</i></li>
+        <li><span>Sha chi avoidance</span><b id="fsiq-comp-sha">--</b><i>/ 15</i></li>
+      </ul>
+      <div id="fsiq-summary" class="fsiq-note"></div>
+      <p class="fsiq-note">Feng Shui IQ provides cultural and traditional property insights for informational purposes only.</p>
+    </section>
+  </div>
+
+  <footer class="fsiq-footer">Feng Shui IQ &mdash; Bagua Compass-school &amp; Vastu Shastra directional analysis. Original tool.</footer>
+</div>
+
+<script src="fengshui-utils.js"></script>
+<script src="fengshui-app.js"></script>
+</body>
+</html>
