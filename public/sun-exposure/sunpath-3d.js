@@ -334,8 +334,8 @@
       S.sunGlowMesh.material.opacity = 0.35 + 0.45 * (1 - t);
     }
     if (S.sunGlowMesh2) {
-      S.sunGlowMesh2.position.set(sx, sy, sz);
-      S.sunGlowMesh2.visible = elevationDeg > -6;
+      S.sunGlowMesh2.position.set(sx, visualY, sz);
+      S.sunGlowMesh2.visible = elevationDeg > -8;
       S.sunGlowMesh2.material.opacity = 0.12 + 0.25 * (1 - Math.max(0, Math.min(1, elevationDeg / 30)));
     }
 
