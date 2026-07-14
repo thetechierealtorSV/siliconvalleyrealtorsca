@@ -59,6 +59,19 @@
     return state.dayData.samples[idx];
   }
 
+  function ensureCompassReadout() {
+    var el = document.getElementById('spiq-compass-readout');
+    if (el) return el;
+    var scoreCircle = document.querySelector('.spiq-score-circle');
+    if (!scoreCircle || !scoreCircle.parentNode) return null;
+    el = document.createElement('div');
+    el.id = 'spiq-compass-readout';
+    el.setAttribute('aria-live', 'polite');
+    el.style.cssText = 'margin:10px 0 4px;font-size:14px;line-height:1.35;color:#e2e8f0;text-align:center;';
+    scoreCircle.parentNode.insertBefore(el, scoreCircle.nextSibling);
+    return el;
+  }
+
   function renderScore(sc, dayData) {
     qs('spiq-score-value').textContent = sc.score;
     qs('spiq-comp-day').textContent = sc.components.dayLength;
@@ -76,6 +89,17 @@
     var text = solarMinutesToHHMM(state.timeMin) + ' solar time  -  elevation ' + s.elevation.toFixed(1) + ' deg, azimuth ' + s.azimuth.toFixed(1) + ' deg';
     if (s.elevation < 0) text += ' (below horizon)';
     qs('spiq-time-readout').textContent = text;
+
+    var readout = ensureCompassReadout();
+    if (readout) {
+      var c = azimuthToCompass(s.azimuth);
+      if (s.elevation < 0) {
+        readout.innerHTML = '🌙 Sun is below the horizon (bearing ' + c.name + ', ' + s.azimuth.toFixed(0) + '° / ' + c.code + ')';
+      } else {
+        readout.innerHTML = '☀️ Sun is in the <strong>' + c.name + '</strong> (' + c.code + '), '
+          + s.elevation.toFixed(0) + '° above horizon';
+      }
+    }
   }
 
   // ---------- push current sun to whichever view is active ----------
