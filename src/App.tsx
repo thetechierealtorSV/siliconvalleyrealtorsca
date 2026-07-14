@@ -127,6 +127,7 @@ export default function App() {
         <Route path="/sun-exposure" element={<SunExposurePage />} />
             <Route path="/feng-shui" element={<FengShuiPage />} />
             <Route path="/explorer" element={<ExplorerPage />} />
+            <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
             {landingPages.map((p) => (
               <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
             ))}
