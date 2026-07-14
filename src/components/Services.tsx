@@ -44,8 +44,8 @@ export function Services() {
         </div>
       </div>
       <div className="p-7 flex-1">
-        <h3 className="font-display text-xl font-bold text-foreground mb-3">{service.title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+        <h3 className="font-display text-2xl font-bold text-foreground mb-3">{service.title}</h3>
+        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{service.description}</p>
       </div>
     </div>
   )
@@ -55,8 +55,8 @@ export function Services() {
       <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:bg-foreground group-hover:text-primary-foreground gentle-animation">
         <service.icon className="w-6 h-6" />
       </div>
-      <h3 className="font-display text-xl font-bold text-foreground mb-3">{service.title}</h3>
-      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+      <h3 className="font-display text-2xl font-bold text-foreground mb-3">{service.title}</h3>
+      <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{service.description}</p>
     </div>
   )
 
@@ -72,9 +72,9 @@ export function Services() {
         </div>
 
         <Tabs defaultValue="core" className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full max-w-md mx-auto mb-12 bg-muted/50 p-1 rounded-xl">
-            <TabsTrigger value="core" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">Core Services</TabsTrigger>
-            <TabsTrigger value="specialized" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">Specialized Services</TabsTrigger>
+          <TabsList className="grid w-full max-w-2xl mx-auto mb-12 bg-muted/50 p-1.5 rounded-xl h-auto">
+            <TabsTrigger value="core" className="rounded-lg text-base sm:text-lg font-semibold py-3 data-[state=active]:bg-background data-[state=active]:shadow-sm">Core Services</TabsTrigger>
+            <TabsTrigger value="specialized" className="rounded-lg text-base sm:text-lg font-semibold py-3 data-[state=active]:bg-background data-[state=active]:shadow-sm">Specialized Services</TabsTrigger>
           </TabsList>
 
           <TabsContent value="core" className="mt-0">

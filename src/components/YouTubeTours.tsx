@@ -43,15 +43,20 @@ export function YouTubeTours() {
             Subscribe to follow our original Silicon Valley home tour series. Full walkthroughs, architectural deep-dives,
             and neighborhood features published monthly.
           </p>
-          <a
-            href="https://www.youtube.com/results?search_query=silicon+valley+luxury+home+tour"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-foreground text-primary-foreground text-sm font-medium hover:opacity-90 transition"
-          >
-            <Youtube className="w-4 h-4" aria-hidden="true" />
-            Visit our channel
-          </a>
+          <p className="inline-block mt-4 px-4 py-1.5 rounded-full bg-secondary/60 text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground border border-border">
+            Home Tours YouTube channel, Coming Soon
+          </p>
+          <div>
+            <a
+              href="https://www.youtube.com/results?search_query=silicon+valley+luxury+home+tour"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-foreground text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+            >
+              <Youtube className="w-4 h-4" aria-hidden="true" />
+              Visit our channel
+            </a>
+          </div>
         </div>
 
         {/* Featured live embed (channel search) */}

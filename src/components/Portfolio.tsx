@@ -109,60 +109,64 @@ export function Portfolio() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((property) => (
-            <div
-              key={property.id}
-              className="group bg-card rounded-2xl overflow-hidden clean-border elevated-shadow gentle-animation hover:shadow-lg cursor-pointer"
-              onMouseEnter={() => setHoveredId(property.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              <div className="relative overflow-hidden aspect-[4/3]">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  loading="lazy"
-                  width={1280}
-                  height={960}
-                  className="w-full h-full object-cover gentle-animation group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full tracking-wide">
-                    {property.tag}
-                  </span>
+          {properties.map((property) => {
+            const searchHref = `https://www.nikolaenkopropertygroup.com/properties/search?city=${encodeURIComponent(property.address)}`
+            return (
+              <a
+                key={property.id}
+                href={searchHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View active listings near ${property.address}`}
+                className="group bg-card rounded-2xl overflow-hidden clean-border elevated-shadow gentle-animation hover:shadow-lg cursor-pointer block"
+                onMouseEnter={() => setHoveredId(property.id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <img
+                    src={property.image}
+                    alt={property.title}
+                    loading="lazy"
+                    width={1280}
+                    height={960}
+                    className="w-full h-full object-cover gentle-animation group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full tracking-wide">
+                      {property.tag}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 right-4">
+                    <span className="bg-foreground/80 backdrop-blur-sm text-white text-lg font-bold px-4 py-2 rounded-lg">
+                      {property.price}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute bottom-4 right-4">
-                  <span className="bg-foreground/80 backdrop-blur-sm text-white text-lg font-bold px-4 py-2 rounded-lg">
-                    {property.price}
-                  </span>
-                </div>
-              </div>
 
-              <div className="p-6">
-                <h3 className="font-display text-xl font-bold text-foreground mb-2">
-                  {property.title}
-                </h3>
-                <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-4">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>{property.address}</span>
-                </div>
-                <div className="flex items-center gap-6 text-sm text-muted-foreground border-t border-border pt-4">
-                  <div className="flex items-center gap-1.5">
-                    <Bed className="w-4 h-4" />
-                    <span>{property.beds} Beds</span>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-bold text-foreground mb-2">
+                    {property.title}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-4">
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>{property.address}</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Bath className="w-4 h-4" />
-                    <span>{property.baths} Baths</span>
+                  <div className="flex items-center gap-6 text-sm text-muted-foreground border-t border-border pt-4">
+                    <div className="flex items-center gap-1.5"><Bed className="w-4 h-4" /><span>{property.beds} Beds</span></div>
+                    <div className="flex items-center gap-1.5"><Bath className="w-4 h-4" /><span>{property.baths} Baths</span></div>
+                    <div className="flex items-center gap-1.5"><Maximize className="w-4 h-4" /><span>{property.sqft} sqft</span></div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Maximize className="w-4 h-4" />
-                    <span>{property.sqft} sqft</span>
+                  <div className="mt-4 text-xs font-semibold tracking-wide uppercase text-muted-foreground group-hover:text-foreground">
+                    View active listings →
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </a>
+            )
+          })}
         </div>
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          Property cards link to live listings on nikolaenkopropertygroup.com.
+        </p>
       </div>
     </section>
   )
