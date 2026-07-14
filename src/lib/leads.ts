@@ -22,7 +22,7 @@ export interface SubmitLeadInput {
 }
 
 /**
- * Segmented lead routing — every form on the site funnels here.
+ * Segmented lead routing, every form on the site funnels here.
  * The DB trigger auto-tags hot vs warm priority based on lead_type so
  * downstream automations (email, CRM, voicemail agent) can route correctly.
  */

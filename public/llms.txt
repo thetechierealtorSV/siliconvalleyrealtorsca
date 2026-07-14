@@ -1,13 +1,13 @@
 # Nikolaenko Property Group
 
-> Luxury real estate brokerage serving Silicon Valley and the broader Bay Area — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale, San Francisco, Marin, and the East Bay.
+> Luxury real estate brokerage serving Silicon Valley and the broader Bay Area, Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale, San Francisco, Marin, and the East Bay.
 
 ## Pages
 
 - [Home](/): Overview of services, video walkthroughs, MLS search, featured properties, team.
 - [Properties](/properties): Live MLS search across all Silicon Valley cities with city, price, and bedroom filters.
 - [Buyers](/buyers): Buyer representation, search consultation, and offer strategy.
-- [Sellers](/sellers): Seller concierge — staging, marketing, cinematic video, pricing strategy.
+- [Sellers](/sellers): Seller concierge, staging, marketing, cinematic video, pricing strategy.
 
 ## Specialties
 

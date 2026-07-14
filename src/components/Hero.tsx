@@ -277,7 +277,7 @@ export function Hero() {
             <span className="block text-white/80">Expertly Curated</span>
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed mb-8">
-            Personalized property search, cinematic video tours, and a dedicated team that understands what home means to you — this is real estate, reimagined.
+            Personalized property search, cinematic video tours, and a dedicated team that understands what home means to you, this is real estate, reimagined.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

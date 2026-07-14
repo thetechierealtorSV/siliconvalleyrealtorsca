@@ -33,7 +33,7 @@ export default function PropertiesPage() {
 
   useEffect(() => {
     if (city || min || max || beds) {
-      // SEO log — search performed
+      // SEO log, search performed
       console.info('IDX search:', { city, min, max, beds })
     }
   }, [city, min, max, beds])
@@ -59,7 +59,7 @@ export default function PropertiesPage() {
           tcpa_consent_at: tcpaConsent ? new Date().toISOString() : null,
         },
       })
-      toast.success('Alert created — new matching listings will reach your inbox.')
+      toast.success('Alert created, new matching listings will reach your inbox.')
       setForm({ name: '', email: '', phone: '' })
       setTcpaConsent(false)
     } catch {
@@ -100,7 +100,7 @@ export default function PropertiesPage() {
               {city ? `Homes for Sale in ${city}` : 'Silicon Valley Homes for Sale'}
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Silicon Valley homes for every city — searchable by price, beds, neighborhood, and architecture.
+              Silicon Valley homes for every city, searchable by price, beds, neighborhood, and architecture.
             </p>
           </header>
 

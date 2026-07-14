@@ -59,7 +59,7 @@ export function BuyersSellersPreview() {
             </div>
             <h3 className="font-display text-2xl font-bold mb-3 text-foreground">Sellers</h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Listing preparation, concierge services, home toolkit with staging guides, valuation tools, and trusted vendor referrals — all à la carte.
+              Listing preparation, concierge services, home toolkit with staging guides, valuation tools, and trusted vendor referrals, all à la carte.
             </p>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:gap-3 gentle-animation">
               Explore Seller Resources <ArrowRight className="w-4 h-4" />

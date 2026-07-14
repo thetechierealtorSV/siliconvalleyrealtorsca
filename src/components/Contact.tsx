@@ -87,7 +87,7 @@ export function Contact() {
               Let's Find Your <br />Next Home
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-              Whether you're exploring luxury estates, mid-century gems, or modern masterpieces across Silicon Valley — 
+              Whether you're exploring luxury estates, mid-century gems, or modern masterpieces across Silicon Valley, 
               reach out through any channel and our team will connect you with the right resources.
             </p>
 

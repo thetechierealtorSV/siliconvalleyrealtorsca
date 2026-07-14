@@ -20,7 +20,7 @@ export function Footer() {
               NIKOLAENKO PROPERTY GROUP
             </div>
             <p className="text-primary-foreground/60 leading-relaxed mb-6 max-w-sm">
-              Luxury real estate across Silicon Valley's most prestigious neighborhoods —
+              Luxury real estate across Silicon Valley's most prestigious neighborhoods , 
               cinematic marketing, deep local expertise, and a personal approach from first
               showing to closing day.
             </p>

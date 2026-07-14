@@ -14,7 +14,7 @@ export function Awards() {
     {
       icon: Target,
       title: 'Precision',
-      description: 'Every recommendation backed by deep market knowledge — neighborhood insights, pricing trends, and local expertise that eliminate guesswork.',
+      description: 'Every recommendation backed by deep market knowledge, neighborhood insights, pricing trends, and local expertise that eliminate guesswork.',
     },
     {
       icon: Network,

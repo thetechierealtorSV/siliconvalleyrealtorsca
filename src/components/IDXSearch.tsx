@@ -20,7 +20,7 @@ const cities = [
 /**
  * IDX-ready property search. Drops cleanly into any MLS/IDX provider
  * (IDX Broker, Showcase IDX, RealGeeks, Constellation) by swapping the
- * navigate target — query params follow standard IDX conventions.
+ * navigate target, query params follow standard IDX conventions.
  */
 export function IDXSearch() {
   const navigate = useNavigate()

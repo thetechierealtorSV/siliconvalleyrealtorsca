@@ -1,5 +1,5 @@
 /*
- * Site Feedback survey — Nikolaenko Property Group.
+ * Site Feedback survey, Nikolaenko Property Group.
  * Self-contained vanilla JS. Writes to public.site_feedback via Supabase REST,
  * then fires notify-feedback edge function when contact opt-in is true.
  * Never blocks the thank-you state on notification failure.
@@ -149,7 +149,7 @@
       if (submitting) return;
       msg.textContent = '';
 
-      // Honeypot — silently accept but discard.
+      // Honeypot, silently accept but discard.
       var hp = $('fbiq-hp');
       if (hp && hp.value) { showThankYou(); return; }
 

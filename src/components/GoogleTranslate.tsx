@@ -46,14 +46,14 @@ export function GoogleTranslate() {
   }, [])
 
   return (
-    <div className="fixed bottom-6 left-6 z-[120]">
+    <div className="fixed top-4 right-4 z-[120]">
       <button
         onClick={() => setOpen(v => !v)}
-        aria-label="Choose language / \u9009\u62e9\u8bed\u8a00"
+        aria-label="Choose language"
         className="flex items-center gap-2 rounded-full bg-foreground text-primary-foreground px-4 py-3 shadow-lg hover:opacity-90 gentle-animation cursor-pointer"
       >
         <Globe className="w-4 h-4" />
-        <span className="text-xs font-medium tracking-wide">Language / \u8bed\u8a00</span>
+        <span className="text-xs font-medium tracking-wide">Language</span>
       </button>
       {/* Container is always mounted so Google can render the selector; panel visibility toggled without display:none */}
       <div
