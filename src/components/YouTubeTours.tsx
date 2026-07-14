@@ -1,24 +1,30 @@
 'use client'
 
 import { Youtube, Play } from 'lucide-react'
+import thumbPaloAlto from '@/assets/tour-thumb-paloalto.jpg'
+import thumbAtherton from '@/assets/tour-thumb-atherton.jpg'
+import thumbLosAltos from '@/assets/tour-thumb-losaltos.jpg'
 
 // Placeholder YouTube tours. Swap the `videoId` values with real IDs once
-// the home-tour videos are filmed and uploaded to the SVR YouTube channel.
+// the home-tour videos are filmed and uploaded to the channel.
 const tours = [
   {
     videoId: '',
     title: 'Palo Alto Estate · Full Home Tour',
     blurb: 'A guided walkthrough of a signature Palo Alto estate, coming soon to our YouTube channel.',
+    thumb: thumbPaloAlto,
   },
   {
     videoId: '',
     title: 'Atherton Modern · Architectural Tour',
     blurb: 'An in-depth architectural tour of a contemporary Atherton residence, filming in progress.',
+    thumb: thumbAtherton,
   },
   {
     videoId: '',
     title: 'Los Altos Hills · Grounds & Interiors',
     blurb: 'Sweeping grounds, pool, and interior finishes on a Los Altos Hills property, coming soon.',
+    thumb: thumbLosAltos,
   },
 ]
 
@@ -83,7 +89,7 @@ export function YouTubeTours() {
               key={t.title}
               className="rounded-2xl overflow-hidden clean-border bg-card gentle-animation hover:elevated-shadow"
             >
-              <div className="relative aspect-video bg-secondary/60 flex items-center justify-center">
+              <div className="relative aspect-video overflow-hidden">
                 {t.videoId ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${t.videoId}`}
@@ -94,12 +100,23 @@ export function YouTubeTours() {
                     className="w-full h-full"
                   />
                 ) : (
-                  <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                    <div className="w-14 h-14 rounded-full bg-foreground/10 flex items-center justify-center">
-                      <Play className="w-6 h-6" aria-hidden="true" />
+                  <>
+                    <img
+                      src={t.thumb}
+                      alt={t.title}
+                      loading="lazy"
+                      width={1280}
+                      height={720}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white">
+                      <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                        <Play className="w-6 h-6" aria-hidden="true" />
+                      </div>
+                      <span className="text-[10px] tracking-[0.28em] uppercase text-white/90">Coming soon</span>
                     </div>
-                    <span className="text-xs tracking-[0.2em] uppercase">Coming soon</span>
-                  </div>
+                  </>
                 )}
               </div>
               <div className="p-5">

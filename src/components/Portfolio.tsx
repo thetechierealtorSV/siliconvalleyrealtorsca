@@ -110,7 +110,8 @@ export function Portfolio() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => {
-            const searchHref = `https://www.nikolaenkopropertygroup.com/properties/search?city=${encodeURIComponent(property.address)}`
+            const cityHash = property.address.replace(/\s+/g, '-')
+            const searchHref = `https://www.nikolaenkopropertygroup.com/search/#!/city:${cityHash}`
             return (
               <a
                 key={property.id}
@@ -165,7 +166,7 @@ export function Portfolio() {
           })}
         </div>
         <p className="text-center text-xs text-muted-foreground mt-6">
-          Property cards link to live listings on nikolaenkopropertygroup.com.
+          Property cards open live listings on nikolaenkopropertygroup.com.
         </p>
       </div>
     </section>

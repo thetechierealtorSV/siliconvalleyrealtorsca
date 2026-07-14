@@ -55,7 +55,7 @@ function HomePage() {
       <main id="main-content" className="relative" role="main" tabIndex={-1}>
         <section id="hero" aria-label="Hero"><Hero /></section>
         <section id="buyers-sellers-preview" aria-label="Buyers and Sellers"><BuyersSellersPreview /></section>
-        <PreferencesWidget />
+        <section id="coverage-section" aria-label="Coverage area"><CoverageMap /></section>
         <section id="mls-search" aria-label="MLS property search" className="bg-secondary/30 py-16">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto text-center mb-8">
@@ -66,15 +66,15 @@ function HomePage() {
             <div className="max-w-4xl mx-auto"><IDXSearch /></div>
           </div>
         </section>
-        <section id="youtube-tours-section" aria-label="YouTube home tours"><YouTubeTours /></section>
         <section id="video-tour-section" aria-label="Video tours"><VideoTour /></section>
         <section id="properties-section" aria-label="Featured properties"><Portfolio /></section>
         <section id="services-section" aria-label="Services"><Services /></section>
         <section id="why-us-section" aria-label="Why choose us"><Awards /></section>
-        <section id="coverage-section" aria-label="Coverage area"><CoverageMap /></section>
         <section id="team-section" aria-label="Our team"><Team /></section>
         <section id="testimonials-section" aria-label="Client testimonials"><Testimonials /></section>
         <section id="contact-section" aria-label="Contact"><Contact /></section>
+        <PreferencesWidget />
+        <section id="youtube-tours-section" aria-label="YouTube home tours"><YouTubeTours /></section>
       </main>
       <Footer />
       <ChatBot />

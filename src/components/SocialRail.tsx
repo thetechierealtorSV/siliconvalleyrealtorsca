@@ -18,10 +18,15 @@ function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
   )
 }
 
+/**
+ * Fixed-tone social rail so contrast stays legible in both light and dark
+ * mode. Uses a always-dark pill with white icons instead of theme tokens
+ * (which would invert into low-contrast states when the user toggles).
+ */
 export function SocialRail() {
   return (
-    <div className="hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-[105] flex-col items-center gap-4 px-2 py-4 rounded-full bg-foreground/70 backdrop-blur-md border border-border/40">
-      <div className="w-px h-8 bg-background/40" />
+    <div className="hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-[105] flex-col items-center gap-4 px-2 py-4 rounded-full bg-neutral-900/85 backdrop-blur-md border border-white/10 shadow-lg">
+      <div className="w-px h-8 bg-white/25" />
       {links.map(({ href, label, Icon }) => (
         <a
           key={label}
@@ -29,12 +34,12 @@ export function SocialRail() {
           target="_blank"
           rel="noreferrer noopener"
           aria-label={label}
-          className="text-background/85 hover:text-background hover:scale-110 transition-all duration-300"
+          className="text-white/85 hover:text-white hover:scale-110 transition-all duration-300"
         >
           <Icon className="w-4 h-4" />
         </a>
       ))}
-      <div className="w-px h-8 bg-background/40" />
+      <div className="w-px h-8 bg-white/25" />
     </div>
   )
 }

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Search, MapPin, Bed, DollarSign } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 
 const cities = [
   'Palo Alto', 'Atherton', 'Los Altos Hills', 'Los Altos', 'Menlo Park', 'Woodside',
@@ -17,32 +16,53 @@ const cities = [
   'Tiburon', 'Belvedere', 'Sausalito', 'Mill Valley', 'Larkspur', 'Ross', 'Kentfield',
 ]
 
+const priceTiers = [
+  { value: '', label: 'Any' },
+  { value: '500000', label: '$500K' },
+  { value: '750000', label: '$750K' },
+  { value: '1000000', label: '$1M' },
+  { value: '1500000', label: '$1.5M' },
+  { value: '2000000', label: '$2M' },
+  { value: '3000000', label: '$3M' },
+  { value: '5000000', label: '$5M' },
+  { value: '7500000', label: '$7.5M' },
+  { value: '10000000', label: '$10M' },
+  { value: '15000000', label: '$15M' },
+  { value: '20000000', label: '$20M+' },
+]
+
+const PARENT_SEARCH = 'https://www.nikolaenkopropertygroup.com/search/'
+
 /**
- * IDX-ready property search. Drops cleanly into any MLS/IDX provider
- * (IDX Broker, Showcase IDX, RealGeeks, Constellation) by swapping the
- * navigate target, query params follow standard IDX conventions.
+ * IDX search that hands off directly to the parent Moxi Works search on
+ * nikolaenkopropertygroup.com. City + price + beds are appended as a Moxi
+ * hash-route filter (#!/city:X/min-price:N/max-price:N/beds:N/).
  */
 export function IDXSearch() {
-  const navigate = useNavigate()
   const [city, setCity] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
   const [beds, setBeds] = useState('')
 
+  const buildMoxiUrl = () => {
+    const parts: string[] = []
+    if (city) parts.push('city:' + city.replace(/\s+/g, '-'))
+    if (minPrice) parts.push('min-price:' + minPrice)
+    if (maxPrice) parts.push('max-price:' + maxPrice)
+    if (beds) parts.push('min-beds:' + beds.replace('+', ''))
+    const hash = parts.length ? '#!/' + parts.join('/') : '#!/defaultsearch:true'
+    return PARENT_SEARCH + hash
+  }
+
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    const params = new URLSearchParams()
-    if (city) params.set('city', city)
-    if (minPrice) params.set('min_price', minPrice)
-    if (maxPrice) params.set('max_price', maxPrice)
-    if (beds) params.set('beds', beds)
-    navigate(`/properties?${params.toString()}`)
+    window.open(buildMoxiUrl(), '_blank', 'noopener,noreferrer')
   }
 
   return (
     <form
       onSubmit={onSearch}
-      className="bg-card clean-border elevated-shadow rounded-2xl p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-5 gap-3"
+      className="bg-card clean-border elevated-shadow rounded-2xl p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-6 gap-3"
       aria-label="Silicon Valley MLS property search"
     >
       <label className="sm:col-span-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-background border border-border">
@@ -62,28 +82,49 @@ export function IDXSearch() {
 
       <label className="flex items-center gap-2 px-3 py-2 rounded-xl bg-background border border-border">
         <DollarSign className="w-4 h-4 text-muted-foreground" aria-hidden />
-        <input
-          type="number"
-          inputMode="numeric"
-          placeholder="Min price"
+        <select
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
-          className="flex-1 bg-transparent text-sm text-foreground focus:outline-none placeholder:text-muted-foreground"
+          className="flex-1 bg-background text-sm text-foreground focus:outline-none"
           aria-label="Minimum price"
-        />
+        >
+          {priceTiers.map((p) => (
+            <option key={'min-' + p.value} value={p.value} className="bg-background text-foreground">
+              {p.value ? 'Min ' + p.label : 'Min price'}
+            </option>
+          ))}
+        </select>
       </label>
 
       <label className="flex items-center gap-2 px-3 py-2 rounded-xl bg-background border border-border">
         <DollarSign className="w-4 h-4 text-muted-foreground" aria-hidden />
-        <input
-          type="number"
-          inputMode="numeric"
-          placeholder="Max price"
+        <select
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
-          className="flex-1 bg-transparent text-sm text-foreground focus:outline-none placeholder:text-muted-foreground"
+          className="flex-1 bg-background text-sm text-foreground focus:outline-none"
           aria-label="Maximum price"
-        />
+        >
+          {priceTiers.map((p) => (
+            <option key={'max-' + p.value} value={p.value} className="bg-background text-foreground">
+              {p.value ? 'Max ' + p.label : 'Max price'}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="flex items-center gap-2 px-3 py-2 rounded-xl bg-background border border-border">
+        <Bed className="w-4 h-4 text-muted-foreground" aria-hidden />
+        <select
+          value={beds}
+          onChange={(e) => setBeds(e.target.value)}
+          className="flex-1 bg-background text-sm text-foreground focus:outline-none"
+          aria-label="Minimum bedrooms"
+        >
+          <option value="" className="bg-background text-foreground">Any beds</option>
+          {['2', '3', '4', '5', '6'].map((n) => (
+            <option key={n} value={n} className="bg-background text-foreground">{n}+ beds</option>
+          ))}
+        </select>
       </label>
 
       <button
@@ -93,24 +134,9 @@ export function IDXSearch() {
         <Search className="w-4 h-4" /> Search MLS
       </button>
 
-      <div className="sm:col-span-5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-        <Bed className="w-3.5 h-3.5" aria-hidden />
-        <span className="mr-1">Beds:</span>
-        {['', '2', '3', '4', '5+'].map((n) => (
-          <button
-            type="button"
-            key={n || 'any'}
-            onClick={() => setBeds(n)}
-            className={`px-2.5 py-1 rounded-full border text-xs gentle-animation ${
-              beds === n
-                ? 'bg-foreground text-primary-foreground border-foreground'
-                : 'border-border hover:border-foreground/40'
-            }`}
-          >
-            {n || 'Any'}
-          </button>
-        ))}
-      </div>
+      <p className="sm:col-span-6 text-[11px] text-muted-foreground text-center">
+        Opens live listings on nikolaenkopropertygroup.com.
+      </p>
     </form>
   )
 }
