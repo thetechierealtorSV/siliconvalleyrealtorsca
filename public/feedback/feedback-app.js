@@ -216,9 +216,9 @@
             page_url: (function () { try { return document.referrer || window.location.href; } catch (e) { return null; } })(),
             user_agent: navigator.userAgent ? String(navigator.userAgent).slice(0, 500) : null
           };
-          return insertFeedback(cfg, row).then(function () {
+          return insertFeedback(cfg, row).then(function (inserted) {
             try { localStorage.setItem(RATE_KEY, String(Date.now())); } catch (e) {}
-            if (opt) notify(cfg, row);
+            if (opt && inserted && inserted.id) notify(cfg, inserted.id);
             showThankYou();
           });
         });
