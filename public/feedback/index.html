@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Feedback · Nikolaenko Property Group</title>
+<meta name="description" content="Share what you liked and what could be better about the Nikolaenko Property Group website. Optional — no login required.">
+<link rel="stylesheet" href="../sun-exposure/style.css">
+<style>
+  .fbiq-app { max-width: 780px; }
+  .fbiq-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .fbiq-chip { cursor:pointer; padding:9px 14px; border-radius:999px;
+    border:1px solid rgba(148,163,184,.35); background:rgba(8,14,30,.55);
+    color:#e6ebf5; font-size:.88rem; font-weight:500; transition:all .18s ease; user-select:none; }
+  .fbiq-chip:hover { border-color:#fbbf24; color:#fde047; }
+  .fbiq-chip.fbiq-on { background:linear-gradient(90deg,#f97316,#fb923c);
+    border-color:#fb923c; color:#1a1200; font-weight:700; }
+  textarea { width:100%; padding:10px 12px; border-radius:8px;
+    border:1px solid rgba(148,163,184,.35); background:rgba(8,14,30,.7);
+    color:#e6ebf5; font-size:.92rem; font-family:inherit; resize:vertical; min-height:80px; }
+  .fbiq-stars { display:flex; gap:6px; }
+  .fbiq-star { font-size:1.9rem; cursor:pointer; color:rgba(148,163,184,.4);
+    background:none; border:none; padding:2px 4px; transition:color .12s ease; }
+  .fbiq-star.fbiq-on, .fbiq-star:hover { color:#fbbf24; }
+  .fbiq-checkline { display:flex; align-items:center; gap:10px; margin:14px 0 4px;
+    color:#b7c3dc; font-size:.9rem; }
+  .fbiq-checkline input { accent-color:#fb923c; width:16px; height:16px; }
+  .fbiq-contact { display:none; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
+  .fbiq-contact.fbiq-show { display:grid; }
+  @media (max-width:600px) { .fbiq-contact.fbiq-show { grid-template-columns:1fr; } }
+  .fbiq-submitrow { display:flex; align-items:center; gap:14px; margin-top:22px; }
+  .fbiq-msg { font-size:.85rem; color:#fca5a5; min-height:1.2em; }
+  .fbiq-ok { padding:32px 20px; text-align:center; }
+  .fbiq-ok .fbiq-check { font-size:2.6rem; color:#fbbf24; }
+  .fbiq-ok h2 { color:#fde047; margin:8px 0 6px; }
+  .fbiq-ok p { color:#b7c3dc; margin:0; }
+</style>
+</head>
+<body>
+<div class="spiq-app fbiq-app">
+  <header class="spiq-header">
+    <h1>Site Feedback</h1>
+    <p class="spiq-tag">Tell us what worked, what didn't. Takes about 30 seconds — completely optional.</p>
+  </header>
+
+  <section class="spiq-panel" id="fbiq-panel">
+    <h2>What did you like?</h2>
+    <div class="fbiq-chips" id="fbiq-liked"></div>
+    <div class="spiq-field-group">
+      <label for="fbiq-liked-notes">Anything else you liked? (optional)</label>
+      <textarea id="fbiq-liked-notes" maxlength="1000" placeholder="Optional — a sentence is plenty."></textarea>
+    </div>
+
+    <h2 style="margin-top:22px;">What was confusing or could be better?</h2>
+    <div class="spiq-field-group">
+      <label for="fbiq-improve">Your thoughts (optional)</label>
+      <textarea id="fbiq-improve" maxlength="2000" placeholder="Anything hard to find, slow, broken, or missing."></textarea>
+    </div>
+
+    <h2 style="margin-top:22px;">Overall rating</h2>
+    <div class="fbiq-stars" id="fbiq-stars" role="radiogroup" aria-label="Overall rating"></div>
+
+    <label class="fbiq-checkline">
+      <input type="checkbox" id="fbiq-optin">
+      I'd like to be contacted about my feedback
+    </label>
+
+    <div class="fbiq-contact" id="fbiq-contact">
+      <div>
+        <label for="fbiq-name">Name</label>
+        <input type="text" id="fbiq-name" autocomplete="name" maxlength="200">
+      </div>
+      <div>
+        <label for="fbiq-email">Email</label>
+        <input type="text" id="fbiq-email" autocomplete="email" maxlength="320">
+      </div>
+    </div>
+
+    <div class="fbiq-submitrow">
+      <button type="button" id="fbiq-submit" class="spiq-inline" style="background:linear-gradient(90deg,#f97316,#fb923c);color:#1a1200;border:none;border-radius:10px;padding:11px 22px;font-weight:700;font-size:.95rem;cursor:pointer;">Submit feedback</button>
+      <div class="fbiq-msg" id="fbiq-msg"></div>
+    </div>
+  </section>
+
+  <footer class="spiq-footer">Your feedback goes directly to Chris Nikolaenko. We only contact you if you check the box above.</footer>
+</div>
+
+<script src="feedback-app.js"></script>
+</body>
+</html>

@@ -303,6 +303,42 @@ export type Database = {
         }
         Relationships: []
       }
+      site_feedback: {
+        Row: {
+          contact_opt_in: boolean
+          created_at: string
+          email: string | null
+          id: string
+          improve_notes: string | null
+          liked: string[] | null
+          liked_notes: string | null
+          name: string | null
+          rating: number | null
+        }
+        Insert: {
+          contact_opt_in?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          improve_notes?: string | null
+          liked?: string[] | null
+          liked_notes?: string | null
+          name?: string | null
+          rating?: number | null
+        }
+        Update: {
+          contact_opt_in?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          improve_notes?: string | null
+          liked?: string[] | null
+          liked_notes?: string | null
+          name?: string | null
+          rating?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       agent_profiles_public: {
