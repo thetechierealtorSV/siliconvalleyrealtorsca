@@ -252,6 +252,7 @@
         onStatus: function (m) { var el = qs('spiq-3d-status'); if (el) el.textContent = m; }
       });
       state.threeReady = true;
+      if (state.dayData && window.SunPath3D.setDayPath) window.SunPath3D.setDayPath(state.dayData.samples);
       window.SunPath3D.setLocation(state.lat, state.lon).then(function () { updateSun(); });
       updateSun();
     } catch (e) {
