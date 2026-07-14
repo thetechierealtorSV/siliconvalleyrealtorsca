@@ -135,7 +135,10 @@
       },
       body: file
     }).then(function (r) {
-      if (!r.ok) return r.text().then(function (t) { throw new Error('Upload failed: ' + (t || r.status)); });
+      if (!r.ok) return r.text().then(function (t) {
+        try { console.error('[feedback] screenshot upload failed:', r.status, t); } catch (e) {}
+        throw new Error('Screenshot upload failed.');
+      });
       return 'feedback-attachments/' + path;
     });
   }
