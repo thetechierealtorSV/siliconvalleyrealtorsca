@@ -153,6 +153,9 @@ export function SideDrawer() {
               <button className="drawer-row" onClick={() => setTab('resources')}>
                 <BookOpen className="w-4 h-4" /><span>Resources</span><ChevronRight className="w-4 h-4 ml-auto opacity-60" />
               </button>
+              <button className="drawer-row" onClick={() => setTab('language')}>
+                <Globe className="w-4 h-4" /><span>Language</span><ChevronRight className="w-4 h-4 ml-auto opacity-60" />
+              </button>
               <a className="drawer-row" href="/feedback/" target="_blank" rel="noopener">
                 <MessageSquare className="w-4 h-4" /><span>Share feedback</span>
               </a>
@@ -242,6 +245,7 @@ export function SideDrawer() {
               </ul>
             </div>
           )}
+          {tab === 'language' && <LanguagePanel onBack={() => setTab('main')} />}
         </div>
       </aside>
 
