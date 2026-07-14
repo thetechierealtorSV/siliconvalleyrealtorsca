@@ -372,3 +372,48 @@ input[type="range"]::-moz-range-thumb {
 .spiq-3d-container canvas { display: block; width: 100%; height: 100%; }
 
 .spiq-3d-status { margin-top: 10px; min-height: 1.2em; }
+
+/* ===== Luxury palette overrides (Nikolaenko Estates alignment) ===== */
+.spiq-inline button,
+.spiq-shortcuts button,
+#spiq-geocode-btn,
+.spiq-viewtoggle button.spiq-active {
+  background: linear-gradient(90deg, #b8860b, #e8c684) !important;
+  color: #14110d !important;
+}
+.spiq-viewtoggle { border-color: rgba(184,134,11,0.4) !important; }
+.spiq-viewtoggle button { color: #c9bfae; }
+.spiq-searchbar input[type="text"] {
+  background: rgba(15,13,10,0.75) !important;
+  color: #f5f0ea !important;
+  border-color: rgba(184,134,11,0.35) !important;
+}
+.spiq-hint { color: #a89a80; }
+#spiq-canvas { background: #14110d; }
+.spiq-3d-container { background: #14110d; }
+.spiq-dot-path { background: #e8c684; }
+.spiq-dot-wall { background: #d4a94a; }
+.spiq-dot-now  { background: #ffffff; border-color: #14110d; }
+#spiq-score-value { color: #e8c684; font-family: 'Playfair Display', Georgia, serif; }
+.spiq-score-label { color: #c9bfae; }
+.spiq-components li { border-bottom-color: rgba(184,134,11,0.18); }
+.spiq-components b  { color: #e8c684; }
+.spiq-components i  { color: #a89a80; }
+.spiq-times div     { background: rgba(15,13,10,0.6); border: 1px solid rgba(184,134,11,0.15); }
+.spiq-times span    { color: #a89a80; }
+.spiq-times b       { color: #f5f0ea; }
+.spiq-note          { color: #a89a80; }
+.spiq-footer        { color: #7a6f5c; }
+.spiq-legend        { color: #c9bfae; }
+
+/* Floating Home button (in-widget, sits on top of iframe) */
+.spiq-home-link {
+  position: fixed; top: 16px; left: 16px; z-index: 400;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px;
+  background: linear-gradient(90deg, #b8860b, #e8c684);
+  color: #14110d; text-decoration: none;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+}
+.spiq-home-link:hover { filter: brightness(1.06); }
