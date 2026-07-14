@@ -315,28 +315,40 @@
     var d = sunDirection(elevationDeg, azimuthDeg);
     var sx = d.x * SUN_DIST, sy = d.y * SUN_DIST, sz = d.z * SUN_DIST;
 
+    // Keep sun visible even slightly below horizon so users always see where it is.
     if (S.sunMesh) {
       S.sunMesh.position.set(sx, sy, sz);
-      S.sunMesh.visible = elevationDeg > -2;
+      S.sunMesh.visible = elevationDeg > -6;
+      // Warm at horizon, brilliant white-yellow at noon
+      var warmMix = Math.max(0, Math.min(1, (elevationDeg + 6) / 40));
+      var color = new THREE.Color().lerpColors(new THREE.Color(0xff6b1a), new THREE.Color(0xfff2a8), warmMix);
+      S.sunMesh.material.color.copy(color);
     }
     if (S.sunGlowMesh) {
       S.sunGlowMesh.position.set(sx, sy, sz);
-      S.sunGlowMesh.visible = elevationDeg > -2;
-      // fade glow by altitude
+      S.sunGlowMesh.visible = elevationDeg > -6;
       var t = Math.max(0, Math.min(1, elevationDeg / 30));
-      S.sunGlowMesh.material.opacity = 0.15 + 0.35 * (1 - t);
+      S.sunGlowMesh.material.opacity = 0.35 + 0.45 * (1 - t);
+    }
+    if (S.sunGlowMesh2) {
+      S.sunGlowMesh2.position.set(sx, sy, sz);
+      S.sunGlowMesh2.visible = elevationDeg > -6;
+      S.sunGlowMesh2.material.opacity = 0.12 + 0.25 * (1 - Math.max(0, Math.min(1, elevationDeg / 30)));
     }
 
     if (elevationDeg <= 0) {
       S.sunLight.intensity = 0.0;
-      S.hemiLight.intensity = 0.25;
+      // Keep meaningful ambient/hemi so buildings never disappear into black.
+      S.hemiLight.intensity = 0.6;
+      if (S.ambient) S.ambient.intensity = 0.35;
     } else {
       S.sunLight.position.set(sx, sy, sz);
       S.sunLight.target.position.set(0, 0, 0);
       S.sunLight.target.updateMatrixWorld();
       var warm = Math.max(0, Math.min(1, elevationDeg / 25));
-      S.sunLight.intensity = 0.35 + 0.65 * Math.min(1, elevationDeg / 40);
-      S.hemiLight.intensity = 0.4 + 0.2 * warm;
+      S.sunLight.intensity = 0.5 + 0.7 * Math.min(1, elevationDeg / 40);
+      S.hemiLight.intensity = 0.55 + 0.25 * warm;
+      if (S.ambient) S.ambient.intensity = 0.28;
     }
   }
 
@@ -463,16 +475,21 @@
     S.subjectMesh = subjectBuilding();
     S.scene.add(S.subjectMesh);
 
-    // Visible sun sphere + soft glow halo
-    var sunGeo = new THREE.SphereGeometry(14, 32, 32);
+    // Visible sun sphere + two soft glow halos for a Redfin-style bright sun
+    var sunGeo = new THREE.SphereGeometry(28, 40, 40);
     var sunMat = new THREE.MeshBasicMaterial({ color: 0xffe27a });
     S.sunMesh = new THREE.Mesh(sunGeo, sunMat);
     S.scene.add(S.sunMesh);
 
-    var glowGeo = new THREE.SphereGeometry(26, 32, 32);
-    var glowMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.25, depthWrite: false });
+    var glowGeo = new THREE.SphereGeometry(48, 40, 40);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.4, depthWrite: false });
     S.sunGlowMesh = new THREE.Mesh(glowGeo, glowMat);
     S.scene.add(S.sunGlowMesh);
+
+    var glow2Geo = new THREE.SphereGeometry(85, 40, 40);
+    var glow2Mat = new THREE.MeshBasicMaterial({ color: 0xfde68a, transparent: true, opacity: 0.18, depthWrite: false });
+    S.sunGlowMesh2 = new THREE.Mesh(glow2Geo, glow2Mat);
+    S.scene.add(S.sunGlowMesh2);
 
     S.controls = makeControls(S.camera, S.renderer.domElement);
     window.addEventListener('resize', resize);
