@@ -357,6 +357,17 @@
     S.subjectMesh = subjectBuilding();
     S.scene.add(S.subjectMesh);
 
+    // Visible sun sphere + soft glow halo
+    var sunGeo = new THREE.SphereGeometry(14, 32, 32);
+    var sunMat = new THREE.MeshBasicMaterial({ color: 0xffe27a });
+    S.sunMesh = new THREE.Mesh(sunGeo, sunMat);
+    S.scene.add(S.sunMesh);
+
+    var glowGeo = new THREE.SphereGeometry(26, 32, 32);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.25, depthWrite: false });
+    S.sunGlowMesh = new THREE.Mesh(glowGeo, glowMat);
+    S.scene.add(S.sunGlowMesh);
+
     S.controls = makeControls(S.camera, S.renderer.domElement);
     window.addEventListener('resize', resize);
 
