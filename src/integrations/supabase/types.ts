@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_access_log: {
+        Row: {
+          action: string
+          actor: string | null
+          created_at: string
+          detail: Json | null
+          id: string
+          target_email: string | null
+        }
+        Insert: {
+          action: string
+          actor?: string | null
+          created_at?: string
+          detail?: Json | null
+          id?: string
+          target_email?: string | null
+        }
+        Update: {
+          action?: string
+          actor?: string | null
+          created_at?: string
+          detail?: Json | null
+          id?: string
+          target_email?: string | null
+        }
+        Relationships: []
+      }
       admins: {
         Row: {
           created_at: string
