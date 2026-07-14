@@ -91,6 +91,7 @@ export default function App() {
       <SocialRail />
       <SideDrawer />
       <Toaster position="top-center" richColors closeButton />
+      <ExitIntentPopup />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<PropertiesPage />} />
