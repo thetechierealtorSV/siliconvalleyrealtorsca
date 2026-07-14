@@ -76,6 +76,16 @@
       </div>
     </div>
 
+    <div class="spiq-field-group" style="margin-top:18px;">
+      <label for="fbiq-screenshot">Attach a screenshot (optional, max 5MB)</label>
+      <input type="file" id="fbiq-screenshot" accept="image/png,image/jpeg,image/webp,image/gif" style="color:#b7c3dc;">
+    </div>
+
+    <!-- Honeypot: real users leave this empty; bots fill it in. -->
+    <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+      <label>Website<input type="text" id="fbiq-hp" tabindex="-1" autocomplete="off"></label>
+    </div>
+
     <div class="fbiq-submitrow">
       <button type="button" id="fbiq-submit" class="spiq-inline" style="background:linear-gradient(90deg,#f97316,#fb923c);color:#1a1200;border:none;border-radius:10px;padding:11px 22px;font-weight:700;font-size:.95rem;cursor:pointer;">Submit feedback</button>
       <div class="fbiq-msg" id="fbiq-msg"></div>
