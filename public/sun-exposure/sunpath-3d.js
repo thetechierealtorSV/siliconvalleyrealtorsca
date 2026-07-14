@@ -398,7 +398,23 @@
     S.onStatus = opts.onStatus || null;
 
     S.scene = new THREE.Scene();
-    S.scene.background = new THREE.Color(0x0b1730);
+    // Soft sky gradient backdrop (canvas texture) instead of a flat void.
+    (function () {
+      var cvs = document.createElement('canvas');
+      cvs.width = 4; cvs.height = 256;
+      var ctx = cvs.getContext('2d');
+      var g = ctx.createLinearGradient(0, 0, 0, 256);
+      g.addColorStop(0.00, '#4b7bd6');
+      g.addColorStop(0.55, '#a9c4ec');
+      g.addColorStop(0.85, '#fde7c1');
+      g.addColorStop(1.00, '#f5b478');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 4, 256);
+      var tex = new THREE.CanvasTexture(cvs);
+      tex.magFilter = THREE.LinearFilter;
+      tex.minFilter = THREE.LinearFilter;
+      S.scene.background = tex;
+    })();
 
     var w = container.clientWidth || 600, h = container.clientHeight || 460;
     S.camera = new THREE.PerspectiveCamera(50, w / h, 1, 5000);
@@ -433,7 +449,7 @@
 
     var groundGeo = new THREE.PlaneGeometry(1600, 1600);
     groundGeo.rotateX(-Math.PI / 2);
-    var groundMat = new THREE.MeshStandardMaterial({ color: 0x3f4a63, roughness: 0.95, metalness: 0.0 });
+    var groundMat = new THREE.MeshStandardMaterial({ color: 0x5c7250, roughness: 0.98, metalness: 0.0 });
     S.ground = new THREE.Mesh(groundGeo, groundMat);
     S.ground.receiveShadow = true;
     S.scene.add(S.ground);
