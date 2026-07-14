@@ -40,16 +40,26 @@ const PARENT_SEARCH = 'https://www.nikolaenkopropertygroup.com/search/'
  */
 export function IDXSearch() {
   const [city, setCity] = useState('')
+  const [cityText, setCityText] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
+  const [minPriceText, setMinPriceText] = useState('')
+  const [maxPriceText, setMaxPriceText] = useState('')
   const [beds, setBeds] = useState('')
+  const [bedsText, setBedsText] = useState('')
+
+  const stripNum = (s: string) => s.replace(/[^\d]/g, '')
 
   const buildMoxiUrl = () => {
+    const finalCity = (cityText.trim() || city).trim()
+    const finalMin = stripNum(minPriceText) || minPrice
+    const finalMax = stripNum(maxPriceText) || maxPrice
+    const finalBeds = stripNum(bedsText) || beds
     const parts: string[] = []
-    if (city) parts.push('city:' + city.replace(/\s+/g, '-'))
-    if (minPrice) parts.push('min-price:' + minPrice)
-    if (maxPrice) parts.push('max-price:' + maxPrice)
-    if (beds) parts.push('min-beds:' + beds.replace('+', ''))
+    if (finalCity) parts.push('city:' + finalCity.replace(/\s+/g, '-'))
+    if (finalMin) parts.push('min-price:' + finalMin)
+    if (finalMax) parts.push('max-price:' + finalMax)
+    if (finalBeds) parts.push('min-beds:' + finalBeds.replace('+', ''))
     const hash = parts.length ? '#!/' + parts.join('/') : '#!/defaultsearch:true'
     return PARENT_SEARCH + hash
   }
