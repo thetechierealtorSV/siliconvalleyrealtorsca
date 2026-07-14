@@ -14,15 +14,15 @@
  * with tabbed sections.
  */
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Menu, X, Sun, Moon, Accessibility, HelpCircle, MessageSquare,
-  BookOpen, Minus, Plus, RotateCcw, ChevronRight,
+  BookOpen, Minus, Plus, RotateCcw, ChevronRight, Globe,
 } from 'lucide-react'
 
 type Theme = 'light' | 'dark'
-type Tab = 'main' | 'a11y' | 'resources' | 'guide'
+type Tab = 'main' | 'a11y' | 'resources' | 'guide' | 'language'
 
 type A11yState = {
   fontScale: number
