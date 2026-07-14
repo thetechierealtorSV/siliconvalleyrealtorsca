@@ -74,7 +74,7 @@ export const ORG_JSON_LD = {
   '@type': 'RealEstateAgent',
   name: 'Nikolaenko Property Group',
   description:
-    'Luxury real estate brokerage serving all of Silicon Valley — Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
+    'Luxury real estate brokerage serving all of Silicon Valley, Palo Alto, Atherton, Los Altos Hills, Menlo Park, Woodside, Saratoga, Los Gatos, Cupertino, Mountain View, Sunnyvale.',
   areaServed: [
     'Palo Alto', 'Atherton', 'Los Altos Hills', 'Menlo Park', 'Woodside',
     'Saratoga', 'Los Gatos', 'Cupertino', 'Mountain View', 'Sunnyvale',

@@ -104,7 +104,7 @@ export function Portfolio() {
             Featured Properties
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            From iconic mid-century homes to sprawling estates — handpicked luxury across Silicon Valley's most coveted neighborhoods.
+            From iconic mid-century homes to sprawling estates, handpicked luxury across Silicon Valley's most coveted neighborhoods.
           </p>
         </div>
 

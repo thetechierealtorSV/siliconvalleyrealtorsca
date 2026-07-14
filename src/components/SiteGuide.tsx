@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * SiteGuide — hybrid on-site guidance.
+ * SiteGuide, hybrid on-site guidance.
  *
  * Recommendation over per-button hover tooltips:
  *  - Hover tooltips don't work on touch devices and can crowd the UI.
@@ -26,12 +26,12 @@ const STEPS: Step[] = [
   {
     target: '#hero',
     title: 'Welcome to Nikolaenko Property Group',
-    body: 'Your concierge for luxury homes across the Peninsula, South Bay, and beyond. This quick tour shows you around — 30 seconds.',
+    body: 'Your concierge for luxury homes across the Peninsula, South Bay, and beyond. This quick tour shows you around, 30 seconds.',
   },
   {
     target: '#mls-search',
     title: 'Search live MLS listings',
-    body: 'Filter by city, price, beds, and baths. Results are pulled live from the MLS — click any listing for details.',
+    body: 'Filter by city, price, beds, and baths. Results are pulled live from the MLS, click any listing for details.',
   },
   {
     target: '#video-tour-section',
@@ -67,7 +67,7 @@ const TIPS: { section: string; items: { label: string; hint: string }[] }[] = [
   {
     section: 'Finding a home',
     items: [
-      { label: 'MLS Search', hint: 'Live results. Combine filters — city + price + beds — for the best matches.' },
+      { label: 'MLS Search', hint: 'Live results. Combine filters, city + price + beds, for the best matches.' },
       { label: 'Off-market listings', hint: 'Private inventory. Verify your email to unlock addresses and full details.' },
       { label: 'Saved searches', hint: 'Save any search to get email alerts when matching homes hit the market.' },
     ],
@@ -75,7 +75,7 @@ const TIPS: { section: string; items: { label: string; hint: string }[] }[] = [
   {
     section: 'Getting in touch',
     items: [
-      { label: 'Call / WhatsApp', hint: '(650) 640-9777 — fastest way to reach us for urgent showings or offers.' },
+      { label: 'Call / WhatsApp', hint: '(650) 640-9777, fastest way to reach us for urgent showings or offers.' },
       { label: 'Contact form', hint: 'Best for detailed briefs. Include neighborhoods and price range for a faster reply.' },
       { label: 'AI chat (bottom-right)', hint: 'Answers common questions about listings, process, and neighborhoods 24/7.' },
     ],

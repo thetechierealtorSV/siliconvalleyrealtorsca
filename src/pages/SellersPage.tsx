@@ -12,7 +12,7 @@ import { toast } from 'sonner'
 
 const conciergeServices = [
   { icon: Palette, title: 'Interior Staging', description: 'Professional staging to showcase your home\'s full potential. Furniture, art, and styling tailored to your property.' },
-  { icon: Hammer, title: 'Pre-Sale Repairs', description: 'Coordinate necessary repairs — plumbing, electrical, roofing, and cosmetic fixes — before listing.' },
+  { icon: Hammer, title: 'Pre-Sale Repairs', description: 'Coordinate necessary repairs, plumbing, electrical, roofing, and cosmetic fixes, before listing.' },
   { icon: TreePine, title: 'Landscaping & Curb Appeal', description: 'Transform your exterior with professional landscaping, power washing, and curb appeal enhancements.' },
   { icon: Camera, title: 'Photography & Video', description: 'Cinematic photography, drone footage, and virtual tour production to market your home at the highest level.' },
   { icon: BarChart3, title: 'Market Analysis (CMA)', description: 'Comprehensive comparative market analysis to price your home accurately and competitively.' },
@@ -20,8 +20,8 @@ const conciergeServices = [
 ]
 
 const toolkitItems = [
-  { title: 'Pre-Listing Checklist', items: ['Declutter & depersonalize each room', 'Deep clean — carpets, windows, grout', 'Touch up paint — neutral tones preferred', 'Fix leaky faucets, squeaky doors, running toilets', 'Replace burnt-out bulbs, upgrade to warm LED', 'Clean or replace HVAC filters', 'Organize closets — buyers will open them', 'Store excess furniture to maximize space'] },
-  { title: 'Timeline — What to Expect', items: ['Week 1–2: Home assessment & repair plan', 'Week 2–3: Repairs, staging, photography', 'Week 3–4: MLS listing goes live', 'Week 4–5: Open houses & showings', 'Week 5–8: Offers, negotiation, inspections', 'Week 8–10: Escrow, appraisal, closing'] },
+  { title: 'Pre-Listing Checklist', items: ['Declutter & depersonalize each room', 'Deep clean, carpets, windows, grout', 'Touch up paint, neutral tones preferred', 'Fix leaky faucets, squeaky doors, running toilets', 'Replace burnt-out bulbs, upgrade to warm LED', 'Clean or replace HVAC filters', 'Organize closets, buyers will open them', 'Store excess furniture to maximize space'] },
+  { title: 'Timeline, What to Expect', items: ['Week 1–2: Home assessment & repair plan', 'Week 2–3: Repairs, staging, photography', 'Week 3–4: MLS listing goes live', 'Week 4–5: Open houses & showings', 'Week 5–8: Offers, negotiation, inspections', 'Week 8–10: Escrow, appraisal, closing'] },
   { title: 'Documents You\'ll Need', items: ['Property title & deed', 'Mortgage payoff statement', 'Property tax records (last 2 years)', 'HOA documents (if applicable)', 'Disclosure forms (TDS, SPQ, NHD)', 'Permit records for any renovations', 'Utility bills (last 12 months)', 'Home warranty information'] },
 ]
 
@@ -107,7 +107,7 @@ export default function SellersPage() {
               Sell with Confidence
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              From preparation to closing — our concierge program, home toolkit, and expert team ensure your property achieves maximum value.
+              From preparation to closing, our concierge program, home toolkit, and expert team ensure your property achieves maximum value.
             </p>
           </motion.div>
 
@@ -283,7 +283,7 @@ export default function SellersPage() {
                 </div>
                 <h2 className="font-display text-3xl font-bold mb-3">Concierge Program</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Choose the services you need — no packages, no bundles. Pay only for what adds value to your sale. 
+                  Choose the services you need, no packages, no bundles. Pay only for what adds value to your sale. 
                   Every service is designed to maximize your home's appeal and final selling price.
                 </p>
               </div>
@@ -321,7 +321,7 @@ export default function SellersPage() {
               <div className="text-center mb-10">
                 <h2 className="font-display text-3xl font-bold mb-3">Seller's Home Toolkit</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Everything you need to prepare your home for market — checklists, timelines, and the documents you'll want ready.
+                  Everything you need to prepare your home for market, checklists, timelines, and the documents you'll want ready.
                 </p>
               </div>
 

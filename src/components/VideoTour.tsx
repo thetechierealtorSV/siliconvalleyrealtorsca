@@ -16,13 +16,13 @@ const extraTours = [
   {
     src: livingroomPanin.url,
     title: 'Living Room · Slow Pan-In',
-    blurb: 'A cinematic glide into a Palo Alto living room — light sectional, oak floors, garden views through the picture window.',
+    blurb: 'A cinematic glide into a Palo Alto living room, light sectional, oak floors, garden views through the picture window.',
     aria: 'Slow pan into a Palo Alto living room',
   },
   {
     src: kitchenPanin.url,
     title: 'Chef\u2019s Kitchen · Slow Pan-In',
-    blurb: 'Marble island, pendant lighting, and shaker cabinetry — a steady pan into the heart of the home.',
+    blurb: 'Marble island, pendant lighting, and shaker cabinetry, a steady pan into the heart of the home.',
     aria: 'Slow pan into a Palo Alto chef\u2019s kitchen',
   },
   {
@@ -34,31 +34,31 @@ const extraTours = [
   {
     src: backyardPan.url,
     title: 'Backyard · Pool & Patio',
-    blurb: 'A slow sideways drift across the rear yard — rectangular pool, flagstone patio, and the home\u2019s glass-walled façade.',
+    blurb: 'A slow sideways drift across the rear yard, rectangular pool, flagstone patio, and the home\u2019s glass-walled façade.',
     aria: 'Slow pan across a Palo Alto luxury backyard',
   },
   {
     src: shippingContainerHome.url,
     title: 'Bonus · Shipping Container Home',
-    blurb: 'A modern Palo Alto residence built from stacked Corten steel containers — cantilevered upper level and floor-to-ceiling glass.',
+    blurb: 'A modern Palo Alto residence built from stacked Corten steel containers, cantilevered upper level and floor-to-ceiling glass.',
     aria: 'Exterior pan of a modern shipping container home',
   },
   {
     src: luxuryKitchenJapanese.url,
     title: 'Luxury Kitchen · Japanese Bamboo',
-    blurb: 'A slow pan across a serene modern kitchen — light Japanese bamboo cabinets, vibrant green backsplash, stainless steel appliances, and a white granite waterfall island bathed in natural light.',
+    blurb: 'A slow pan across a serene modern kitchen, light Japanese bamboo cabinets, vibrant green backsplash, stainless steel appliances, and a white granite waterfall island bathed in natural light.',
     aria: 'Slow pan across a luxury modern kitchen with Japanese bamboo cabinets and green backsplash',
   },
   {
     src: luxuryKitchenSteampunk.url,
     title: 'Luxury Kitchen · Industrial Steampunk',
-    blurb: 'A slow pan across a bold industrial kitchen — polished concrete floors, matte black steel cabinetry, oil-rubbed bronze pendant lights, and raw exposed beams with high-end finishes.',
+    blurb: 'A slow pan across a bold industrial kitchen, polished concrete floors, matte black steel cabinetry, oil-rubbed bronze pendant lights, and raw exposed beams with high-end finishes.',
     aria: 'Slow pan across a luxury industrial kitchen with concrete floors and bronze pendant lights',
   },
   {
     src: concreteModernHome.url,
     title: 'Bonus · Concrete Modern',
-    blurb: 'A long, low rectangular volume in board-formed concrete — glass walls, flat roof, and minimalist landscaping.',
+    blurb: 'A long, low rectangular volume in board-formed concrete, glass walls, flat roof, and minimalist landscaping.',
     aria: 'Exterior pan of a rectangular concrete modern home',
   },
 ]
@@ -75,7 +75,7 @@ export function VideoTour() {
             Video Walkthroughs
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Experience properties through cinematic video tours — immersive walkthroughs that capture light, space, and atmosphere before you ever step foot inside.
+            Experience properties through cinematic video tours, immersive walkthroughs that capture light, space, and atmosphere before you ever step foot inside.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export function VideoTour() {
               Interior & Aerial · Original Cut
             </h3>
             <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              The original interior and drone aerial edit — kept alongside the refreshed version.
+              The original interior and drone aerial edit, kept alongside the refreshed version.
             </p>
             <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
               <video src={interiorOriginal.url} controls muted loop playsInline preload="metadata" className="w-full aspect-video object-cover" aria-label="Interior and aerial cinematic walkthrough" />
@@ -99,7 +99,7 @@ export function VideoTour() {
               Estate Showcase · Original Cut
             </h3>
             <p className="text-muted-foreground text-center mb-6 max-w-xl mx-auto">
-              Our original cinematic exterior walkthrough — preserved for clients who loved the first edit.
+              Our original cinematic exterior walkthrough, preserved for clients who loved the first edit.
             </p>
             <div className="rounded-2xl overflow-hidden elevated-shadow clean-border">
               <video src={walkthroughOriginal.url} controls muted loop playsInline preload="metadata" className="w-full aspect-video object-cover" aria-label="Estate exterior cinematic walkthrough" />

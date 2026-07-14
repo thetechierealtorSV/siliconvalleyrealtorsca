@@ -1,5 +1,5 @@
 /*
- * Nikolaenko Property Group — "What Matters to You?" preferences widget.
+ * Nikolaenko Property Group, "What Matters to You?" preferences widget.
  * Self-contained vanilla JS. Mount by placing:
  *   <div id="nkpg-preferences"></div>
  *   <script src="/shared/preferences-widget.js"></script>
@@ -84,7 +84,7 @@
       try {
         var p = window.parent && window.parent.__NKPG_SUPABASE__;
         if (p && p.url && p.key) return resolve(p);
-      } catch (e) { /* cross-origin — ignore */ }
+      } catch (e) { /* cross-origin, ignore */ }
       // Final fallback: /shared/supabase-config.json (optional)
       fetch('/shared/supabase-config.json', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : null; })

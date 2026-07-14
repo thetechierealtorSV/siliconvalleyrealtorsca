@@ -8,17 +8,17 @@ const tours = [
   {
     videoId: '',
     title: 'Palo Alto Estate · Full Home Tour',
-    blurb: 'A guided walkthrough of a signature Palo Alto estate — coming soon to our YouTube channel.',
+    blurb: 'A guided walkthrough of a signature Palo Alto estate, coming soon to our YouTube channel.',
   },
   {
     videoId: '',
     title: 'Atherton Modern · Architectural Tour',
-    blurb: 'An in-depth architectural tour of a contemporary Atherton residence — filming in progress.',
+    blurb: 'An in-depth architectural tour of a contemporary Atherton residence, filming in progress.',
   },
   {
     videoId: '',
     title: 'Los Altos Hills · Grounds & Interiors',
-    blurb: 'Sweeping grounds, pool, and interior finishes on a Los Altos Hills property — coming soon.',
+    blurb: 'Sweeping grounds, pool, and interior finishes on a Los Altos Hills property, coming soon.',
   },
 ]
 

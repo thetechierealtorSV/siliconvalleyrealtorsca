@@ -116,7 +116,7 @@ export default function AdminFeedbackPage() {
             <div key={r.id} className="rounded-xl border border-border p-4 bg-card">
               <div className="flex flex-wrap justify-between text-sm text-muted-foreground gap-2">
                 <span>{new Date(r.created_at).toLocaleString()}</span>
-                <span>{r.rating ? '★'.repeat(r.rating) : '—'}</span>
+                <span>{r.rating ? '★'.repeat(r.rating) : ', '}</span>
               </div>
               {r.liked && r.liked.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1.5">

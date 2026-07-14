@@ -49,7 +49,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="About Chris Nikolaenko · Silicon Valley Luxury Agent"
-        description="Meet Chris Nikolaenko — senior listing agent and buyer's agent at Nikolaenko Property Group, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
+        description="Meet Chris Nikolaenko, senior listing agent and buyer's agent at Nikolaenko Property Group, representing luxury real estate across Palo Alto, Atherton, Menlo Park, and the greater Bay Area."
         canonical={`${SITE_URL}/about/chris`}
         image={chrisPhoto.url}
         jsonLd={[AGENT_JSON_LD, breadcrumbJsonLd([
@@ -98,7 +98,7 @@ export default function AboutPage() {
                 Los Altos Hills, Woodside, and the greater Bay Area.
               </p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                Every listing is treated as a story worth telling — with drone cinematography,
+                Every listing is treated as a story worth telling, with drone cinematography,
                 twilight photography, custom video tours, and a marketing plan built around the
                 exact buyer pool for each home. On the buyer side, Chris pairs deep local
                 inventory knowledge with an off-market network that surfaces homes long before

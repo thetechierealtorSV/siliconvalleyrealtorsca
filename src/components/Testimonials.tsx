@@ -48,7 +48,7 @@ export function Testimonials() {
                 className="text-sm font-medium tracking-[0.15em] uppercase"
                 style={{ color: '#b8860b' }}
               >
-                — {t.author}
+               , {t.author}
               </figcaption>
             </figure>
           ))}

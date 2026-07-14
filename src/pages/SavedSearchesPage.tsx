@@ -101,7 +101,7 @@ export default function SavedSearchesPage() {
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-medium">Free Alerts</p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Saved Searches & Price Drops</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Tell us what you're looking for. We'll email matching homes the moment they list — and alert you the second a price drops.
+              Tell us what you're looking for. We'll email matching homes the moment they list, and alert you the second a price drops.
             </p>
           </header>
 
@@ -187,7 +187,7 @@ export default function SavedSearchesPage() {
               </label>
             </div>
 
-            <input value={form.label} onChange={(e) => setForm({ ...form, label: e.target.value })} placeholder="Label this search (optional) — e.g. 'Atherton 5br'" maxLength={200} className="w-full px-3 py-2.5 rounded-md border border-border bg-input-background text-sm" />
+            <input value={form.label} onChange={(e) => setForm({ ...form, label: e.target.value })} placeholder="Label this search (optional), e.g. 'Atherton 5br'" maxLength={200} className="w-full px-3 py-2.5 rounded-md border border-border bg-input-background text-sm" />
 
             <button
               type="submit"

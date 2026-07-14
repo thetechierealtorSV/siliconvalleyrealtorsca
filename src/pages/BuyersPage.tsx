@@ -340,7 +340,7 @@ export default function BuyersPage() {
                 </div>
                 <p className="text-muted-foreground mb-8">
                   We've built relationships with top lending professionals across Silicon Valley. 
-                  Whether you need a conventional loan, jumbo financing, or specialized programs — we'll match you with the right partner.
+                  Whether you need a conventional loan, jumbo financing, or specialized programs, we'll match you with the right partner.
                 </p>
                 <div className="space-y-4">
                   {loanOfficers.map((officer, i) => (
@@ -359,7 +359,7 @@ export default function BuyersPage() {
                 <div className="mt-8 p-6 rounded-xl bg-accent-gold/5 border border-accent-gold/20">
                   <p className="text-sm text-foreground font-medium mb-2">Need a personal recommendation?</p>
                   <p className="text-sm text-muted-foreground">
-                    Fill out the pre-approval form or use our chat concierge — we'll match you with the best loan officer for your specific situation.
+                    Fill out the pre-approval form or use our chat concierge, we'll match you with the best loan officer for your specific situation.
                   </p>
                 </div>
               </div>

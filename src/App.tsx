@@ -40,9 +40,9 @@ function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: 'What areas does Nikolaenko Property Group serve?', acceptedAnswer: { '@type': 'Answer', text: 'Luxury real estate across Silicon Valley — Palo Alto, Cupertino, Los Gatos, Saratoga, Atherton, Menlo Park, Los Altos Hills, Woodside, Mountain View, and Sunnyvale, plus the wider San Francisco Bay Area.' } },
+      { '@type': 'Question', name: 'What areas does Nikolaenko Property Group serve?', acceptedAnswer: { '@type': 'Answer', text: 'Luxury real estate across Silicon Valley, Palo Alto, Cupertino, Los Gatos, Saratoga, Atherton, Menlo Park, Los Altos Hills, Woodside, Mountain View, and Sunnyvale, plus the wider San Francisco Bay Area.' } },
       { '@type': 'Question', name: 'Do you offer Feng Shui and Vastu analysis for listings?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our free Feng Shui IQ tool evaluates any home using Bagua Compass-school Feng Shui (Li, Kan, Zhen, Xun, Kun, Dui, Qian, Gen) and Vastu Shastra directional principles including Ishanya (NE), Brahmasthan (center), and sha chi (poison arrow) checks.' } },
-      { '@type': 'Question', name: 'Can I check a property\u2019s sunlight and facing direction?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — SunPath IQ simulates sun path, shadows, and Daylight Score in true solar time for any address. Enter an address to see sunrise, solar noon, sunset, peak sun altitude, and how the facade orientation performs.' } },
+      { '@type': 'Question', name: 'Can I check a property\u2019s sunlight and facing direction?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, SunPath IQ simulates sun path, shadows, and Daylight Score in true solar time for any address. Enter an address to see sunrise, solar noon, sunset, peak sun altitude, and how the facade orientation performs.' } },
       { '@type': 'Question', name: 'How do I search MLS listings in Silicon Valley?', acceptedAnswer: { '@type': 'Answer', text: 'Use the MLS search on the homepage to filter live listings by city, price, and beds across every Silicon Valley city.' } },
     ],
   }

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-// Approximate Bay Area pins on a 600x600 SVG canvas (stylized — not geographically exact)
+// Approximate Bay Area pins on a 600x600 SVG canvas (stylized, not geographically exact)
 const cities = [
   { name: 'San Francisco', x: 150, y: 170 },
   { name: 'Marin', x: 120, y: 100 },
@@ -33,7 +33,7 @@ export function CoverageMap() {
             Silicon Valley & the Bay Area
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From the Peninsula to the East Bay, San Francisco to the South Bay — deep coverage across every corridor that matters.
+            From the Peninsula to the East Bay, San Francisco to the South Bay, deep coverage across every corridor that matters.
           </p>
         </div>
 
