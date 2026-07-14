@@ -602,12 +602,31 @@
   function setLocation(lat, lon) {
     S.lat = lat; S.lon = lon;
     status('Loading neighborhood buildings...');
-    renderBuildings([]); // clear
-    return fetchBuildings(lat, lon, 220)
+    renderBuildings([]);
+    // Reset subject to detailed stub while we wait; will be swapped if OSM has a footprint.
+    swapSubject(subjectBuilding());
+    return fetchBuildings(lat, lon, 240)
       .then(function (data) {
         var buildings = parseOverpass(data);
-        if (buildings.length === 0) { renderBuildings(mockNeighborhood()); status('No OSM buildings here; showing approximate massing.'); }
-        else { renderBuildings(buildings); status(buildings.length + ' neighboring buildings loaded from OpenStreetMap.'); }
+        if (buildings.length === 0) {
+          renderBuildings(mockNeighborhood());
+          status('No OSM building here yet; showing approximate massing for this address.');
+          return;
+        }
+        var subjectIdx = pickSubject(buildings);
+        if (subjectIdx >= 0) {
+          var subj = buildings.splice(subjectIdx, 1)[0];
+          var c = ringCentroid(subj.ring);
+          // Recenter so subject sits at origin.
+          for (var i = 0; i < subj.ring.length; i++) { subj.ring[i].x -= c.x; subj.ring[i].z -= c.z; }
+          recenterBuildings(buildings, c.x, c.z);
+          swapSubject(subjectFromFootprint(subj.ring, subj.height));
+          renderBuildings(buildings);
+          status('Rendering this address: 1 subject building + ' + buildings.length + ' neighbors from OpenStreetMap.');
+        } else {
+          renderBuildings(buildings);
+          status(buildings.length + ' neighboring buildings loaded from OpenStreetMap.');
+        }
       })
       .catch(function () {
         renderBuildings(mockNeighborhood());
