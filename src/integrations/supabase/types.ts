@@ -305,6 +305,7 @@ export type Database = {
       }
       site_feedback: {
         Row: {
+          attachment_url: string | null
           contact_opt_in: boolean
           created_at: string
           email: string | null
@@ -313,9 +314,12 @@ export type Database = {
           liked: string[] | null
           liked_notes: string | null
           name: string | null
+          page_url: string | null
           rating: number | null
+          user_agent: string | null
         }
         Insert: {
+          attachment_url?: string | null
           contact_opt_in?: boolean
           created_at?: string
           email?: string | null
@@ -324,9 +328,12 @@ export type Database = {
           liked?: string[] | null
           liked_notes?: string | null
           name?: string | null
+          page_url?: string | null
           rating?: number | null
+          user_agent?: string | null
         }
         Update: {
+          attachment_url?: string | null
           contact_opt_in?: boolean
           created_at?: string
           email?: string | null
@@ -335,7 +342,9 @@ export type Database = {
           liked?: string[] | null
           liked_notes?: string | null
           name?: string | null
+          page_url?: string | null
           rating?: number | null
+          user_agent?: string | null
         }
         Relationships: []
       }
