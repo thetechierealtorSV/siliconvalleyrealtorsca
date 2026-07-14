@@ -35,12 +35,22 @@ import { GoogleTranslate } from './components/GoogleTranslate'
 import { PreferencesWidget } from './components/PreferencesWidget'
 
 function HomePage() {
+  const homeFaqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'What areas does Nikolaenko Property Group serve?', acceptedAnswer: { '@type': 'Answer', text: 'Luxury real estate across Silicon Valley — Palo Alto, Cupertino, Los Gatos, Saratoga, Atherton, Menlo Park, Los Altos Hills, Woodside, Mountain View, and Sunnyvale, plus the wider San Francisco Bay Area.' } },
+      { '@type': 'Question', name: 'Do you offer Feng Shui and Vastu analysis for listings?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our free Feng Shui IQ tool evaluates any home using Bagua Compass-school Feng Shui (Li, Kan, Zhen, Xun, Kun, Dui, Qian, Gen) and Vastu Shastra directional principles including Ishanya (NE), Brahmasthan (center), and sha chi (poison arrow) checks.' } },
+      { '@type': 'Question', name: 'Can I check a property\u2019s sunlight and facing direction?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — SunPath IQ simulates sun path, shadows, and Daylight Score in true solar time for any address. Enter an address to see sunrise, solar noon, sunset, peak sun altitude, and how the facade orientation performs.' } },
+      { '@type': 'Question', name: 'How do I search MLS listings in Silicon Valley?', acceptedAnswer: { '@type': 'Answer', text: 'Use the MLS search on the homepage to filter live listings by city, price, and beds across every Silicon Valley city.' } },
+    ],
+  }
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Nikolaenko Property Group · Luxury Homes"
-        description="Luxury real estate across Silicon Valley — Palo Alto, Atherton, Menlo Park, Los Altos Hills, Woodside and beyond. Live MLS search, buyer representation, seller concierge."
-        jsonLd={ORG_JSON_LD}
+        title="Nikolaenko Property Group · Luxury Silicon Valley Homes, Feng Shui & Sunlight Analysis"
+        description="Luxury Silicon Valley real estate in Palo Alto, Cupertino, Los Gatos, Saratoga, Atherton, and Menlo Park. Live MLS search plus free Feng Shui (Bagua & Vastu Shastra) and sunlight-analysis tools for every home."
+        jsonLd={[ORG_JSON_LD, homeFaqJsonLd]}
       />
       <main id="main-content" className="relative" role="main" tabIndex={-1}>
         <section id="hero" aria-label="Hero">
