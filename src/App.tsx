@@ -33,6 +33,7 @@ import { landingPages } from './data/landingData'
 // GoogleTranslate is now embedded inside SideDrawer's Language tab
 import { PreferencesWidget } from './components/PreferencesWidget'
 import { SideDrawer } from './components/SideDrawer'
+import { ExitIntentPopup } from './components/ExitIntentPopup'
 
 function HomePage() {
   const homeFaqJsonLd = {
