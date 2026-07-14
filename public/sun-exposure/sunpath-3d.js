@@ -31,9 +31,12 @@
 
   var METERS_PER_DEG_LAT = 111320;
 
+  var SUN_DIST = 500;
+
   var S = {
     scene: null, camera: null, renderer: null, sunLight: null, hemiLight: null, ambient: null,
     ground: null, buildingsGroup: null, subjectMesh: null, compassGroup: null,
+    sunMesh: null, sunGlowMesh: null, sunPathLine: null,
     container: null, raf: null, controls: null,
     lat: 37.4419, lon: -122.1430,
     onStatus: null
@@ -206,28 +209,69 @@
     ], h, true);
   }
 
-  // ---- position the sun light from solar elevation/azimuth ------------------
-  function setSunFromSolar(elevationDeg, azimuthDeg) {
-    var dist = 500;
+  // ---- direction vector (unit) from ground toward sun for given el/az -------
+  function sunDirection(elevationDeg, azimuthDeg) {
     var el = elevationDeg * Math.PI / 180;
-    var az = azimuthDeg * Math.PI / 180; // compass, 0=N,90=E,180=S,270=W
-    // Direction FROM ground TO sun:
+    var az = azimuthDeg * Math.PI / 180;
     var y = Math.sin(el);
     var horiz = Math.cos(el);
-    var x = horiz * Math.sin(az);   // east component
-    var z = -horiz * Math.cos(az);  // north = -Z
+    var x = horiz * Math.sin(az);
+    var z = -horiz * Math.cos(az);
+    return { x: x, y: y, z: z };
+  }
+
+  // ---- position the sun light + visible sun sphere from solar el/az ---------
+  function setSunFromSolar(elevationDeg, azimuthDeg) {
+    var d = sunDirection(elevationDeg, azimuthDeg);
+    var sx = d.x * SUN_DIST, sy = d.y * SUN_DIST, sz = d.z * SUN_DIST;
+
+    if (S.sunMesh) {
+      S.sunMesh.position.set(sx, sy, sz);
+      S.sunMesh.visible = elevationDeg > -2;
+    }
+    if (S.sunGlowMesh) {
+      S.sunGlowMesh.position.set(sx, sy, sz);
+      S.sunGlowMesh.visible = elevationDeg > -2;
+      // fade glow by altitude
+      var t = Math.max(0, Math.min(1, elevationDeg / 30));
+      S.sunGlowMesh.material.opacity = 0.15 + 0.35 * (1 - t);
+    }
+
     if (elevationDeg <= 0) {
-      // Sun below horizon: dim, no meaningful shadows (night/twilight).
       S.sunLight.intensity = 0.0;
       S.hemiLight.intensity = 0.25;
     } else {
-      S.sunLight.position.set(x * dist, y * dist, z * dist);
+      S.sunLight.position.set(sx, sy, sz);
       S.sunLight.target.position.set(0, 0, 0);
       S.sunLight.target.updateMatrixWorld();
       var warm = Math.max(0, Math.min(1, elevationDeg / 25));
       S.sunLight.intensity = 0.35 + 0.65 * Math.min(1, elevationDeg / 40);
       S.hemiLight.intensity = 0.4 + 0.2 * warm;
     }
+  }
+
+  // ---- build/refresh the sun-path arc from a day's samples -----------------
+  function setDayPath(samples) {
+    if (!S.scene || !samples || !samples.length) return;
+    var pts = [];
+    var pathDist = SUN_DIST * 0.98;
+    for (var i = 0; i < samples.length; i++) {
+      var s = samples[i];
+      if (s.elevation < 0) continue;
+      var d = sunDirection(s.elevation, s.azimuth);
+      pts.push(new THREE.Vector3(d.x * pathDist, d.y * pathDist, d.z * pathDist));
+    }
+    if (S.sunPathLine) {
+      S.scene.remove(S.sunPathLine);
+      if (S.sunPathLine.geometry) S.sunPathLine.geometry.dispose();
+      if (S.sunPathLine.material) S.sunPathLine.material.dispose();
+      S.sunPathLine = null;
+    }
+    if (pts.length < 2) return;
+    var geo = new THREE.BufferGeometry().setFromPoints(pts);
+    var mat = new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.85 });
+    S.sunPathLine = new THREE.Line(geo, mat);
+    S.scene.add(S.sunPathLine);
   }
 
   function compass() {
@@ -313,6 +357,17 @@
     S.subjectMesh = subjectBuilding();
     S.scene.add(S.subjectMesh);
 
+    // Visible sun sphere + soft glow halo
+    var sunGeo = new THREE.SphereGeometry(14, 32, 32);
+    var sunMat = new THREE.MeshBasicMaterial({ color: 0xffe27a });
+    S.sunMesh = new THREE.Mesh(sunGeo, sunMat);
+    S.scene.add(S.sunMesh);
+
+    var glowGeo = new THREE.SphereGeometry(26, 32, 32);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.25, depthWrite: false });
+    S.sunGlowMesh = new THREE.Mesh(glowGeo, glowMat);
+    S.scene.add(S.sunGlowMesh);
+
     S.controls = makeControls(S.camera, S.renderer.domElement);
     window.addEventListener('resize', resize);
 
@@ -347,6 +402,7 @@
     init: init,
     setLocation: setLocation,
     setSunFromSolar: setSunFromSolar,
+    setDayPath: setDayPath,
     resize: resize,
     dispose: dispose,
     _state: S

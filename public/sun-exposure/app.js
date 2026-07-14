@@ -30,17 +30,46 @@
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
   function toDateInputValue(d) { return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate()); }
 
+  // 16-point compass: azimuth degrees -> compass code + human name
+  var COMPASS_16 = [
+    ['N', 'North'], ['NNE', 'North-Northeast'], ['NE', 'Northeast'], ['ENE', 'East-Northeast'],
+    ['E', 'East'], ['ESE', 'East-Southeast'], ['SE', 'Southeast'], ['SSE', 'South-Southeast'],
+    ['S', 'South'], ['SSW', 'South-Southwest'], ['SW', 'Southwest'], ['WSW', 'West-Southwest'],
+    ['W', 'West'], ['WNW', 'West-Northwest'], ['NW', 'Northwest'], ['NNW', 'North-Northwest']
+  ];
+  function azimuthToCompass(azDeg) {
+    var a = ((azDeg % 360) + 360) % 360;
+    var idx = Math.round(a / 22.5) % 16;
+    return { code: COMPASS_16[idx][0], name: COMPASS_16[idx][1] };
+  }
+
   // ---------- shared compute ----------
   function recomputeDay() {
     state.dayData = sunPathDay(state.date, state.lat, state.lon);
     var sc = daylightScore(state.dayData.dayLengthHours, state.dayData.noonElevation, state.dayData.noonAzimuth, state.orientation);
     renderScore(sc, state.dayData);
+    if (state.threeReady && window.SunPath3D && window.SunPath3D.setDayPath) {
+      window.SunPath3D.setDayPath(state.dayData.samples);
+    }
   }
 
   function currentSample() {
     if (!state.dayData) return null;
     var idx = Math.max(0, Math.min(state.dayData.samples.length - 1, Math.round(state.timeMin / 2)));
     return state.dayData.samples[idx];
+  }
+
+  function ensureCompassReadout() {
+    var el = document.getElementById('spiq-compass-readout');
+    if (el) return el;
+    var scoreCircle = document.querySelector('.spiq-score-circle');
+    if (!scoreCircle || !scoreCircle.parentNode) return null;
+    el = document.createElement('div');
+    el.id = 'spiq-compass-readout';
+    el.setAttribute('aria-live', 'polite');
+    el.style.cssText = 'margin:10px 0 4px;font-size:14px;line-height:1.35;color:#e2e8f0;text-align:center;';
+    scoreCircle.parentNode.insertBefore(el, scoreCircle.nextSibling);
+    return el;
   }
 
   function renderScore(sc, dayData) {
@@ -60,6 +89,17 @@
     var text = solarMinutesToHHMM(state.timeMin) + ' solar time  -  elevation ' + s.elevation.toFixed(1) + ' deg, azimuth ' + s.azimuth.toFixed(1) + ' deg';
     if (s.elevation < 0) text += ' (below horizon)';
     qs('spiq-time-readout').textContent = text;
+
+    var readout = ensureCompassReadout();
+    if (readout) {
+      var c = azimuthToCompass(s.azimuth);
+      if (s.elevation < 0) {
+        readout.innerHTML = '🌙 Sun is below the horizon (bearing ' + c.name + ', ' + s.azimuth.toFixed(0) + '° / ' + c.code + ')';
+      } else {
+        readout.innerHTML = '☀️ Sun is in the <strong>' + c.name + '</strong> (' + c.code + '), '
+          + s.elevation.toFixed(0) + '° above horizon';
+      }
+    }
   }
 
   // ---------- push current sun to whichever view is active ----------
@@ -212,6 +252,7 @@
         onStatus: function (m) { var el = qs('spiq-3d-status'); if (el) el.textContent = m; }
       });
       state.threeReady = true;
+      if (state.dayData && window.SunPath3D.setDayPath) window.SunPath3D.setDayPath(state.dayData.samples);
       window.SunPath3D.setLocation(state.lat, state.lon).then(function () { updateSun(); });
       updateSun();
     } catch (e) {

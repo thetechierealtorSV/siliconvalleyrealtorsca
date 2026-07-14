@@ -1,0 +1,53 @@
+name: Policy checks
+
+on:
+  push:
+    paths:
+      - 'supabase/migrations/**'
+      - 'scripts/rls-regression.mjs'
+      - '.github/workflows/policy-checks.yml'
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'scripts/rls-regression.mjs'
+  workflow_dispatch:
+
+jobs:
+  static-policy-lint:
+    name: Static SQL policy lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every new public table has GRANT + ENABLE RLS + POLICY
+        shell: bash
+        run: |
+          set -euo pipefail
+          fail=0
+          shopt -s nullglob
+          for f in supabase/migrations/*.sql; do
+            if grep -Eiq 'create[[:space:]]+table[[:space:]]+public\.' "$f"; then
+              grep -Eiq 'grant[[:space:]].+on[[:space:]]+public\.' "$f" \
+                || { echo "::error file=$f::CREATE TABLE public.* without matching GRANT"; fail=1; }
+              grep -Eiq 'enable[[:space:]]+row[[:space:]]+level[[:space:]]+security' "$f" \
+                || { echo "::error file=$f::CREATE TABLE public.* without ENABLE RLS"; fail=1; }
+              grep -Eiq 'create[[:space:]]+policy' "$f" \
+                || { echo "::error file=$f::CREATE TABLE public.* without CREATE POLICY"; fail=1; }
+            fi
+            if grep -Eiq 'with[[:space:]]+check[[:space:]]*\([[:space:]]*true[[:space:]]*\)' "$f"; then
+              echo "::warning file=$f::WITH CHECK (true) — validate row shape before shipping"
+            fi
+          done
+          exit $fail
+
+  rls-regression:
+    name: Live RLS regression (anon key only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm i --no-save @supabase/supabase-js@2
+      - run: node scripts/rls-regression.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
