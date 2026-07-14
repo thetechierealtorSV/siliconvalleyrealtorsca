@@ -90,17 +90,19 @@
         'apikey': cfg.key,
         'Authorization': 'Bearer ' + cfg.key,
         'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Prefer': 'return=representation'
       },
       body: JSON.stringify(row)
     }).then(function (r) {
       if (!r.ok) return r.text().then(function (t) { throw new Error(t || ('HTTP ' + r.status)); });
-      return true;
+      return r.json().then(function (arr) { return Array.isArray(arr) && arr[0] ? arr[0] : null; });
     });
   }
 
-  function notify(cfg, row) {
-    // Fire-and-forget — never block the user on this.
+  function notify(cfg, feedbackId) {
+    if (!feedbackId) return;
+    // Fire-and-forget — never block the user on this. Server re-reads the row by id;
+    // no user-supplied text is trusted for the SMS body.
     try {
       fetch(cfg.url + '/functions/v1/notify-feedback', {
         method: 'POST',
@@ -109,7 +111,7 @@
           'Authorization': 'Bearer ' + cfg.key,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(row)
+        body: JSON.stringify({ feedback_id: feedbackId })
       }).catch(function (e) { console.warn('notify-feedback failed:', e); });
     } catch (e) { console.warn('notify-feedback threw:', e); }
   }
