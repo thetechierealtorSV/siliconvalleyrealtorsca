@@ -177,6 +177,99 @@
   }
 
   // ---- render neighboring buildings (or a mock block if data unavailable) ---
+  // Recenter every ring so the subject building sits at origin (0,0), preserving relative geometry.
+  function recenterBuildings(buildings, cx, cz) {
+    for (var i = 0; i < buildings.length; i++) {
+      var r = buildings[i].ring;
+      for (var j = 0; j < r.length; j++) { r[j].x -= cx; r[j].z -= cz; }
+    }
+  }
+  function ringCentroid(ring) {
+    var sx = 0, sz = 0;
+    for (var i = 0; i < ring.length; i++) { sx += ring[i].x; sz += ring[i].z; }
+    return { x: sx / ring.length, z: sz / ring.length };
+  }
+  function pointInRing(px, pz, ring) {
+    var inside = false;
+    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      var xi = ring[i].x, zi = ring[i].z, xj = ring[j].x, zj = ring[j].z;
+      var intersect = ((zi > pz) !== (zj > pz)) && (px < (xj - xi) * (pz - zi) / ((zj - zi) || 1e-9) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  // Find the OSM building that best represents the queried address: a footprint
+  // containing origin, or the closest centroid within 45 m.
+  function pickSubject(buildings) {
+    var best = -1, bestDist = Infinity;
+    for (var i = 0; i < buildings.length; i++) {
+      var r = buildings[i].ring;
+      if (pointInRing(0, 0, r)) return i;
+      var c = ringCentroid(r);
+      var d = Math.hypot(c.x, c.z);
+      if (d < bestDist) { bestDist = d; best = i; }
+    }
+    return bestDist <= 45 ? best : -1;
+  }
+
+  // Build a realistic house from a real footprint: extruded walls + pitched gable roof.
+  function subjectFromFootprint(ring, heightHint) {
+    var group = new THREE.Group();
+    var wallH = Math.max(4.5, Math.min(9, heightHint || 6.4));
+    var wallMat = new THREE.MeshStandardMaterial({ color: 0xe7d4b5, roughness: 0.82, metalness: 0.03 });
+    var roofMat = new THREE.MeshStandardMaterial({ color: 0x6b3a2b, roughness: 0.7 });
+    var trimMat = new THREE.MeshStandardMaterial({ color: 0xfaf6ef, roughness: 0.65 });
+
+    var shape = new THREE.Shape();
+    for (var i = 0; i < ring.length; i++) {
+      if (i === 0) shape.moveTo(ring[i].x, ring[i].z); else shape.lineTo(ring[i].x, ring[i].z);
+    }
+    var geo = new THREE.ExtrudeGeometry(shape, { depth: wallH, bevelEnabled: true, bevelThickness: 0.4, bevelSize: 0.4, bevelSegments: 2 });
+    geo.rotateX(-Math.PI / 2);
+    geo.translate(0, wallH, 0);
+    var walls = new THREE.Mesh(geo, wallMat);
+    walls.castShadow = true; walls.receiveShadow = true;
+    group.add(walls);
+
+    // Compute bbox for a simple pitched roof aligned to the longer axis.
+    var minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+    for (var k = 0; k < ring.length; k++) {
+      if (ring[k].x < minX) minX = ring[k].x; if (ring[k].x > maxX) maxX = ring[k].x;
+      if (ring[k].z < minZ) minZ = ring[k].z; if (ring[k].z > maxZ) maxZ = ring[k].z;
+    }
+    var bw = maxX - minX, bd = maxZ - minZ;
+    var ridgeAlongZ = bd >= bw;
+    var halfSpan = (ridgeAlongZ ? bw : bd) / 2 + 0.4;
+    var ridgeLen = (ridgeAlongZ ? bd : bw) + 0.8;
+    var roofH = Math.min(4.2, halfSpan * 0.55);
+    var roofShape = new THREE.Shape();
+    roofShape.moveTo(-halfSpan, 0);
+    roofShape.lineTo(halfSpan, 0);
+    roofShape.lineTo(0, roofH);
+    roofShape.lineTo(-halfSpan, 0);
+    var roofGeo = new THREE.ExtrudeGeometry(roofShape, { depth: ridgeLen, bevelEnabled: false });
+    var roof = new THREE.Mesh(roofGeo, roofMat);
+    if (ridgeAlongZ) {
+      roof.position.set((minX + maxX) / 2, wallH, minZ - 0.4);
+    } else {
+      roof.rotation.y = Math.PI / 2;
+      roof.position.set(maxX + 0.4, wallH, (minZ + maxZ) / 2);
+    }
+    roof.castShadow = true; roof.receiveShadow = true;
+    group.add(roof);
+
+    // Foundation trim ring
+    var foundGeo = new THREE.ExtrudeGeometry(shape, { depth: 0.6, bevelEnabled: false });
+    foundGeo.rotateX(-Math.PI / 2);
+    foundGeo.translate(0, 0.6, 0);
+    var found = new THREE.Mesh(foundGeo, trimMat);
+    found.receiveShadow = true;
+    group.add(found);
+
+    return group;
+  }
+
   function renderBuildings(buildings) {
     while (S.buildingsGroup.children.length) S.buildingsGroup.remove(S.buildingsGroup.children[0]);
     for (var i = 0; i < buildings.length; i++) {
@@ -184,6 +277,12 @@
       var mesh = buildingMesh(b.ring, b.height, false);
       S.buildingsGroup.add(mesh);
     }
+  }
+
+  function swapSubject(newMesh) {
+    if (S.subjectMesh) { S.scene.remove(S.subjectMesh); }
+    S.subjectMesh = newMesh;
+    S.scene.add(S.subjectMesh);
   }
 
   function mockNeighborhood() {
