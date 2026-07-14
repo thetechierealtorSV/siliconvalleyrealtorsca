@@ -314,19 +314,22 @@
   function setSunFromSolar(elevationDeg, azimuthDeg) {
     var d = sunDirection(elevationDeg, azimuthDeg);
     var sx = d.x * SUN_DIST, sy = d.y * SUN_DIST, sz = d.z * SUN_DIST;
+    // Keep the visible sun above the horizon (never sink into the ground).
+    // Uses a smooth floor so sunrise/sunset gracefully skim the horizon line.
+    var minY = SUN_DIST * 0.035;
+    var visualY = sy < minY ? minY : sy;
 
-    // Keep sun visible even slightly below horizon so users always see where it is.
     if (S.sunMesh) {
-      S.sunMesh.position.set(sx, sy, sz);
-      S.sunMesh.visible = elevationDeg > -6;
+      S.sunMesh.position.set(sx, visualY, sz);
+      S.sunMesh.visible = elevationDeg > -8;
       // Warm at horizon, brilliant white-yellow at noon
       var warmMix = Math.max(0, Math.min(1, (elevationDeg + 6) / 40));
       var color = new THREE.Color().lerpColors(new THREE.Color(0xff6b1a), new THREE.Color(0xfff2a8), warmMix);
       S.sunMesh.material.color.copy(color);
     }
     if (S.sunGlowMesh) {
-      S.sunGlowMesh.position.set(sx, sy, sz);
-      S.sunGlowMesh.visible = elevationDeg > -6;
+      S.sunGlowMesh.position.set(sx, visualY, sz);
+      S.sunGlowMesh.visible = elevationDeg > -8;
       var t = Math.max(0, Math.min(1, elevationDeg / 30));
       S.sunGlowMesh.material.opacity = 0.35 + 0.45 * (1 - t);
     }
