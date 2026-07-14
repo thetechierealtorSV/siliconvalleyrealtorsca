@@ -219,7 +219,8 @@
         submitting = false;
         btn.disabled = false;
         btn.textContent = 'Submit feedback';
-        msg.textContent = 'Sorry \u2014 could not submit. ' + (err && err.message ? err.message : '');
+        try { if (err) console.error('[feedback] submit failed:', err); } catch (e) {}
+        msg.textContent = 'Sorry \u2014 we could not submit your feedback. Please try again.';
       });
     });
   }
