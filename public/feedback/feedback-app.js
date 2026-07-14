@@ -124,6 +124,29 @@
       '</div>';
   }
 
+  var RATE_KEY = 'nkpg_fb_last_submit';
+  var RATE_MS = 60 * 1000;
+
+  function uploadScreenshot(cfg, file) {
+    if (!file) return Promise.resolve(null);
+    if (file.size > 5 * 1024 * 1024) return Promise.reject(new Error('Screenshot must be under 5MB.'));
+    var ext = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '') || 'png';
+    var path = 'fb_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.' + ext;
+    return fetch(cfg.url + '/storage/v1/object/feedback-attachments/' + path, {
+      method: 'POST',
+      headers: {
+        'apikey': cfg.key,
+        'Authorization': 'Bearer ' + cfg.key,
+        'Content-Type': file.type || 'application/octet-stream',
+        'x-upsert': 'false'
+      },
+      body: file
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error('Upload failed: ' + (t || r.status)); });
+      return 'feedback-attachments/' + path;
+    });
+  }
+
   function wireSubmit() {
     var btn = $('fbiq-submit');
     var msg = $('fbiq-msg');
@@ -133,6 +156,19 @@
       if (submitting) return;
       msg.textContent = '';
 
+      // Honeypot — silently accept but discard.
+      var hp = $('fbiq-hp');
+      if (hp && hp.value) { showThankYou(); return; }
+
+      // Rate limit
+      try {
+        var last = parseInt(localStorage.getItem(RATE_KEY) || '0', 10);
+        if (last && Date.now() - last < RATE_MS) {
+          msg.textContent = 'Please wait a moment before submitting again.';
+          return;
+        }
+      } catch (e) { /* storage disabled */ }
+
       var liked = Object.keys(state.liked).filter(function (k) { return state.liked[k]; });
       var liked_notes = $('fbiq-liked-notes').value.trim();
       var improve_notes = $('fbiq-improve').value.trim();
@@ -140,35 +176,49 @@
       var opt = $('fbiq-optin').checked;
       var name = $('fbiq-name').value.trim();
       var email = $('fbiq-email').value.trim();
+      var fileInput = $('fbiq-screenshot');
+      var file = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
 
       if (liked.length === 0 && !liked_notes && !improve_notes && !rating) {
         msg.textContent = 'Please share at least one thing before submitting.';
         return;
       }
-      if (opt && email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        msg.textContent = 'Please enter a valid email or uncheck the contact box.';
+      if (liked_notes.length > 1000 || improve_notes.length > 2000) {
+        msg.textContent = 'Please shorten your notes and try again.';
         return;
+      }
+      if (opt) {
+        if (!name) { msg.textContent = 'Please enter your name (or uncheck the contact box).'; return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          msg.textContent = 'Please enter a valid email or uncheck the contact box.';
+          return;
+        }
       }
 
       submitting = true;
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';
 
-      var row = {
-        liked: liked.length ? liked : null,
-        liked_notes: liked_notes || null,
-        improve_notes: improve_notes || null,
-        rating: rating,
-        contact_opt_in: !!opt,
-        name: opt ? (name || null) : null,
-        email: opt ? (email || null) : null
-      };
-
       getSupabaseConfig().then(function (cfg) {
         if (!cfg) throw new Error('Configuration unavailable.');
-        return insertFeedback(cfg, row).then(function () {
-          if (opt) notify(cfg, row);
-          showThankYou();
+        return uploadScreenshot(cfg, file).then(function (attachment_url) {
+          var row = {
+            liked: liked.length ? liked : null,
+            liked_notes: liked_notes || null,
+            improve_notes: improve_notes || null,
+            rating: rating,
+            contact_opt_in: !!opt,
+            name: opt ? name : null,
+            email: opt ? email : null,
+            attachment_url: attachment_url,
+            page_url: (function () { try { return document.referrer || window.location.href; } catch (e) { return null; } })(),
+            user_agent: navigator.userAgent ? String(navigator.userAgent).slice(0, 500) : null
+          };
+          return insertFeedback(cfg, row).then(function () {
+            try { localStorage.setItem(RATE_KEY, String(Date.now())); } catch (e) {}
+            if (opt) notify(cfg, row);
+            showThankYou();
+          });
         });
       }).catch(function (err) {
         submitting = false;
