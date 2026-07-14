@@ -30,7 +30,7 @@ import AdminFeedbackPage from './pages/AdminFeedbackPage'
 import LandingPage from './pages/LandingPage'
 import ResourcesPage from './pages/ResourcesPage'
 import { landingPages } from './data/landingData'
-import { GoogleTranslate } from './components/GoogleTranslate'
+// GoogleTranslate is now embedded inside SideDrawer's Language tab
 import { PreferencesWidget } from './components/PreferencesWidget'
 import { SideDrawer } from './components/SideDrawer'
 
@@ -86,7 +86,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <GoogleTranslate />
+      {/* Language lives inside SideDrawer */}
       <SocialRail />
       <SideDrawer />
       <Toaster position="top-center" richColors closeButton />

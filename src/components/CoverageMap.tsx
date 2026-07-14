@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import landmarksImg from '@/assets/bay-area-landmarks.jpg'
+
 
 // Approximate Bay Area pins on a 600x600 SVG canvas (stylized, not geographically exact)
 const cities = [
@@ -38,90 +40,27 @@ export function CoverageMap() {
         </div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden border border-border bg-card aspect-[1/1] elevated-shadow">
-            <svg viewBox="0 0 600 600" className="w-full h-full" role="img" aria-label="Stylized Bay Area coverage map">
-              <defs>
-                <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="hsl(var(--accent-gold))" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="hsl(var(--accent-gold))" stopOpacity="0" />
-                </radialGradient>
-                <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--muted))" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity="0.7" />
-                </linearGradient>
-                <linearGradient id="bayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--accent-blue))" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="hsl(var(--accent-blue))" stopOpacity="0.15" />
-                </linearGradient>
-              </defs>
-
-              {/* Subtle background */}
-              <rect width="600" height="600" fill="hsl(var(--background))" />
-
-              {/* Land mass (stylized peninsula + east bay) */}
-              <path
-                d="M80 80 L 200 60 L 240 140 L 230 220 L 280 280 L 320 360 L 380 440 L 480 470 L 540 540 L 540 580 L 60 580 L 60 200 Z"
-                fill="url(#landGrad)"
-                stroke="hsl(var(--border))"
-                strokeWidth="1.5"
-              />
-
-              {/* Bay (water) */}
-              <path
-                d="M240 140 L 280 200 L 270 280 L 320 360 L 380 440 L 480 470 L 500 460 L 460 400 L 360 320 L 320 240 L 290 160 Z"
-                fill="url(#bayGrad)"
-                stroke="hsl(var(--accent-blue))"
-                strokeWidth="1"
-                opacity="0.9"
-              />
-
-              {/* Dashed corridor (101 / 280 idea) */}
-              <path
-                d="M150 200 C 220 260, 280 320, 340 380 S 430 460, 470 480"
-                fill="none"
-                stroke="hsl(var(--accent-gold))"
-                strokeWidth="1.5"
-                strokeDasharray="5 7"
-                opacity="0.7"
-              />
-
-              {cities.map((c, i) => (
-                <g key={c.name}>
-                  <motion.circle
-                    cx={c.x}
-                    cy={c.y}
-                    r={18}
-                    fill="url(#pinGlow)"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                  />
-                  <motion.circle
-                    cx={c.x}
-                    cy={c.y}
-                    r={5}
-                    fill="hsl(var(--accent-gold))"
-                    stroke="hsl(var(--background))"
-                    strokeWidth="1.5"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05, type: 'spring', stiffness: 220 }}
-                  />
-                  <text
-                    x={c.x + 11}
-                    y={c.y + 4}
-                    fontSize="11"
-                    fill="hsl(var(--foreground))"
-                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
-                  >
-                    {c.name}
-                  </text>
-                </g>
-              ))}
-            </svg>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative rounded-2xl overflow-hidden border border-border bg-card elevated-shadow"
+          >
+            <img
+              src={landmarksImg}
+              alt="Bay Area landmarks collage, Golden Gate Bridge, Palace of Fine Arts, Salesforce Tower, Chase Center, Stanford University, Levi's Stadium, and Apple Park"
+              width={1920}
+              height={912}
+              loading="lazy"
+              className="w-full h-auto object-cover block"
+            />
+            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/25 to-transparent">
+              <p className="text-[10px] tracking-[0.28em] uppercase text-white/85 font-medium">
+                Golden Gate · Palace of Fine Arts · Salesforce Tower · Chase Center · Stanford · Levi's Stadium · Apple Park
+              </p>
+            </div>
+          </motion.div>
 
           <div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">

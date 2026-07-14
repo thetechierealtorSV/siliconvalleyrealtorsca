@@ -50,11 +50,13 @@ export function IDXSearch() {
         <select
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="flex-1 bg-transparent text-sm text-foreground focus:outline-none"
+          className="flex-1 bg-background text-sm text-foreground focus:outline-none"
           aria-label="City"
         >
-          <option value="">Any Silicon Valley city</option>
-          {cities.map((c) => <option key={c} value={c}>{c}</option>)}
+          <option value="" className="bg-background text-foreground">Any Silicon Valley city</option>
+          {cities.map((c) => (
+            <option key={c} value={c} className="bg-background text-foreground">{c}</option>
+          ))}
         </select>
       </label>
 

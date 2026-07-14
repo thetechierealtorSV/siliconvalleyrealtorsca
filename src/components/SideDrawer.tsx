@@ -14,15 +14,15 @@
  * with tabbed sections.
  */
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Menu, X, Sun, Moon, Accessibility, HelpCircle, MessageSquare,
-  BookOpen, Minus, Plus, RotateCcw, ChevronRight,
+  BookOpen, Minus, Plus, RotateCcw, ChevronRight, Globe,
 } from 'lucide-react'
 
 type Theme = 'light' | 'dark'
-type Tab = 'main' | 'a11y' | 'resources' | 'guide'
+type Tab = 'main' | 'a11y' | 'resources' | 'guide' | 'language'
 
 type A11yState = {
   fontScale: number
@@ -153,6 +153,9 @@ export function SideDrawer() {
               <button className="drawer-row" onClick={() => setTab('resources')}>
                 <BookOpen className="w-4 h-4" /><span>Resources</span><ChevronRight className="w-4 h-4 ml-auto opacity-60" />
               </button>
+              <button className="drawer-row" onClick={() => setTab('language')}>
+                <Globe className="w-4 h-4" /><span>Language</span><ChevronRight className="w-4 h-4 ml-auto opacity-60" />
+              </button>
               <a className="drawer-row" href="/feedback/" target="_blank" rel="noopener">
                 <MessageSquare className="w-4 h-4" /><span>Share feedback</span>
               </a>
@@ -242,6 +245,7 @@ export function SideDrawer() {
               </ul>
             </div>
           )}
+          {tab === 'language' && <LanguagePanel onBack={() => setTab('main')} />}
         </div>
       </aside>
 
@@ -256,3 +260,58 @@ export function SideDrawer() {
 }
 
 export default SideDrawer
+
+const INCLUDED_LANGS = 'en,zh-CN,zh-TW,es,ko,ja,hi,vi,ru,fr,de,pt,ar,fa,tl,pa'
+
+declare global {
+  interface Window {
+    googleTranslateElementInit?: () => void
+    google?: any
+  }
+}
+
+function LanguagePanel({ onBack }: { onBack: () => void }) {
+  const mountRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const initGT = () => {
+      if (!window.google?.translate || !mountRef.current) return
+      // Clear any prior render to allow re-init inside the drawer
+      mountRef.current.innerHTML = '<div id="google_translate_element"></div>'
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: INCLUDED_LANGS,
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        'google_translate_element',
+      )
+    }
+
+    window.googleTranslateElementInit = initGT
+
+    if (window.google?.translate) {
+      initGT()
+    } else if (!document.getElementById('google-translate-script')) {
+      const s = document.createElement('script')
+      s.id = 'google-translate-script'
+      s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+      s.async = true
+      document.body.appendChild(s)
+    }
+  }, [])
+
+  return (
+    <div className="p-4">
+      <button onClick={onBack} className="text-xs text-muted-foreground mb-3">‹ Back</button>
+      <h3 className="font-display text-base font-semibold mb-3">Language</h3>
+      <p className="text-xs text-muted-foreground mb-3">
+        Choose a language to translate this site. Translations are provided by Google Translate and may not be exact.
+      </p>
+      <div ref={mountRef} className="rounded-md border border-border p-3 bg-background">
+        <div id="google_translate_element" />
+      </div>
+    </div>
+  )
+}
