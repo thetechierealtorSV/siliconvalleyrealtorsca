@@ -202,11 +202,101 @@
   }
 
   function subjectBuilding() {
-    // Represent the subject lot as a modest house footprint at the center.
-    var w = 12, d = 10, h = 7;
-    return buildingMesh([
-      { x: -w, z: -d }, { x: w, z: -d }, { x: w, z: d }, { x: -w, z: d }
-    ], h, true);
+    // A detailed low-poly single-family home: siding walls, pitched gable roof,
+    // window & door insets, subtle trim. All original geometry, no textures.
+    var group = new THREE.Group();
+    var W = 12, D = 10, wallH = 6.2;
+
+    var wallMat = new THREE.MeshStandardMaterial({ color: 0xe7d4b5, roughness: 0.85, metalness: 0.02 });
+    var trimMat = new THREE.MeshStandardMaterial({ color: 0xfaf6ef, roughness: 0.7 });
+    var roofMat = new THREE.MeshStandardMaterial({ color: 0x6b3a2b, roughness: 0.75, metalness: 0.05 });
+    var doorMat = new THREE.MeshStandardMaterial({ color: 0x0f1a2e, roughness: 0.5, metalness: 0.15 });
+    var glassMat = new THREE.MeshStandardMaterial({ color: 0x8fb8d8, roughness: 0.25, metalness: 0.35, emissive: 0x1a2a3a, emissiveIntensity: 0.15 });
+
+    // Walls (box)
+    var wallGeo = new THREE.BoxGeometry(W * 2, wallH, D * 2);
+    var walls = new THREE.Mesh(wallGeo, wallMat);
+    walls.position.y = wallH / 2;
+    walls.castShadow = true; walls.receiveShadow = true;
+    group.add(walls);
+
+    // Foundation trim
+    var foundGeo = new THREE.BoxGeometry(W * 2 + 0.4, 0.6, D * 2 + 0.4);
+    var found = new THREE.Mesh(foundGeo, trimMat);
+    found.position.y = 0.3;
+    found.castShadow = true; found.receiveShadow = true;
+    group.add(found);
+
+    // Pitched gable roof (triangular prism via ExtrudeGeometry)
+    var roofShape = new THREE.Shape();
+    var rW = W + 0.6, rH = 3.6;
+    roofShape.moveTo(-rW, 0);
+    roofShape.lineTo(rW, 0);
+    roofShape.lineTo(0, rH);
+    roofShape.lineTo(-rW, 0);
+    var roofGeo = new THREE.ExtrudeGeometry(roofShape, { depth: D * 2 + 1.2, bevelEnabled: false });
+    var roof = new THREE.Mesh(roofGeo, roofMat);
+    roof.rotation.y = 0; // ridge runs along Z
+    roof.position.set(0, wallH, -(D + 0.6));
+    roof.castShadow = true; roof.receiveShadow = true;
+    group.add(roof);
+
+    // Front door (south face, +Z side)
+    var doorGeo = new THREE.BoxGeometry(1.4, 2.6, 0.12);
+    var door = new THREE.Mesh(doorGeo, doorMat);
+    door.position.set(0, 1.3, D + 0.06);
+    door.castShadow = true;
+    group.add(door);
+
+    // Door frame trim
+    var doorFrameGeo = new THREE.BoxGeometry(1.7, 2.9, 0.18);
+    var doorFrame = new THREE.Mesh(doorFrameGeo, trimMat);
+    doorFrame.position.set(0, 1.45, D + 0.02);
+    group.add(doorFrame);
+    doorFrame.add(door); // door in front of frame visually; but keep group flat — simpler: keep separate. Revert:
+    doorFrame.remove(door);
+    group.add(door);
+
+    // Windows on all four facades
+    var winW = 1.6, winH = 1.3, winY = 3.4;
+    var addWindow = function (x, y, z, rotY) {
+      var frameGeo = new THREE.BoxGeometry(winW + 0.35, winH + 0.35, 0.18);
+      var frame = new THREE.Mesh(frameGeo, trimMat);
+      frame.position.set(x, y, z);
+      frame.rotation.y = rotY;
+      group.add(frame);
+      var paneGeo = new THREE.BoxGeometry(winW, winH, 0.06);
+      var pane = new THREE.Mesh(paneGeo, glassMat);
+      pane.position.set(x, y, z);
+      pane.rotation.y = rotY;
+      // nudge pane slightly outward along facade normal
+      var nx = Math.sin(rotY), nz = Math.cos(rotY);
+      pane.position.x += nx * 0.05;
+      pane.position.z += nz * 0.05;
+      group.add(pane);
+    };
+    // South facade (+Z)
+    addWindow(-4.5, winY, D + 0.03, 0);
+    addWindow( 4.5, winY, D + 0.03, 0);
+    // North facade (-Z)
+    addWindow(-4.5, winY, -D - 0.03, Math.PI);
+    addWindow( 4.5, winY, -D - 0.03, Math.PI);
+    // East facade (+X)
+    addWindow(W + 0.03, winY, -3.5, Math.PI / 2);
+    addWindow(W + 0.03, winY,  3.5, Math.PI / 2);
+    // West facade (-X)
+    addWindow(-W - 0.03, winY, -3.5, -Math.PI / 2);
+    addWindow(-W - 0.03, winY,  3.5, -Math.PI / 2);
+
+    // Soft contact shadow disc under the house (subtle darkening)
+    var shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28, depthWrite: false });
+    var shadowGeo = new THREE.CircleGeometry(Math.max(W, D) * 1.6, 48);
+    var contact = new THREE.Mesh(shadowGeo, shadowMat);
+    contact.rotation.x = -Math.PI / 2;
+    contact.position.y = 0.05;
+    group.add(contact);
+
+    return group;
   }
 
   // ---- direction vector (unit) from ground toward sun for given el/az -------
