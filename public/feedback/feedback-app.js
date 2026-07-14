@@ -83,37 +83,28 @@
     });
   }
 
-  function insertFeedback(cfg, row) {
-    return fetch(cfg.url + '/rest/v1/site_feedback', {
+  function submitFeedback(cfg, row) {
+    // Post to the edge function, which validates + inserts server-side and (if
+    // opted in) sends the owner SMS using the just-inserted row's own data.
+    return fetch(cfg.url + '/functions/v1/notify-feedback', {
       method: 'POST',
       headers: {
         'apikey': cfg.key,
         'Authorization': 'Bearer ' + cfg.key,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(row)
     }).then(function (r) {
-      if (!r.ok) return r.text().then(function (t) { throw new Error(t || ('HTTP ' + r.status)); });
-      return r.json().then(function (arr) { return Array.isArray(arr) && arr[0] ? arr[0] : null; });
+      return r.json().then(function (j) {
+        if (!r.ok || !j || j.ok === false) {
+          throw new Error((j && j.error) || ('HTTP ' + r.status));
+        }
+        return j;
+      }, function () {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return { ok: true };
+      });
     });
-  }
-
-  function notify(cfg, feedbackId) {
-    if (!feedbackId) return;
-    // Fire-and-forget — never block the user on this. Server re-reads the row by id;
-    // no user-supplied text is trusted for the SMS body.
-    try {
-      fetch(cfg.url + '/functions/v1/notify-feedback', {
-        method: 'POST',
-        headers: {
-          'apikey': cfg.key,
-          'Authorization': 'Bearer ' + cfg.key,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ feedback_id: feedbackId })
-      }).catch(function (e) { console.warn('notify-feedback failed:', e); });
-    } catch (e) { console.warn('notify-feedback threw:', e); }
   }
 
   function showThankYou() {
