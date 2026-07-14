@@ -6,6 +6,8 @@ import realtor1 from '@/assets/realtor-senior-advisor.jpg'
 import realtor2 from '@/assets/realtor-cn-2.jpg'
 import realtor3 from '@/assets/realtor-cn-3.jpg'
 import realtor4 from '@/assets/realtor-priya.jpg'
+import realtor5 from '@/assets/realtor-margaret.jpg'
+import realtor6 from '@/assets/realtor-arjun.jpg'
 
 type Role = 'All' | 'Listing Advisor' | 'Buyer Advisor'
 
@@ -15,6 +17,8 @@ export function Team() {
   const team = [
     { name: 'James Whitmore', role: 'Listing Advisor' as const, image: realtor1 },
     { name: 'David Liu', role: 'Listing Advisor' as const, image: realtor2 },
+    { name: 'Margaret Ellis', role: 'Listing Advisor' as const, image: realtor5 },
+    { name: 'Arjun Kapoor', role: 'Listing Advisor' as const, image: realtor6 },
     { name: 'Vivian Wang', role: 'Buyer Advisor' as const, image: realtor3 },
     { name: 'Priya Patel', role: 'Buyer Advisor' as const, image: realtor4 },
   ]
