@@ -30,11 +30,27 @@
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
   function toDateInputValue(d) { return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate()); }
 
+  // 16-point compass: azimuth degrees -> compass code + human name
+  var COMPASS_16 = [
+    ['N', 'North'], ['NNE', 'North-Northeast'], ['NE', 'Northeast'], ['ENE', 'East-Northeast'],
+    ['E', 'East'], ['ESE', 'East-Southeast'], ['SE', 'Southeast'], ['SSE', 'South-Southeast'],
+    ['S', 'South'], ['SSW', 'South-Southwest'], ['SW', 'Southwest'], ['WSW', 'West-Southwest'],
+    ['W', 'West'], ['WNW', 'West-Northwest'], ['NW', 'Northwest'], ['NNW', 'North-Northwest']
+  ];
+  function azimuthToCompass(azDeg) {
+    var a = ((azDeg % 360) + 360) % 360;
+    var idx = Math.round(a / 22.5) % 16;
+    return { code: COMPASS_16[idx][0], name: COMPASS_16[idx][1] };
+  }
+
   // ---------- shared compute ----------
   function recomputeDay() {
     state.dayData = sunPathDay(state.date, state.lat, state.lon);
     var sc = daylightScore(state.dayData.dayLengthHours, state.dayData.noonElevation, state.dayData.noonAzimuth, state.orientation);
     renderScore(sc, state.dayData);
+    if (state.threeReady && window.SunPath3D && window.SunPath3D.setDayPath) {
+      window.SunPath3D.setDayPath(state.dayData.samples);
+    }
   }
 
   function currentSample() {
