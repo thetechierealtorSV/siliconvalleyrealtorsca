@@ -402,6 +402,7 @@
     init: init,
     setLocation: setLocation,
     setSunFromSolar: setSunFromSolar,
+    setDayPath: setDayPath,
     resize: resize,
     dispose: dispose,
     _state: S
