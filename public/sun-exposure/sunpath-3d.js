@@ -31,9 +31,12 @@
 
   var METERS_PER_DEG_LAT = 111320;
 
+  var SUN_DIST = 500;
+
   var S = {
     scene: null, camera: null, renderer: null, sunLight: null, hemiLight: null, ambient: null,
     ground: null, buildingsGroup: null, subjectMesh: null, compassGroup: null,
+    sunMesh: null, sunGlowMesh: null, sunPathLine: null,
     container: null, raf: null, controls: null,
     lat: 37.4419, lon: -122.1430,
     onStatus: null
