@@ -88,7 +88,7 @@ export default function OffMarketPage() {
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Off-Market & Pocket Listings</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               A discreet selection of pre-MLS, pocket, and quietly-marketed estates across Silicon Valley.
-              These don't appear on Zillow or Redfin. Unlock full address, agent notes, and showing access.
+              These are not publicly listed on other real estate platforms. Unlock full address, agent notes, and showing access.
             </p>
           </header>
 

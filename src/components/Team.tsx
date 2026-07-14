@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import chrisAsset from '@/assets/chris-nikolaenko.jpg.asset.json'
-import realtor1 from '@/assets/realtor-cn-1.jpg'
+import realtor1 from '@/assets/realtor-senior-advisor.jpg'
 import realtor2 from '@/assets/realtor-cn-2.jpg'
 import realtor3 from '@/assets/realtor-cn-3.jpg'
 import realtor4 from '@/assets/realtor-priya.jpg'
@@ -13,7 +13,7 @@ export function Team() {
   const [filter, setFilter] = useState<Role>('All')
 
   const team = [
-    { name: 'Lillian Chen', role: 'Listing Advisor' as const, image: realtor1 },
+    { name: 'James Whitmore', role: 'Listing Advisor' as const, image: realtor1 },
     { name: 'David Liu', role: 'Listing Advisor' as const, image: realtor2 },
     { name: 'Vivian Wang', role: 'Buyer Advisor' as const, image: realtor3 },
     { name: 'Priya Patel', role: 'Buyer Advisor' as const, image: realtor4 },

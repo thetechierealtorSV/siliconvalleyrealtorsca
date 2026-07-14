@@ -13,7 +13,7 @@
 
   === Daylight Score: ORIGINAL heuristic ===
   NOT derived from, and NOT a re-implementation of, any third-party algorithm.
-  This is NOT Redfin "Sunscore", NOT Shadowmap, and shares no code or formula
+  This is an independent, self-authored heuristic and shares no code or formula
   with them. It is our own transparent, tunable blend defined entirely below.
 
   The score is the sum of three independent, physically-motivated components,

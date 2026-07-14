@@ -20,8 +20,8 @@ function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function SocialRail() {
   return (
-    <div className="hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-[105] flex-col items-center gap-5">
-      <div className="w-px h-12 bg-white/30" />
+    <div className="hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-[105] flex-col items-center gap-4 px-2 py-4 rounded-full bg-foreground/70 backdrop-blur-md border border-border/40">
+      <div className="w-px h-8 bg-background/40" />
       {links.map(({ href, label, Icon }) => (
         <a
           key={label}
@@ -29,12 +29,12 @@ export function SocialRail() {
           target="_blank"
           rel="noreferrer noopener"
           aria-label={label}
-          className="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"
+          className="text-background/85 hover:text-background hover:scale-110 transition-all duration-300"
         >
           <Icon className="w-4 h-4" />
         </a>
       ))}
-      <div className="w-px h-12 bg-white/30" />
+      <div className="w-px h-8 bg-background/40" />
     </div>
   )
 }
