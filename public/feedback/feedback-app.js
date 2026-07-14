@@ -83,35 +83,28 @@
     });
   }
 
-  function insertFeedback(cfg, row) {
-    return fetch(cfg.url + '/rest/v1/site_feedback', {
+  function submitFeedback(cfg, row) {
+    // Post to the edge function, which validates + inserts server-side and (if
+    // opted in) sends the owner SMS using the just-inserted row's own data.
+    return fetch(cfg.url + '/functions/v1/notify-feedback', {
       method: 'POST',
       headers: {
         'apikey': cfg.key,
         'Authorization': 'Bearer ' + cfg.key,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(row)
     }).then(function (r) {
-      if (!r.ok) return r.text().then(function (t) { throw new Error(t || ('HTTP ' + r.status)); });
-      return true;
+      return r.json().then(function (j) {
+        if (!r.ok || !j || j.ok === false) {
+          throw new Error((j && j.error) || ('HTTP ' + r.status));
+        }
+        return j;
+      }, function () {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return { ok: true };
+      });
     });
-  }
-
-  function notify(cfg, row) {
-    // Fire-and-forget — never block the user on this.
-    try {
-      fetch(cfg.url + '/functions/v1/notify-feedback', {
-        method: 'POST',
-        headers: {
-          'apikey': cfg.key,
-          'Authorization': 'Bearer ' + cfg.key,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(row)
-      }).catch(function (e) { console.warn('notify-feedback failed:', e); });
-    } catch (e) { console.warn('notify-feedback threw:', e); }
   }
 
   function showThankYou() {
@@ -214,9 +207,8 @@
             page_url: (function () { try { return document.referrer || window.location.href; } catch (e) { return null; } })(),
             user_agent: navigator.userAgent ? String(navigator.userAgent).slice(0, 500) : null
           };
-          return insertFeedback(cfg, row).then(function () {
+          return submitFeedback(cfg, row).then(function () {
             try { localStorage.setItem(RATE_KEY, String(Date.now())); } catch (e) {}
-            if (opt) notify(cfg, row);
             showThankYou();
           });
         });
