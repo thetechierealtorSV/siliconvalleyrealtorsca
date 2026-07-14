@@ -230,7 +230,8 @@
         state.submitting = false;
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send my preferences';
-        msg.textContent = 'Sorry \u2014 could not submit. ' + (err && err.message ? err.message : '');
+        try { if (err) console.error('[preferences-widget] submit failed:', err); } catch (e) {}
+        msg.textContent = 'Sorry \u2014 we could not submit your preferences. Please try again in a moment.';
       });
     });
 
