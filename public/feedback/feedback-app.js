@@ -135,7 +135,10 @@
       },
       body: file
     }).then(function (r) {
-      if (!r.ok) return r.text().then(function (t) { throw new Error('Upload failed: ' + (t || r.status)); });
+      if (!r.ok) return r.text().then(function (t) {
+        try { console.error('[feedback] screenshot upload failed:', r.status, t); } catch (e) {}
+        throw new Error('Screenshot upload failed.');
+      });
       return 'feedback-attachments/' + path;
     });
   }
@@ -216,7 +219,8 @@
         submitting = false;
         btn.disabled = false;
         btn.textContent = 'Submit feedback';
-        msg.textContent = 'Sorry \u2014 could not submit. ' + (err && err.message ? err.message : '');
+        try { if (err) console.error('[feedback] submit failed:', err); } catch (e) {}
+        msg.textContent = 'Sorry \u2014 we could not submit your feedback. Please try again.';
       });
     });
   }
