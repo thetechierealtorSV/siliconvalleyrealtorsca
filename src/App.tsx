@@ -33,6 +33,7 @@ import { landingPages } from './data/landingData'
 // GoogleTranslate is now embedded inside SideDrawer's Language tab
 import { PreferencesWidget } from './components/PreferencesWidget'
 import { SideDrawer } from './components/SideDrawer'
+import { ExitIntentPopup } from './components/ExitIntentPopup'
 
 function HomePage() {
   const homeFaqJsonLd = {
@@ -90,6 +91,7 @@ export default function App() {
       <SocialRail />
       <SideDrawer />
       <Toaster position="top-center" richColors closeButton />
+      <ExitIntentPopup />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<PropertiesPage />} />

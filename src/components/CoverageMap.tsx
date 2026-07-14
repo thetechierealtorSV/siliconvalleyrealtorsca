@@ -28,7 +28,7 @@ export function CoverageMap() {
           height={720}
           loading="lazy"
           className="w-full h-[70vh] min-h-[520px] max-h-[900px] object-cover block"
-          style={{ filter: 'contrast(1.08) saturate(1.15) brightness(1.02)' }}
+          style={{ filter: 'contrast(1.05) saturate(1.1)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
         <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 text-center">

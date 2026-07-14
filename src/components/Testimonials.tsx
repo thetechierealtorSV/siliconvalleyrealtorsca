@@ -1,33 +1,24 @@
 'use client'
 
-import katrinaImg from '@/assets/testimonial-katrina-mike.jpg'
-import cleoImg from '@/assets/testimonial-cleo.jpg'
-import yusefImg from '@/assets/testimonial-yusef.jpg'
-import weiImg from '@/assets/testimonial-wei.jpg'
-
 const testimonials = [
   {
     quote:
       "Christopher brings more than standard agent service. He offers insight, market intelligence, and creative problem solving that helped us move forward with a clear plan and strong confidence.",
     author: 'Katrina and Mike Z.',
-    img: katrinaImg,
   },
   {
     quote:
       "This was the biggest investment of my life, and Chris brought one-of-a-kind transparency and honesty. He guided me with clear, patient counsel from offer through close.",
     author: 'Cleo V.',
-    img: cleoImg,
   },
   {
     quote:
       "Going in I thought I knew everything. Chris was a well of knowledge and expertise. Very professional, kind and humble, communicated directly. And saved me time with his personal resources.",
     author: 'Yusef G.',
-    img: yusefImg,
   },
   {
     quote: 'Chris is a very trustworthy agent to work with.',
     author: 'Wei C.',
-    img: weiImg,
   },
 ]
 
@@ -50,25 +41,15 @@ export function Testimonials() {
               key={t.author}
               className="rounded-2xl bg-secondary/40 clean-border p-8 elevated-shadow flex flex-col"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <img
-                  src={t.img}
-                  alt={t.author}
-                  loading="lazy"
-                  width={96}
-                  height={96}
-                  className="w-16 h-16 rounded-full object-cover ring-2 ring-[color:var(--accent-gold)]/40"
-                />
-                <figcaption
-                  className="text-sm font-medium tracking-[0.15em] uppercase"
-                  style={{ color: 'var(--accent-gold)' }}
-                >
-                  {t.author}
-                </figcaption>
-              </div>
-              <blockquote className="text-foreground/90 text-lg leading-relaxed font-display italic flex-1">
+              <blockquote className="text-foreground/90 text-lg leading-relaxed font-display italic flex-1 mb-6">
                 “{t.quote}”
               </blockquote>
+              <figcaption
+                className="text-sm font-medium tracking-[0.15em] uppercase"
+                style={{ color: 'var(--accent-gold)' }}
+              >
+                — {t.author}
+              </figcaption>
             </figure>
           ))}
         </div>

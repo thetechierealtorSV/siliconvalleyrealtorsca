@@ -40,16 +40,26 @@ const PARENT_SEARCH = 'https://www.nikolaenkopropertygroup.com/search/'
  */
 export function IDXSearch() {
   const [city, setCity] = useState('')
+  const [cityText, setCityText] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
+  const [minPriceText, setMinPriceText] = useState('')
+  const [maxPriceText, setMaxPriceText] = useState('')
   const [beds, setBeds] = useState('')
+  const [bedsText, setBedsText] = useState('')
+
+  const stripNum = (s: string) => s.replace(/[^\d]/g, '')
 
   const buildMoxiUrl = () => {
+    const finalCity = (cityText.trim() || city).trim()
+    const finalMin = stripNum(minPriceText) || minPrice
+    const finalMax = stripNum(maxPriceText) || maxPrice
+    const finalBeds = stripNum(bedsText) || beds
     const parts: string[] = []
-    if (city) parts.push('city:' + city.replace(/\s+/g, '-'))
-    if (minPrice) parts.push('min-price:' + minPrice)
-    if (maxPrice) parts.push('max-price:' + maxPrice)
-    if (beds) parts.push('min-beds:' + beds.replace('+', ''))
+    if (finalCity) parts.push('city:' + finalCity.replace(/\s+/g, '-'))
+    if (finalMin) parts.push('min-price:' + finalMin)
+    if (finalMax) parts.push('max-price:' + finalMax)
+    if (finalBeds) parts.push('min-beds:' + finalBeds.replace('+', ''))
     const hash = parts.length ? '#!/' + parts.join('/') : '#!/defaultsearch:true'
     return PARENT_SEARCH + hash
   }
@@ -127,15 +137,52 @@ export function IDXSearch() {
         </select>
       </label>
 
+      {/* Manual text inputs, override dropdowns when filled */}
+      <input
+        type="text"
+        value={cityText}
+        onChange={(e) => setCityText(e.target.value)}
+        placeholder="Or type city"
+        aria-label="City (text input)"
+        className="sm:col-span-2 px-3 py-2 rounded-xl bg-background border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/30"
+      />
+      <input
+        type="text"
+        inputMode="numeric"
+        value={minPriceText}
+        onChange={(e) => setMinPriceText(e.target.value)}
+        placeholder="Min $ (e.g. 1500000)"
+        aria-label="Minimum price (text input)"
+        className="px-3 py-2 rounded-xl bg-background border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/30"
+      />
+      <input
+        type="text"
+        inputMode="numeric"
+        value={maxPriceText}
+        onChange={(e) => setMaxPriceText(e.target.value)}
+        placeholder="Max $ (e.g. 5000000)"
+        aria-label="Maximum price (text input)"
+        className="px-3 py-2 rounded-xl bg-background border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/30"
+      />
+      <input
+        type="text"
+        inputMode="numeric"
+        value={bedsText}
+        onChange={(e) => setBedsText(e.target.value)}
+        placeholder="Min beds"
+        aria-label="Minimum beds (text input)"
+        className="px-3 py-2 rounded-xl bg-background border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/30"
+      />
+
       <button
         type="submit"
-        className="bg-foreground text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-medium hover:opacity-90 gentle-animation flex items-center justify-center gap-2"
+        className="sm:col-span-6 bg-foreground text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-medium hover:opacity-90 gentle-animation flex items-center justify-center gap-2"
       >
         <Search className="w-4 h-4" /> Search MLS
       </button>
 
       <p className="sm:col-span-6 text-[11px] text-muted-foreground text-center">
-        Opens live listings on nikolaenkopropertygroup.com.
+        Typed values override the dropdowns. Opens live listings on nikolaenkopropertygroup.com.
       </p>
     </form>
   )
