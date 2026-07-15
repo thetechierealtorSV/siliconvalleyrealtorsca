@@ -175,7 +175,7 @@ function ListingCard({ listing, unlocked, onUnlock }: { listing: Listing; unlock
     <div className="bg-card border border-border rounded-2xl overflow-hidden elevated-shadow flex flex-col">
       <div className="relative aspect-[16/10] bg-secondary overflow-hidden">
         {listing.hero_image_url ? (
-          <img src={listing.hero_image_url} alt={listing.neighborhood} loading="lazy" className="w-full h-full object-cover" />
+          <img src={listing.hero_image_url} alt={listing.neighborhood} loading="lazy" decoding="async" className="w-full h-full object-cover" />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
             <Lock className="w-10 h-10 text-muted-foreground/50" />

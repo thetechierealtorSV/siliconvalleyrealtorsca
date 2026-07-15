@@ -58,7 +58,7 @@ export function Testimonials() {
                 <img
                   src={t.image}
                   alt={t.alt}
-                  loading="lazy"
+                  loading="lazy" decoding="async"
                   width={1024}
                   height={640}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

@@ -65,7 +65,7 @@ export function BuyersSellersPreview() {
                   <img
                     src={c.img}
                     alt={`${c.title} at Nikolaenko Estates`}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     width={1024}
                     height={768}
                     className="w-full h-full object-cover group-hover:scale-105 gentle-animation"

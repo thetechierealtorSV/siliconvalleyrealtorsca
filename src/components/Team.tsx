@@ -45,7 +45,7 @@ export function Team() {
                 alt="Chris Nikolaenko, Senior Listing Agent and Buyer's Agent at Nikolaenko Property Group"
                 width={768}
                 height={1024}
-                loading="lazy"
+                loading="lazy" decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -103,7 +103,7 @@ export function Team() {
                   alt={`${member.name}, ${member.role}`}
                   width={192}
                   height={256}
-                  loading="lazy"
+                  loading="lazy" decoding="async"
                   className="w-full h-full object-cover gentle-animation group-hover:scale-105"
                 />
               </div>
