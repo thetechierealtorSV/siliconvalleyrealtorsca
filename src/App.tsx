@@ -114,6 +114,7 @@ export default function App() {
             <Route path="/feng-shui" element={<FengShuiPage />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
+            <Route path="/admin/newsletter" element={<AdminNewsletterPage />} />
             <Route path="/resources/:slug" element={<ResourcesPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/account" element={<AccountPage />} />
