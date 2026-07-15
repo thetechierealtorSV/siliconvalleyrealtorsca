@@ -127,7 +127,7 @@ export function Portfolio() {
                   <img
                     src={property.image}
                     alt={property.title}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     width={1280}
                     height={960}
                     className="w-full h-full object-cover gentle-animation group-hover:scale-105"

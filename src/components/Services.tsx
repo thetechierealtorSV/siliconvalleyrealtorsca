@@ -38,7 +38,7 @@ export function Services() {
         <img
           src={service.image}
           alt={service.title}
-          loading="lazy"
+          loading="lazy" decoding="async"
           width={1024}
           height={640}
           className="w-full h-full object-cover group-hover:scale-105 gentle-animation"
@@ -61,7 +61,7 @@ export function Services() {
         <img
           src={service.image}
           alt={service.title}
-          loading="lazy"
+          loading="lazy" decoding="async"
           width={1024}
           height={640}
           className="w-full h-full object-cover group-hover:scale-105 gentle-animation"

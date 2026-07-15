@@ -104,7 +104,7 @@ export function YouTubeTours() {
                     <img
                       src={t.thumb}
                       alt={t.title}
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                       width={1280}
                       height={720}
                       className="w-full h-full object-cover"

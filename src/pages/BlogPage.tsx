@@ -25,7 +25,7 @@ export default function BlogPage() {
             {posts.map((p) => (
               <Link key={p.slug} to={`/journal/${p.slug}`} className="group block rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/50 transition">
                 <div className="aspect-[16/9] bg-muted overflow-hidden">
-                  <img src={p.cover} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <img src={p.cover} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2">

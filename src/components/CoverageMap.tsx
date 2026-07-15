@@ -26,7 +26,7 @@ export function CoverageMap() {
           alt="Bay Area landmarks: Golden Gate Bridge, Palace of Fine Arts, Salesforce Tower, Chase Center, Stanford University, Levi's Stadium, and Apple Park"
           width={1920}
           height={720}
-          loading="lazy"
+          loading="lazy" decoding="async"
           className="w-full h-[70vh] min-h-[520px] max-h-[900px] object-cover block"
           style={{ filter: 'contrast(1.05) saturate(1.1)' }}
         />
