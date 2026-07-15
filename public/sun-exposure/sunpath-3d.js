@@ -411,38 +411,34 @@
 
   // ---- position the sun light + visible sun sphere from solar el/az ---------
   function setSunFromSolar(elevationDeg, azimuthDeg) {
+    var aboveHorizon = elevationDeg > 0;
     var d = sunDirection(elevationDeg, azimuthDeg);
     var sx = d.x * SUN_DIST, sy = d.y * SUN_DIST, sz = d.z * SUN_DIST;
-    // Keep the visible sun above the horizon (never sink into the ground).
-    // Uses a smooth floor so sunrise/sunset gracefully skim the horizon line.
-    var minY = SUN_DIST * 0.035;
-    var visualY = sy < minY ? minY : sy;
 
     if (S.sunMesh) {
-      S.sunMesh.position.set(sx, visualY, sz);
-      S.sunMesh.visible = elevationDeg > -8;
+      S.sunMesh.visible = aboveHorizon;
+      if (aboveHorizon) S.sunMesh.position.set(sx, sy, sz);
       // Warm at horizon, brilliant white-yellow at noon
-      var warmMix = Math.max(0, Math.min(1, (elevationDeg + 6) / 40));
+      var warmMix = Math.max(0, Math.min(1, elevationDeg / 40));
       var color = new THREE.Color().lerpColors(new THREE.Color(0xff6b1a), new THREE.Color(0xfff2a8), warmMix);
       S.sunMesh.material.color.copy(color);
     }
     if (S.sunGlowMesh) {
-      S.sunGlowMesh.position.set(sx, visualY, sz);
-      S.sunGlowMesh.visible = elevationDeg > -8;
+      S.sunGlowMesh.visible = aboveHorizon;
+      if (aboveHorizon) S.sunGlowMesh.position.set(sx, sy, sz);
       var t = Math.max(0, Math.min(1, elevationDeg / 30));
       S.sunGlowMesh.material.opacity = 0.35 + 0.45 * (1 - t);
     }
     if (S.sunGlowMesh2) {
-      S.sunGlowMesh2.position.set(sx, visualY, sz);
-      S.sunGlowMesh2.visible = elevationDeg > -8;
+      S.sunGlowMesh2.visible = aboveHorizon;
+      if (aboveHorizon) S.sunGlowMesh2.position.set(sx, sy, sz);
       S.sunGlowMesh2.material.opacity = 0.12 + 0.25 * (1 - Math.max(0, Math.min(1, elevationDeg / 30)));
     }
 
-    if (elevationDeg <= 0) {
+    if (!aboveHorizon) {
       S.sunLight.intensity = 0.0;
-      // Keep meaningful ambient/hemi so buildings never disappear into black.
-      S.hemiLight.intensity = 0.6;
-      if (S.ambient) S.ambient.intensity = 0.35;
+      S.hemiLight.intensity = 0.35;
+      if (S.ambient) S.ambient.intensity = 0.28;
     } else {
       S.sunLight.position.set(sx, sy, sz);
       S.sunLight.target.position.set(0, 0, 0);
@@ -454,7 +450,7 @@
     }
   }
 
-  // ---- build/refresh the sun-path arc from a day's samples -----------------
+  // ---- build/refresh the sun-path arc as a thick tube (Redfin-style visible arc)
   function setDayPath(samples) {
     if (!S.scene || !samples || !samples.length) return;
     var pts = [];
@@ -465,17 +461,46 @@
       var d = sunDirection(s.elevation, s.azimuth);
       pts.push(new THREE.Vector3(d.x * pathDist, d.y * pathDist, d.z * pathDist));
     }
-    if (S.sunPathLine) {
-      S.scene.remove(S.sunPathLine);
-      if (S.sunPathLine.geometry) S.sunPathLine.geometry.dispose();
-      if (S.sunPathLine.material) S.sunPathLine.material.dispose();
-      S.sunPathLine = null;
+    // Dispose previous arc group (line + tick markers)
+    if (S.sunPathGroup) {
+      S.scene.remove(S.sunPathGroup);
+      S.sunPathGroup.traverse(function (o) {
+        if (o.geometry) o.geometry.dispose();
+        if (o.material) o.material.dispose();
+      });
+      S.sunPathGroup = null;
     }
     if (pts.length < 2) return;
-    var geo = new THREE.BufferGeometry().setFromPoints(pts);
-    var mat = new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.85 });
-    S.sunPathLine = new THREE.Line(geo, mat);
-    S.scene.add(S.sunPathLine);
+
+    var group = new THREE.Group();
+
+    // Thick glowing tube for the sun's path across the sky
+    var curve = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.2);
+    var tubeGeo = new THREE.TubeGeometry(curve, Math.min(240, pts.length * 4), SUN_DIST * 0.012, 12, false);
+    var tubeMat = new THREE.MeshBasicMaterial({ color: 0xf5c76a, transparent: true, opacity: 0.85, depthWrite: false });
+    var tube = new THREE.Mesh(tubeGeo, tubeMat);
+    tube.renderOrder = 2;
+    group.add(tube);
+
+    // Outer soft halo tube (subtle glow)
+    var haloGeo = new THREE.TubeGeometry(curve, Math.min(180, pts.length * 3), SUN_DIST * 0.028, 10, false);
+    var haloMat = new THREE.MeshBasicMaterial({ color: 0xfde4a6, transparent: true, opacity: 0.18, depthWrite: false });
+    var halo = new THREE.Mesh(haloGeo, haloMat);
+    halo.renderOrder = 1;
+    group.add(halo);
+
+    // Hour tick markers along the arc (small gold spheres)
+    var tickStep = Math.max(1, Math.floor(pts.length / 12));
+    var tickGeo = new THREE.SphereGeometry(SUN_DIST * 0.018, 16, 16);
+    var tickMat = new THREE.MeshBasicMaterial({ color: 0xffe27a });
+    for (var k = 0; k < pts.length; k += tickStep) {
+      var tick = new THREE.Mesh(tickGeo, tickMat);
+      tick.position.copy(pts[k]);
+      group.add(tick);
+    }
+
+    S.sunPathGroup = group;
+    S.scene.add(group);
   }
 
   function compass() {
