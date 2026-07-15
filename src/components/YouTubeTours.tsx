@@ -71,7 +71,7 @@ export function YouTubeTours() {
             <iframe
               src={CHANNEL_SEARCH_EMBED}
               title="Silicon Valley luxury home tour videos"
-              loading="lazy" decoding="async"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full"
@@ -94,7 +94,7 @@ export function YouTubeTours() {
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${t.videoId}`}
                     title={t.title}
-                    loading="lazy" decoding="async"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
