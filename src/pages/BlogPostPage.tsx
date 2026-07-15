@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { SEO } from '@/components/SEO'
-import PageNavbar from '@/components/PageNavbar'
+import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { getPost } from '@/data/blog'
 import { NewsletterSignup } from '@/components/NewsletterSignup'

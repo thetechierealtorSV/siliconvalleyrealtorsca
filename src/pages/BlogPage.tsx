@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SEO } from '@/components/SEO'
-import PageNavbar from '@/components/PageNavbar'
+import { PageNavbar } from '@/components/PageNavbar'
 import { Footer } from '@/components/Footer'
 import { posts } from '@/data/blog'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
