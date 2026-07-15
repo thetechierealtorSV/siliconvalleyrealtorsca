@@ -288,6 +288,36 @@ export type Database = {
           },
         ]
       }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          newsletter_opt_in: boolean
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          newsletter_opt_in?: boolean
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          newsletter_opt_in?: boolean
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       saved_searches: {
         Row: {
           alert_on_price_drop: boolean
