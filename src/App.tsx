@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { Hero } from './components/Hero'
@@ -13,32 +14,32 @@ import { Testimonials } from './components/Testimonials'
 import { Team } from './components/Team'
 import { SEO, ORG_JSON_LD } from './components/SEO'
 import { IDXSearch } from './components/IDXSearch'
-import BuyersPage from './pages/BuyersPage'
-import SellersPage from './pages/SellersPage'
-import PropertiesPage from './pages/PropertiesPage'
-import OffMarketPage from './pages/OffMarketPage'
-import SavedSearchesPage from './pages/SavedSearchesPage'
-import AboutPage from './pages/AboutPage'
 import ScrollToTop from './components/ScrollToTop'
 import { SocialRail } from './components/SocialRail'
 import { CoverageMap } from './components/CoverageMap'
 import { YouTubeTours } from './components/YouTubeTours'
-import SunExposurePage from './pages/SunExposurePage'
-import FengShuiPage from './pages/FengShuiPage'
-import ExplorerPage from './pages/ExplorerPage'
-import AdminFeedbackPage from './pages/AdminFeedbackPage'
-import LandingPage from './pages/LandingPage'
-import ResourcesPage from './pages/ResourcesPage'
 import { landingPages } from './data/landingData'
-// GoogleTranslate is now embedded inside SideDrawer's Language tab
 import { PreferencesWidget } from './components/PreferencesWidget'
 import { SideDrawer } from './components/SideDrawer'
 import { ExitIntentPopup } from './components/ExitIntentPopup'
 import { AuthProvider } from './hooks/useAuth'
-import AuthPage from './pages/AuthPage'
-import AccountPage from './pages/AccountPage'
-import BlogPage from './pages/BlogPage'
-import BlogPostPage from './pages/BlogPostPage'
+
+const BuyersPage = lazy(() => import('./pages/BuyersPage'))
+const SellersPage = lazy(() => import('./pages/SellersPage'))
+const PropertiesPage = lazy(() => import('./pages/PropertiesPage'))
+const OffMarketPage = lazy(() => import('./pages/OffMarketPage'))
+const SavedSearchesPage = lazy(() => import('./pages/SavedSearchesPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const SunExposurePage = lazy(() => import('./pages/SunExposurePage'))
+const FengShuiPage = lazy(() => import('./pages/FengShuiPage'))
+const ExplorerPage = lazy(() => import('./pages/ExplorerPage'))
+const AdminFeedbackPage = lazy(() => import('./pages/AdminFeedbackPage'))
+const LandingPage = lazy(() => import('./pages/LandingPage'))
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
+const AuthPage = lazy(() => import('./pages/AuthPage'))
+const AccountPage = lazy(() => import('./pages/AccountPage'))
+const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 
 function HomePage() {
   const homeFaqJsonLd = {
@@ -98,28 +99,31 @@ export default function App() {
         <SideDrawer />
         <Toaster position="top-center" richColors closeButton />
         <ExitIntentPopup />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/properties" element={<PropertiesPage />} />
-          <Route path="/off-market" element={<OffMarketPage />} />
-          <Route path="/saved-searches" element={<SavedSearchesPage />} />
-          <Route path="/buyers" element={<BuyersPage />} />
-          <Route path="/sellers" element={<SellersPage />} />
-          <Route path="/about/chris" element={<AboutPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/sun-exposure" element={<SunExposurePage />} />
-          <Route path="/feng-shui" element={<FengShuiPage />} />
-          <Route path="/explorer" element={<ExplorerPage />} />
-          <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
-          <Route path="/resources/:slug" element={<ResourcesPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/journal" element={<BlogPage />} />
-          <Route path="/journal/:slug" element={<BlogPostPage />} />
-          {landingPages.map((p) => (
-            <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
-          ))}
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/properties" element={<PropertiesPage />} />
+            <Route path="/off-market" element={<OffMarketPage />} />
+            <Route path="/saved-searches" element={<SavedSearchesPage />} />
+            <Route path="/buyers" element={<BuyersPage />} />
+            <Route path="/sellers" element={<SellersPage />} />
+            <Route path="/about/chris" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/sun-exposure" element={<SunExposurePage />} />
+            <Route path="/feng-shui" element={<FengShuiPage />} />
+            <Route path="/explorer" element={<ExplorerPage />} />
+            <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
+            <Route path="/resources/:slug" element={<ResourcesPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/journal" element={<BlogPage />} />
+            <Route path="/journal/:slug" element={<BlogPostPage />} />
+            {landingPages.map((p) => (
+              <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
+            ))}
+          </Routes>
+        </Suspense>
+
       </BrowserRouter>
     </AuthProvider>
   )
