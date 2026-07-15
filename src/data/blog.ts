@@ -11,6 +11,16 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'atherton-menlo-park-luxury-outlook-2026',
+    title: 'Atherton & Menlo Park Luxury Outlook — Late 2026',
+    excerpt: 'Ultra-luxury absorption, off-market share, and what $10M+ buyers are actually asking for this cycle.',
+    date: '2026-07-14',
+    readMin: 7,
+    cover: '/og-image.jpg',
+    tags: ['Market Brief', 'Atherton', 'Menlo Park'],
+    body: `## The headline\n\nAtherton's $10M+ tier is trading **~38% off-market** this year — the highest share we've tracked. Menlo Park's West of Alameda micro-market is compressing DOM to under two weeks on turnkey product.\n\n### What buyers are asking for\n- **Single-level primary suites** on estate lots\n- **Detached ADU / guest houses** for multi-gen living\n- **True 4-car garages** with EV infrastructure already trenched\n- **Wellness wings** — sauna, cold plunge, gym — built-in, not retrofit\n\n### What sellers should prep\nCinematic media (drone + dusk + walkthrough) is now table stakes at this price band. Pre-inspection, pre-appraisal, and a clean disclosure package shorten negotiation cycles measurably.\n\n### Where we see risk\nRate path remains the swing factor. Estate buyers are less rate-sensitive, but jumbo-financed move-up buyers in the $4-8M band are pausing on any 25bp+ upward surprise.`,
+  },
+  {
     slug: 'palo-alto-market-brief-q3-2026',
     title: 'Palo Alto Market Brief — Q3 2026',
     excerpt: 'Median SFR pricing, inventory turns, and which micro-neighborhoods are outperforming this quarter.',
