@@ -66,7 +66,15 @@ export function IDXSearch() {
 
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    window.open(buildMoxiUrl(), '_blank', 'noopener,noreferrer')
+    const url = buildMoxiUrl()
+    // iOS/Android browsers block window.open from form submits — navigate in-tab on mobile.
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+    if (isMobile) {
+      window.location.href = url
+    } else {
+      const w = window.open(url, '_blank', 'noopener,noreferrer')
+      if (!w) window.location.href = url
+    }
   }
 
   return (
