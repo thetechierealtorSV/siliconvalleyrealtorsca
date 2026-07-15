@@ -1,9 +1,36 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, UserCircle2 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth'
+
+function AuthNavButton() {
+  const { user, loading } = useAuth()
+  const navigate = useNavigate()
+  if (loading) return null
+  if (user) {
+    return (
+      <button
+        onClick={() => navigate('/account')}
+        className="hidden sm:flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] px-3 py-2 rounded-md border border-border hover:bg-muted gentle-animation text-foreground"
+        aria-label="My account"
+      >
+        <UserCircle2 className="w-4 h-4" /> Account
+      </button>
+    )
+  }
+  return (
+    <button
+      onClick={() => navigate('/auth')}
+      className="hidden sm:block text-xs uppercase tracking-[0.15em] px-3 py-2 rounded-md hover:bg-muted gentle-animation text-foreground"
+    >
+      Sign in
+    </button>
+  )
+}
+
 
 export function PageNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -101,6 +128,7 @@ export function PageNavbar() {
           </div>
 
           <div className="flex items-center space-x-3">
+            <AuthNavButton />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

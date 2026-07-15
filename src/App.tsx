@@ -34,6 +34,9 @@ import { landingPages } from './data/landingData'
 import { PreferencesWidget } from './components/PreferencesWidget'
 import { SideDrawer } from './components/SideDrawer'
 import { ExitIntentPopup } from './components/ExitIntentPopup'
+import { AuthProvider } from './hooks/useAuth'
+import AuthPage from './pages/AuthPage'
+import AccountPage from './pages/AccountPage'
 
 function HomePage() {
   const homeFaqJsonLd = {
@@ -85,31 +88,35 @@ function HomePage() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      {/* Language lives inside SideDrawer */}
-      <SocialRail />
-      <SideDrawer />
-      <Toaster position="top-center" richColors closeButton />
-      <ExitIntentPopup />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/properties" element={<PropertiesPage />} />
-        <Route path="/off-market" element={<OffMarketPage />} />
-        <Route path="/saved-searches" element={<SavedSearchesPage />} />
-        <Route path="/buyers" element={<BuyersPage />} />
-        <Route path="/sellers" element={<SellersPage />} />
-        <Route path="/about/chris" element={<AboutPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/sun-exposure" element={<SunExposurePage />} />
-        <Route path="/feng-shui" element={<FengShuiPage />} />
-        <Route path="/explorer" element={<ExplorerPage />} />
-        <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
-        <Route path="/resources/:slug" element={<ResourcesPage />} />
-        {landingPages.map((p) => (
-          <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        {/* Language lives inside SideDrawer */}
+        <SocialRail />
+        <SideDrawer />
+        <Toaster position="top-center" richColors closeButton />
+        <ExitIntentPopup />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/properties" element={<PropertiesPage />} />
+          <Route path="/off-market" element={<OffMarketPage />} />
+          <Route path="/saved-searches" element={<SavedSearchesPage />} />
+          <Route path="/buyers" element={<BuyersPage />} />
+          <Route path="/sellers" element={<SellersPage />} />
+          <Route path="/about/chris" element={<AboutPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/sun-exposure" element={<SunExposurePage />} />
+          <Route path="/feng-shui" element={<FengShuiPage />} />
+          <Route path="/explorer" element={<ExplorerPage />} />
+          <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
+          <Route path="/resources/:slug" element={<ResourcesPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          {landingPages.map((p) => (
+            <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
