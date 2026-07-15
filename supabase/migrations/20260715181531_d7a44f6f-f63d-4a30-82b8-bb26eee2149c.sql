@@ -1,0 +1,2 @@
+GRANT SELECT ON public.newsletter_subscribers TO authenticated;
+CREATE POLICY "Admins view newsletter subscribers" ON public.newsletter_subscribers FOR SELECT TO authenticated USING (private.is_admin(auth.uid()));

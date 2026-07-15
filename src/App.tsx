@@ -34,6 +34,7 @@ const SunExposurePage = lazy(() => import('./pages/SunExposurePage'))
 const FengShuiPage = lazy(() => import('./pages/FengShuiPage'))
 const ExplorerPage = lazy(() => import('./pages/ExplorerPage'))
 const AdminFeedbackPage = lazy(() => import('./pages/AdminFeedbackPage'))
+const AdminNewsletterPage = lazy(() => import('./pages/AdminNewsletterPage'))
 const LandingPage = lazy(() => import('./pages/LandingPage'))
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
 const AuthPage = lazy(() => import('./pages/AuthPage'))
@@ -113,6 +114,7 @@ export default function App() {
             <Route path="/feng-shui" element={<FengShuiPage />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
+            <Route path="/admin/newsletter" element={<AdminNewsletterPage />} />
             <Route path="/resources/:slug" element={<ResourcesPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/account" element={<AccountPage />} />
