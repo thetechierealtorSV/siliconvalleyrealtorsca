@@ -37,6 +37,8 @@ import { ExitIntentPopup } from './components/ExitIntentPopup'
 import { AuthProvider } from './hooks/useAuth'
 import AuthPage from './pages/AuthPage'
 import AccountPage from './pages/AccountPage'
+import BlogPage from './pages/BlogPage'
+import BlogPostPage from './pages/BlogPostPage'
 
 function HomePage() {
   const homeFaqJsonLd = {
@@ -112,6 +114,8 @@ export default function App() {
           <Route path="/resources/:slug" element={<ResourcesPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/journal" element={<BlogPage />} />
+          <Route path="/journal/:slug" element={<BlogPostPage />} />
           {landingPages.map((p) => (
             <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
           ))}

@@ -47,6 +47,7 @@ export function Footer() {
               )}
               <button onClick={() => navigate('/buyers')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left">Buyers</button>
               <button onClick={() => navigate('/sellers')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left">Sellers</button>
+              <button onClick={() => navigate('/journal')} className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm text-left">Journal</button>
               {isHome && <a href="#contact" className="text-primary-foreground/60 hover:text-primary-foreground gentle-animation text-sm">Contact</a>}
             </div>
           </div>
