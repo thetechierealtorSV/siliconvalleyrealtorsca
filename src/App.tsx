@@ -99,28 +99,31 @@ export default function App() {
         <SideDrawer />
         <Toaster position="top-center" richColors closeButton />
         <ExitIntentPopup />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/properties" element={<PropertiesPage />} />
-          <Route path="/off-market" element={<OffMarketPage />} />
-          <Route path="/saved-searches" element={<SavedSearchesPage />} />
-          <Route path="/buyers" element={<BuyersPage />} />
-          <Route path="/sellers" element={<SellersPage />} />
-          <Route path="/about/chris" element={<AboutPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/sun-exposure" element={<SunExposurePage />} />
-          <Route path="/feng-shui" element={<FengShuiPage />} />
-          <Route path="/explorer" element={<ExplorerPage />} />
-          <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
-          <Route path="/resources/:slug" element={<ResourcesPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/journal" element={<BlogPage />} />
-          <Route path="/journal/:slug" element={<BlogPostPage />} />
-          {landingPages.map((p) => (
-            <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
-          ))}
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/properties" element={<PropertiesPage />} />
+            <Route path="/off-market" element={<OffMarketPage />} />
+            <Route path="/saved-searches" element={<SavedSearchesPage />} />
+            <Route path="/buyers" element={<BuyersPage />} />
+            <Route path="/sellers" element={<SellersPage />} />
+            <Route path="/about/chris" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/sun-exposure" element={<SunExposurePage />} />
+            <Route path="/feng-shui" element={<FengShuiPage />} />
+            <Route path="/explorer" element={<ExplorerPage />} />
+            <Route path="/admin/feedback" element={<AdminFeedbackPage />} />
+            <Route path="/resources/:slug" element={<ResourcesPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/journal" element={<BlogPage />} />
+            <Route path="/journal/:slug" element={<BlogPostPage />} />
+            {landingPages.map((p) => (
+              <Route key={p.slug} path={"/" + p.slug} element={<LandingPage data={p} />} />
+            ))}
+          </Routes>
+        </Suspense>
+
       </BrowserRouter>
     </AuthProvider>
   )
